@@ -14,11 +14,12 @@ class CursoForm
         return $schema
             ->components([
                 TextInput::make('nombre'),
-                Select::make('modaliad')->options([
+                Select::make('modalidad')->options([
                     'virtual' => 'Virtual',
                     'precencial' => 'Precencial',
                     'virtual/precencial' => 'Virtual / Precencial'
                 ]),
+                Select::make('area_id')->relationship('area', 'nombre')->required(),
                 TinyEditor::make('descripcion')->label('Descripción')
                     ->fileAttachmentsDisk('public')
                     ->fileAttachmentsVisibility('public')
@@ -27,6 +28,6 @@ class CursoForm
                     // Set RTL or use ->direction('auto|rtl|ltr')
                     ->columnSpan('full')
                     ->required()
-            ]);
+            ])->columns(3);
     }
 }

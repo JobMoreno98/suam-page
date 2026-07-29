@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Filament\Resources\Banners\Schemas;
+namespace App\Filament\Resources\AreaFormacions\Schemas;
 
 use AmidEsfahani\FilamentTinyEditor\TinyEditor;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
-class BannerForm
+class AreaFormacionForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                FileUpload::make('imagen')->disk('public')
-                    ->directory('banner'),
                 TextInput::make('nombre'),
-                TinyEditor::make('contenido')->profile('default')->columnSpanFull()
+                TinyEditor::make('descripcion')->columnSpanFull()->profile('minimal')
             ]);
     }
 }

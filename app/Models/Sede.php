@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class Sede extends Model
 {
-      use SoftDeletes;
+    use SoftDeletes;
+    use Searchable;
     protected $guarded = [];
     protected $casts = [
         'redes_sociales' => 'array',
         'correo' => 'array'
     ];
     protected $appends = ['url_logo'];
+    
     protected static function booted(): void
     {
         static::creating(function ($model) {

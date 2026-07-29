@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cursos', function (Blueprint $table) {
+        Schema::create('area_formacions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('slug');
-            $table->enum('modalidad', ['virtual', 'precencial', 'virtual/precencial']);
             $table->text('descripcion');
-            $table->unsignedBigInteger('area_id')->nullable();
-
-            $table->foreign('area_id')->references('id')->on('area_formacions')->nullOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cursos');
+        Schema::dropIfExists('area_formacions');
     }
 };
