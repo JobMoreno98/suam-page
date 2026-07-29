@@ -38,6 +38,13 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+                min-height: 100dvh;
+        }
+
+        #footer {
+            margin-top: auto;
         }
     </style>
     @livewireStyles
@@ -55,9 +62,10 @@
     </main>
 
     <!-- Footer Parcial -->
-    @include('partials.footer')
-    @livewireScripts
-    @stack('scripts')
+
 </body>
+@include('partials.footer')
+@livewireScripts
+@stack('scripts')
 
 </html>

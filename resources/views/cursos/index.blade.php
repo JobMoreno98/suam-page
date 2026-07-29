@@ -4,8 +4,8 @@
     <div x-data="{
         modalOpen: false,
         activeCurso: null,
-        selectedSede: '',
         selectedCategoria: '',
+        selectedModalidad: '',
         searchQuery: '',
         listaCursos: @js($cursos->items()) {{-- Extrae solo el array de ítems si usas paginación --}}
     }" class="min-h-screen bg-gray-50/50 py-8 px-4 sm:px-6 lg:px-8">
@@ -28,15 +28,14 @@
                         y desarrollo personal.
                     </p>
                 </div>
-                {{-- Elemento decorativo de fondo --}}
                 <div
                     class="absolute -right-10 -bottom-10 w-64 h-64 bg-gradient-to-br from-brandorange/10 to-brandgreen/10 rounded-full blur-2xl pointer-events-none">
                 </div>
             </div>
 
-            {{-- 2. BARRA DE BÚSQUEDA Y FILTROS --}}
+            {{-- 2. BARRA DE BÚSQUEDA Y FILTROS EN TIEMPO REAL (Alpine.js) --}}
             <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                     {{-- Búsqueda por texto --}}
                     <div class="relative md:col-span-1">
@@ -48,27 +47,13 @@
                                 d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
-
-                    {{-- Filtro por Sede --}}
+                    {{-- Filtro por Modalidad --}}
                     <div>
-                        <select x-model="selectedSede"
+                        <select x-model="selectedModalidad"
                             class="w-full text-sm bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all text-gray-700">
-                            <option value="">Todas las Sedes</option>
-                            @foreach ($sedes ?? [] as $sede)
-                                <option value="{{ $sede->id }}">{{ $sede->nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    {{-- Filtro por Categoría / Modalidad --}}
-                    <div>
-                        <select x-model="selectedCategoria"
-                            class="w-full text-sm bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all text-gray-700">
-                            <option value="">Todas las Categorías</option>
+                            <option value="">Todas las Modalidades</option>
                             <option value="presencial">Presencial</option>
                             <option value="virtual">Virtual / En línea</option>
-                            <option value="salud">Salud y Bienestar</option>
-                            <option value="tecnologia">Tecnología</option>
                         </select>
                     </div>
 
@@ -77,8 +62,13 @@
 
             {{-- 3. GRID DE TARJETAS DE CURSOS --}}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse($cursos ?? [] as $index => $curso)
-                    <div
+                @forelse($cursos ?? [] as $curso)
+                    {{-- EVALUACIÓN DE FILTROS AL INSTANTE --}}
+                    <div x-show="(searchQuery === '' || '{{ strtolower(addslashes($curso->nombre)) }}'.includes(searchQuery.toLowerCase())) &&
+                             (selectedModalidad === '' || selectedModalidad === '{{ strtolower($curso->modalidad ?? 'presencial') }}')"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 transform scale-95"
+                        x-transition:enter-end="opacity-100 transform scale-100"
                         class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col justify-between group">
 
                         <div>
@@ -91,13 +81,13 @@
                                 {{-- Badge de Modalidad --}}
                                 <span
                                     class="absolute top-3 right-3 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-navy shadow-sm">
-                                    {{ $curso->modalidad ?? 'Presencial' }}
+                                    {{ strtoupper($curso->modalidad) ?? 'Presencial' }}
                                 </span>
                             </div>
 
                             {{-- Contenido de la Tarjeta --}}
                             <div class="p-6 space-y-3">
-                                {{-- Sede / Categoría --}}
+                                {{-- Sede
                                 <div class="flex items-center gap-2 text-xs font-semibold text-brandgreen">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -105,7 +95,7 @@
                                     </svg>
                                     <span>{{ $curso->sede->nombre ?? 'Sede Principal' }}</span>
                                 </div>
-
+ --}}
                                 <h3
                                     class="text-xl font-bold text-navy line-clamp-2 hover:text-brandgreen transition-colors">
                                     {{ $curso->nombre }}
@@ -119,13 +109,10 @@
 
                         {{-- Footer de la Tarjeta --}}
                         <div class="p-6 pt-0 border-t border-gray-50 mt-4 flex items-center justify-between gap-2">
-                            <div class="text-xs text-gray-500">
-                                <span class="block font-semibold text-navy">Horario:</span>
-                                {{ $curso->horario ?? 'Por definir' }}
-                            </div>
 
-                            {{-- BOTÓN CORREGIDO SIN @js EN EL ATRIBUTO --}}
-                            <button type="button" @click="activeCurso = listaCursos[{{ $loop->index }}]; modalOpen = true"
+                            {{-- Asignación segura del curso a activeCurso --}}
+                            <button type="button"
+                                @click="activeCurso = listaCursos[{{ $loop->index }}]; modalOpen = true"
                                 class="inline-flex items-center justify-center px-4 py-2 bg-navy hover:bg-brandgreen text-white text-xs font-bold rounded-xl transition-colors duration-200 shadow-sm">
                                 Ver detalles
                             </button>
@@ -134,24 +121,11 @@
                     </div>
                 @empty
                     <div class="col-span-full bg-white rounded-2xl p-12 text-center border border-gray-100">
-                        <svg class="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                        <h3 class="text-lg font-bold text-navy">No se encontraron cursos</h3>
-                        <p class="text-gray-500 text-sm mt-1">Actualmente no hay talleres disponibles o intenta cambiar los
-                            filtros de búsqueda.</p>
+                        <h3 class="text-lg font-bold text-navy">No hay cursos registrados</h3>
+                        <p class="text-gray-500 text-sm mt-1">Vuelve más tarde para conocer la nueva oferta académica.</p>
                     </div>
                 @endforelse
             </div>
-
-            {{-- Paginación de Laravel --}}
-            @if (method_exists($cursos ?? null, 'links'))
-                <div class="pt-4">
-                    {{ $cursos->links() }}
-                </div>
-            @endif
 
         </div>
 
@@ -165,7 +139,6 @@
                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="modalOpen = false"
                 class="fixed inset-0 bg-navy/60 backdrop-blur-sm transition-opacity"></div>
 
-            {{-- Contenedor del Modal --}}
             <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
                 <div x-show="modalOpen" x-transition:enter="ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -175,7 +148,6 @@
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl border border-gray-100">
 
-                    {{-- Botón Cerrar --}}
                     <button @click="modalOpen = false"
                         class="absolute right-4 top-4 z-10 rounded-full bg-white/80 p-2 text-gray-500 hover:text-navy hover:bg-white transition-colors">
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -186,13 +158,11 @@
 
                     <template x-if="activeCurso">
                         <div>
-                            {{-- Imagen Header del Modal --}}
                             <div class="h-56 bg-gray-100 relative">
                                 <img :src="activeCurso.url_imagen" :alt="activeCurso.nombre"
                                     class="w-full h-full object-cover">
                             </div>
 
-                            {{-- Cuerpo del Modal --}}
                             <div class="p-6 sm:p-8 space-y-4">
                                 <h2 class="text-2xl font-black text-navy" x-text="activeCurso.nombre"></h2>
 
@@ -204,7 +174,7 @@
                                             x-text="activeCurso.horario"></span></div>
                                 </div>
 
-                                {{-- Renderizado HTML de TinyMCE con Enlaces estilizados como Botones --}}
+                                {{-- Renderizado TinyMCE con botones estilizados --}}
                                 <div class="text-gray-600 text-sm space-y-3
                                         [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2
                                         [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]:text-xs [&_a]:uppercase [&_a]:tracking-wider
@@ -215,7 +185,6 @@
                                         [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
                                     x-html="activeCurso.descripcion"></div>
 
-                                {{-- Requisitos opcionales --}}
                                 <template x-if="activeCurso.requisitos">
                                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                                         <h4 class="text-xs font-bold text-navy uppercase tracking-wider mb-1">Requisitos:
@@ -226,7 +195,6 @@
                                 </template>
                             </div>
 
-                            {{-- Footer Modal --}}
                             <div class="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-100">
                                 <button type="button" @click="modalOpen = false"
                                     class="px-5 py-2.5 bg-gray-200 text-gray-700 font-bold text-xs rounded-xl hover:bg-gray-300 transition-colors">

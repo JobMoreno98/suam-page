@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('slug');
-            $table->enum('modalidad', ['virtual', 'precencial', 'virtual/precencial']);
+            $table->enum('modalidad', ['virtual', 'presencial', 'virtual/presencial']);
             $table->text('descripcion');
             $table->unsignedBigInteger('area_id')->nullable();
 

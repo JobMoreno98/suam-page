@@ -16,8 +16,8 @@ class CursoForm
                 TextInput::make('nombre'),
                 Select::make('modalidad')->options([
                     'virtual' => 'Virtual',
-                    'precencial' => 'Precencial',
-                    'virtual/precencial' => 'Virtual / Precencial'
+                    'presencial' => 'Presencial',
+                    'virtual/presencial' => 'Virtual / Presencial'
                 ]),
                 Select::make('area_id')->relationship('area', 'nombre')->required(),
                 TinyEditor::make('descripcion')->label('Descripción')
