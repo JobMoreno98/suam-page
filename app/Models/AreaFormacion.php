@@ -29,6 +29,14 @@ class AreaFormacion extends Model
         });
     }
 
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'descripcion' => strip_tags($this->descripcion), // Limpiamos el HTML para el índice
+        ];
+    }
 
     public function getRouteKeyName()
     {

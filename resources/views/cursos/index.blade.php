@@ -9,9 +9,10 @@
     
         // Define la paleta de colores intercalados como en la imagen
         bgColors: [
+    
+            { header: 'bg-emerald-100/70 hover:bg-emerald-100', iconBg: 'bg-emerald-500', border: 'border-emerald-200' },
             { header: 'bg-sky-100/70 hover:bg-sky-100', iconBg: 'bg-sky-500', border: 'border-sky-200' },
-            { header: 'bg-amber-100/70 hover:bg-amber-100', iconBg: 'bg-amber-500', border: 'border-amber-200' },
-            { header: 'bg-emerald-100/70 hover:bg-emerald-100', iconBg: 'bg-emerald-500', border: 'border-emerald-200' }
+            { header: 'bg-amber-100/70 hover:bg-amber-100', iconBg: 'bg-amber-500', border: 'border-amber-200' }
         ]
     }" class="min-h-screen bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
 

@@ -30,7 +30,7 @@
         <div class="flex items-center gap-2 shrink-0">
 
             {{-- Buscador Desktop estilizado --}}
-            <form action="" method="GET" class="relative hidden sm:block">
+            <form action="{{ route('buscar') }}" method="GET" class="relative hidden sm:block">
                 <input type="text" name="q" placeholder="Buscar cursos, sedes..."
                     class="text-xs bg-gray-50 border border-gray-200/80 rounded-full pl-4 pr-10 py-2 w-44 md:w-64 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all duration-200 shadow-inner" />
                 <button type="submit"

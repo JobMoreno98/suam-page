@@ -32,4 +32,13 @@ class Curso extends Model
     {
         return 'slug';
     }
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'descripcion' => strip_tags($this->descripcion),
+            'modalidad' => $this->modalidad,
+        ];
+    }
 }

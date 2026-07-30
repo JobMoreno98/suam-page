@@ -20,6 +20,15 @@ class Convocatoria extends Model
         'fecha_registro' => 'date',
     ];
 
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'contenido' => strip_tags($this->contenido),
+        ];
+    }
+
     protected static function booted(): void
     {
         static::creating(function ($model) {
