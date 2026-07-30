@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('material_grupo_id')->constrained('material_grupos')->cascadeOnDelete();
             $table->string('titulo');
             $table->enum('tipo', ['archivo', 'imagen', 'youtube', 'enlace', 'texto']);
-            $table->text('valor');
+            $table->json('valor')->nullable();
             $table->integer('orden')->default(0);
             $table->softDeletes();
             $table->timestamps();

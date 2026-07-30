@@ -15,7 +15,7 @@ class ConvocatoriaForm
     {
         return $schema
             ->components([
-                FileUpload::make('imagen')->label('Cartel')->disk('public')
+                FileUpload::make('imagen')->label('Cartel')->disk('public') ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
                     ->directory('convocatorias'),
                 TextInput::make('nombre')->required(),
                 Section::make('Fechas')
@@ -23,7 +23,7 @@ class ConvocatoriaForm
                     ->schema([
                         DatePicker::make('fecha_inicio')->required(),
                         DatePicker::make('fecha_fin')->required(),
-                        DatePicker::make('fecha_registro')->required(),
+                        DatePicker::make('fecha_registro')->required()->date(),
                     ])->columns(3)->columnSpanFull(),
 
                 TinyEditor::make('contenido')->required()->columnSpanFull(),

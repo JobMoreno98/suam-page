@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MaterialGrupo extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
+
     public function curso()
     {
         return $this->belongsTo(Curso::class);
@@ -23,4 +25,5 @@ class MaterialGrupo extends Model
     {
         return $this->hasMany(Material::class, 'material_grupo_id')->orderBy('orden');
     }
+
 }

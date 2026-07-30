@@ -117,7 +117,7 @@
                 </a>
 
                 {{-- Link Recursos --}}
-                <a href=""
+                <a href="{{ route('recursos.index') }}"
                     class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('recursos.*') ? 'text-white font-semibold' : '' }}">
                     <span>Recursos</span>
                     <span

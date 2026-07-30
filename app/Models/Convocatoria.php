@@ -138,4 +138,8 @@ class Convocatoria extends Model
             ? $this->fecha_registro->translatedFormat('j \d\e F \d\e Y')
             : 'Por definir';
     }
+    public function gruposMateriales(): HasMany
+    {
+        return $this->hasMany(MaterialesGrupo::class, 'convocatoria_id');
+    }
 }
