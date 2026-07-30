@@ -2,30 +2,30 @@
 
 @section('content')
     <div x-data="{
+        openCategory: null,
+        {{-- Guarda el ID de la categoría desplegada --}}
         modalOpen: false,
         activeCurso: null,
-        selectedCategoria: '',
-        selectedModalidad: '',
-        searchQuery: '',
-        listaCursos: @js($cursos->items()) {{-- Extrae solo el array de ítems si usas paginación --}}
-    }" class="min-h-screen bg-gray-50/50 py-8 px-4 sm:px-6 lg:px-8">
+    
+        // Define la paleta de colores intercalados como en la imagen
+        bgColors: [
+            { header: 'bg-sky-100/70 hover:bg-sky-100', iconBg: 'bg-sky-500', border: 'border-sky-200' },
+            { header: 'bg-amber-100/70 hover:bg-amber-100', iconBg: 'bg-amber-500', border: 'border-amber-200' },
+            { header: 'bg-emerald-100/70 hover:bg-emerald-100', iconBg: 'bg-emerald-500', border: 'border-emerald-200' }
+        ]
+    }" class="min-h-screen bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
 
-        <div class="max-w-7xl mx-auto space-y-8">
+        <div class="w-full mx-auto space-y-8">
 
-            {{-- 1. ENCABEZADO DE LA SECCIÓN --}}
-            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm relative overflow-hidden">
+            {{-- Encabezado idéntico a la imagen --}}
+
+            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-md relative overflow-hidden">
                 <div class="relative z-10 max-w-2xl">
-                    <span
-                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-brandgreen/10 text-brandgreen mb-3">
-                        <span class="w-2 h-2 rounded-full bg-brandgreen"></span>
-                        Oferta Académica
-                    </span>
                     <h1 class="text-3xl sm:text-5xl font-black text-navy tracking-tight leading-tight">
-                        Cursos y Talleres
+                        Cursos y talleres
                     </h1>
                     <p class="text-gray-600 text-base sm:text-lg mt-3">
-                        Explora nuestra amplia oferta formativa diseñada especialmente para potenciar tu aprendizaje, salud
-                        y desarrollo personal.
+                        Explora nuestras áreas de formación
                     </p>
                 </div>
                 <div
@@ -33,107 +33,114 @@
                 </div>
             </div>
 
-            {{-- 2. BARRA DE BÚSQUEDA Y FILTROS EN TIEMPO REAL (Alpine.js) --}}
-            <div class="bg-white p-4 sm:p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {{-- ACORDEÓN DE ÁREAS / CATEGORÍAS --}}
+            <div class="space-y-4">
+                @forelse($categorias ?? [] as $index => $categoria)
+                    @php
+                        // Mapeo de estilos/colores dinámicos
+                        $colorIndex = $index % 3;
+                    @endphp
 
-                    {{-- Búsqueda por texto --}}
-                    <div class="relative md:col-span-1">
-                        <input type="text" x-model="searchQuery" placeholder="Buscar por nombre..."
-                            class="w-full text-sm bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all">
-                        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-3.5" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                    {{-- Filtro por Modalidad --}}
-                    <div>
-                        <select x-model="selectedModalidad"
-                            class="w-full text-sm bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all text-gray-700">
-                            <option value="">Todas las Modalidades</option>
-                            <option value="presencial">Presencial</option>
-                            <option value="virtual">Virtual / En línea</option>
-                        </select>
-                    </div>
+                    <div class="rounded-2xl border border-gray-200/80 overflow-hidden transition-all duration-300 shadow-sm bg-white"
+                        :class="openCategory === {{ $categoria->id }} ? 'ring-2 ring-navy/10 shadow-md' : ''">
 
-                </div>
-            </div>
+                        {{-- CABECERA DEL ÁREA DE FORMACIÓN --}}
+                        <button type="button"
+                            @click="openCategory = (openCategory === {{ $categoria->id }} ? null : {{ $categoria->id }})"
+                            :class="bgColors[{{ $colorIndex }}].header"
+                            class="w-full p-5 sm:p-6 flex items-center justify-between transition-colors text-left focus:outline-none">
 
-            {{-- 3. GRID DE TARJETAS DE CURSOS --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse($cursos ?? [] as $curso)
-                    {{-- EVALUACIÓN DE FILTROS AL INSTANTE --}}
-                    <div x-show="(searchQuery === '' || '{{ strtolower(addslashes($curso->nombre)) }}'.includes(searchQuery.toLowerCase())) &&
-                             (selectedModalidad === '' || selectedModalidad === '{{ strtolower($curso->modalidad ?? 'presencial') }}')"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform scale-95"
-                        x-transition:enter-end="opacity-100 transform scale-100"
-                        class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col justify-between group">
+                            <div class="flex items-center gap-4 sm:gap-5 min-w-0">
+                                {{-- Icono representativo --}}
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white shrink-0 shadow-sm"
+                                    :class="bgColors[{{ $colorIndex }}].iconBg">
 
-                        <div>
-                            {{-- Imagen del Curso --}}
-                            <div class="h-48 bg-gray-100 relative overflow-hidden">
-                                <img src="{{ $curso->url_imagen ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80' }}"
-                                    alt="{{ $curso->nombre }}"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white shrink-0 shadow-sm"
+                                        :class="bgColors[{{ $colorIndex }}].iconBg">
 
-                                {{-- Badge de Modalidad --}}
-                                <span
-                                    class="absolute top-3 right-3 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-navy shadow-sm">
-                                    {{ strtoupper($curso->modalidad) ?? 'Presencial' }}
-                                </span>
-                            </div>
+                                        <x-heroicon :name="$categoria->icono" class="w-6 h-6 sm:w-7 sm:h-7" />
 
-                            {{-- Contenido de la Tarjeta --}}
-                            <div class="p-6 space-y-3">
-                                {{-- Sede
-                                <div class="flex items-center gap-2 text-xs font-semibold text-brandgreen">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    </svg>
-                                    <span>{{ $curso->sede->nombre ?? 'Sede Principal' }}</span>
+                                    </div>
                                 </div>
- --}}
-                                <h3
-                                    class="text-xl font-bold text-navy line-clamp-2 hover:text-brandgreen transition-colors">
-                                    {{ $curso->nombre }}
-                                </h3>
 
-                                <p class="text-gray-600 text-sm line-clamp-3">
-                                    {{ Str::limit(strip_tags($curso->descripcion), 120) }}
-                                </p>
+                                {{-- Nombre del área --}}
+                                <h2 class="text-lg sm:text-xl font-extrabold text-navy truncate">
+                                    {{ $categoria->nombre }}
+                                </h2>
                             </div>
-                        </div>
 
-                        {{-- Footer de la Tarjeta --}}
-                        <div class="p-6 pt-0 border-t border-gray-50 mt-4 flex items-center justify-between gap-2">
+                            {{-- Indicador de expansión (+ / - o Flecha) --}}
+                            <div class="text-navy p-1">
+                                <svg class="w-6 h-6 transform transition-transform duration-300"
+                                    :class="openCategory === {{ $categoria->id }} ? 'rotate-180' : ''" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </button>
 
-                            {{-- Asignación segura del curso a activeCurso --}}
-                            <button type="button"
-                                @click="activeCurso = listaCursos[{{ $loop->index }}]; modalOpen = true"
-                                class="inline-flex items-center justify-center px-4 py-2 bg-navy hover:bg-brandgreen text-white text-xs font-bold rounded-xl transition-colors duration-200 shadow-sm">
-                                Ver detalles
-                            </button>
+                        {{-- LISTA DE CURSOS DESPLEGABLE --}}
+                        <div x-show="openCategory === {{ $categoria->id }}" x-cloak x-collapse
+                            class="bg-white border-t border-gray-100">
+
+                            <div class="p-3 sm:p-4 divide-y divide-gray-100">
+                                @forelse($categoria->cursos as $curso)
+                                    <div
+                                        class="p-3.5 sm:p-4 rounded-xl hover:bg-sky-50/50 transition-colors flex items-center justify-between gap-4 group">
+                                        <div class="min-w-0">
+                                            <h3
+                                                class="text-sm sm:text-base font-semibold text-navy group-hover:text-brandgreen transition-colors truncate">
+                                                {{ $curso->nombre }}
+                                            </h3>
+                                            @if ($curso->sede)
+                                                <span class="text-xs text-gray-400 font-medium">
+                                                    {{ $curso->sede->nombre }}
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        {{-- BOTÓN TOTALMENTE SEGURO SIN ERROR DE SINTAXIS EN BLADE --}}
+                                        <button type="button"
+                                            data-curso="{{ json_encode([
+                                                'nombre' => $curso->nombre,
+                                                'descripcion' => $curso->descripcion,
+                                                'url_imagen' => $curso->url_imagen ?? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80',
+                                                'sede' => $curso->sede->nombre ?? 'Sede Principal',
+                                                'horario' => $curso->horario ?? 'Por definir',
+                                                'requisitos' => $curso->requisitos ?? null,
+                                            ]) }}"
+                                            @click="activeCurso = JSON.parse($el.dataset.curso); modalOpen = true"
+                                            class="shrink-0 text-xs font-bold text-navy hover:text-brandgreen hover:underline flex items-center gap-1 transition-colors">
+                                            <span>Ver detalle</span>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                @empty
+                                    <div class="p-4 text-center text-xs text-gray-400">
+                                        No hay cursos disponibles en esta área por el momento.
+                                    </div>
+                                @endforelse
+                            </div>
+
                         </div>
 
                     </div>
                 @empty
-                    <div class="col-span-full bg-white rounded-2xl p-12 text-center border border-gray-100">
-                        <h3 class="text-lg font-bold text-navy">No hay cursos registrados</h3>
-                        <p class="text-gray-500 text-sm mt-1">Vuelve más tarde para conocer la nueva oferta académica.</p>
+                    <div class="bg-white rounded-2xl p-10 text-center border border-gray-200">
+                        <p class="text-gray-500 font-medium">No se encontraron áreas de formación creadas.</p>
                     </div>
                 @endforelse
             </div>
 
         </div>
 
-        {{-- 4. MODAL DETALLE DEL CURSO (Alpine.js) --}}
-        <div x-show="modalOpen" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title"
-            role="dialog" aria-modal="true">
+        {{-- MODAL DE DETALLE DEL CURSO --}}
+        <div x-show="modalOpen" x-cloak class="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
 
-            {{-- Fondo Oscuro --}}
             <div x-show="modalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="modalOpen = false"
@@ -158,7 +165,7 @@
 
                     <template x-if="activeCurso">
                         <div>
-                            <div class="h-56 bg-gray-100 relative">
+                            <div class="h-48 bg-gray-100 relative">
                                 <img :src="activeCurso.url_imagen" :alt="activeCurso.nombre"
                                     class="w-full h-full object-cover">
                             </div>
@@ -174,7 +181,21 @@
                                             x-text="activeCurso.horario"></span></div>
                                 </div>
 
-                                {{-- Renderizado TinyMCE con botones estilizados --}}
+                                @php
+                                    $modalidad = strtolower($curso->modalidad ?? 'presencial');
+                                @endphp
+
+                                <span
+                                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium 
+    {{ $modalidad === 'presencial' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : '' }}
+    {{ $modalidad === 'virtual' ? 'bg-sky-50 text-sky-700 border border-sky-200' : '' }}
+    {{ in_array($modalidad, ['ambas', 'hibrida', 'híbrida']) ? 'bg-purple-50 text-purple-700 border border-purple-200' : '' }}">
+
+                                    <x-heroicon :name="$modalidad" class="w-3.5 h-3.5" />
+
+                                    <span class="capitalize">{{ $modalidad }}</span>
+                                </span>
+
                                 <div class="text-gray-600 text-sm space-y-3
                                         [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2
                                         [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]:text-xs [&_a]:uppercase [&_a]:tracking-wider
@@ -195,7 +216,7 @@
                                 </template>
                             </div>
 
-                            <div class="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-100">
+                            <div class="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-100">
                                 <button type="button" @click="modalOpen = false"
                                     class="px-5 py-2.5 bg-gray-200 text-gray-700 font-bold text-xs rounded-xl hover:bg-gray-300 transition-colors">
                                     Cerrar

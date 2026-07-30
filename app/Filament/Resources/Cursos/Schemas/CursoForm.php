@@ -17,7 +17,7 @@ class CursoForm
                 Select::make('modalidad')->options([
                     'virtual' => 'Virtual',
                     'presencial' => 'Presencial',
-                    'virtual/presencial' => 'Virtual / Presencial'
+                    'ambas' => 'Virtual / Presencial'
                 ]),
                 Select::make('area_id')->relationship('area', 'nombre')->required(),
                 TinyEditor::make('descripcion')->label('Descripción')

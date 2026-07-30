@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -17,7 +18,9 @@ class CursosTable
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nombre'),
+                TextColumn::make('area.nombre')->label('Área de Formación'),
+                TextColumn::make('modalidad')
             ])
             ->filters([
                 TrashedFilter::make(),

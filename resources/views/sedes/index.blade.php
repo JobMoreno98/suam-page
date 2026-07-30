@@ -4,21 +4,28 @@
 
 @section('content')
     <div x-data="{ openModal: false, activeSede: {} }" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-
         {{-- ENCABEZADO --}}
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-gray-200 pb-6">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Nuestras Sedes</h1>
-                <p class="text-sm text-gray-500 mt-1">Conoce la ubicación y detalles de todos nuestros puntos de atención.
+        <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-md relative overflow-hidden">
+            <div class="relative z-10 max-w-2xl">
+                <h1 class="text-3xl sm:text-5xl font-black text-navy tracking-tight leading-tight">
+                    Nuestras Sedes
+                </h1>
+                <p class="text-gray-600 text-base sm:text-lg mt-3">
+                    Conoce la ubicación y detalles de todos nuestros puntos de atención.
                 </p>
             </div>
+            <div
+                class="absolute -right-10 -bottom-10 w-64 h-64 bg-gradient-to-br from-brandorange/10 to-brandgreen/10 rounded-full blur-2xl pointer-events-none">
+            </div>
         </div>
+
+
 
         {{-- GRID DE TARJETAS --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse ($sedes as $item)
                 <div
-                    class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+                    class="bg-white shadow-md rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
 
                     <div>
                         {{-- Logo de la Sede --}}

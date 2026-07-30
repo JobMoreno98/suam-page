@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
+            $table->string('icono',20);
+            $table->string('color',20)->default('#1c3a5e');
             $table->softDeletes();
             $table->timestamps();
         });

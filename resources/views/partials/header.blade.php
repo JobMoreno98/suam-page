@@ -114,7 +114,7 @@
                 </a>
 
                 {{-- Link Convocatorias --}}
-                <a href="" 
+                <a href="{{ route('convocatorias.index') }}" 
                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('convocatorias.*') ? 'text-white font-semibold' : '' }}">
                     <span>Convocatorias</span>
                     <span class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('convocatorias.*') ? 'scale-x-100' : '' }}"></span>
@@ -167,7 +167,7 @@
                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('home') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Inicio
             </a>
-            <a href="" 
+            <a href="{{ route('convocatorias.index') }}" 
                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('convocatorias.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Convocatorias
             </a>

@@ -109,137 +109,70 @@
 
     </section>
 
-    <!-- CARD ÁREA DE FORMACIÓN MEJORADA -->
-    <!-- La tarjeta completa es un enlace para facilitar el clic -->
-    <a href=""
-        class="group bg-white border border-gray-200 rounded-2xl p-5 flex flex-col items-center text-center gap-3 shadow-sm hover:shadow-md hover:border-brandgreen transition-all">
-        <div
-            class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
-            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-            </svg>
-        </div>
-        <!-- Texto más legible -->
-        <div class="text-sm font-bold text-navy leading-snug">
-            Salud y desarrollo
-        </div>
-        <span class="text-xs text-brandgreen font-bold group-hover:underline flex items-center gap-1">
-            Ver cursos
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-        </span>
-    </a>
-
     <!-- ÁREAS DE FORMACIÓN -->
     <section>
         <h2 class="text-lg font-bold text-navy mb-4">Áreas de formación</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
 
-            <div
-                class="bg-white border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center gap-2 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                    </svg>
-                </div>
-                <div class="text-xs font-semibold text-navy leading-tight">Salud y desarrollo</div>
-                <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver cursos →</a>
-            </div>
+            @forelse ($areas as $item)
+                <div
+                    class="bg-white border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center gap-2 shadow-sm hover:shadow-md transition">
 
-            <div
-                class="bg-white border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center gap-2 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                    </svg>
-                </div>
-                <div class="text-xs font-semibold text-navy leading-tight">Humanidades</div>
-                <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver cursos →</a>
-            </div>
+                    {{-- Círculo con el fondo dinámico de la BD --}}
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shrink-0 shadow-sm"
+                        style="background-color: {{ $item->color ?? '#0284c7' }};">
 
-            <div
-                class="bg-white border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center gap-2 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-                    </svg>
-                </div>
-                <div class="text-xs font-semibold text-navy leading-tight">Agricultura orgánica y plantas</div>
-                <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver cursos →</a>
-            </div>
+                        {{-- ICONO 100% BLANCO --}}
+                        <x-heroicon :name="$item->icono" class="w-6 h-6 sm:w-7 sm:h-7 text-white" />
 
-            <div
-                class="bg-white border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center gap-2 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center text-sky-600">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                    </svg>
-                </div>
-                <div class="text-xs font-semibold text-navy leading-tight">Cómputo e idiomas</div>
-                <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver cursos →</a>
-            </div>
+                    </div>
 
-            <div
-                class="bg-white border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center gap-2 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-500">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                    </svg>
+                    <div class="text-xs font-semibold text-navy leading-tight mt-1">
+                        {{ $item->nombre }}
+                    </div>
+
+                    <a href="#" class="text-[11px] text-brandgreen font-semibold hover:underline">
+                        Ver cursos →
+                    </a>
                 </div>
-                <div class="text-xs font-semibold text-navy leading-tight">Arte y recreación</div>
-                <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver cursos →</a>
-            </div>
+            @empty
+                <p class="text-xs text-gray-500 col-span-full text-center">No hay áreas disponibles por el momento.</p>
+            @endforelse
+
+
 
         </div>
     </section>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1  gap-8">
         <!-- CONVOCATORIAS -->
         <section class="md:col-span-2">
-            <h2 class="text-lg font-bold text-navy mb-4">Convocatorias vigentes</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-white border border-gray-100 rounded-xl p-4 flex gap-3 shadow-sm">
-                    <div class="w-10 h-10 rounded-md bg-navy/10 flex items-center justify-center text-navy shrink-0">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                        </svg>
+            <h2 class="text-lg font-bold text-navy mb-4">Convocatorias</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                @forelse ($convocatorias as $item)
+                    <div class="bg-white border border-gray-100 rounded-xl p-4 flex gap-3 shadow-sm">
+                        <div class="w-10 h-10 rounded-md bg-navy/10 flex items-center justify-center text-navy shrink-0">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-navy">{{ $item->nombre }}</div>
+                            <span
+                                class="inline-block text-[10px] font-semibold border rounded-full px-2.5 py-0.5 mt-1 {{ $item->estado_inscripcion['badge'] }}">
+                                {{ $item->estado_inscripcion['texto'] }}
+                            </span>
+                            <p class="text-[11px] text-gray-400 mt-1">{{ $item->rango_fechas }}</p>
+                            <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle
+                                →</a>
+                        </div>
                     </div>
-                    <div>
-                        <div class="text-sm font-semibold text-navy">Ciclo 2026-B</div>
-                        <span
-                            class="inline-block text-[10px] font-semibold bg-green-100 text-green-700 rounded-full px-2 py-0.5 mt-1">Inscripciones
-                            abiertas</span>
-                        <p class="text-[11px] text-gray-400 mt-1">Del 10 al 14 de agosto de 2026</p>
-                        <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle
-                            →</a>
-                    </div>
-                </div>
-                <div class="bg-white border border-gray-100 rounded-xl p-4 flex gap-3 shadow-sm">
-                    <div class="w-10 h-10 rounded-md bg-navy/10 flex items-center justify-center text-navy shrink-0">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="text-sm font-semibold text-navy">Ciclo 2027-A</div>
-                        <span
-                            class="inline-block text-[10px] font-semibold bg-orange-100 text-orange-600 rounded-full px-2 py-0.5 mt-1">Próximamente</span>
-                        <p class="text-[11px] text-gray-400 mt-1">Información muy pronto</p>
-                        <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle
-                            →</a>
-                    </div>
-                </div>
+                @empty
+                    <p class="text-xs text-gray-500 col-span-full text-center">No hay convocatorias disponibles por el
+                        momento.</p>
+                @endforelse
             </div>
         </section>
     </div>
@@ -256,8 +189,7 @@
                         class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between">
 
                         {{-- Contenedor de la Imagen / Logo --}}
-                        <div
-                            class="relative h-48 bg-gray-50 flex items-center justify-center p-4 border-b border-gray-100">
+                        <div class="relative h-48 bg-gray-50 flex items-center justify-center p-4 border-b border-gray-100">
                             <img src="{{ $item->url_logo }}" class="max-h-full max-w-full object-contain"
                                 alt="Logo-{{ $item->slug }}" />
                         </div>
