@@ -165,7 +165,7 @@
                                 {{ $item->estado_inscripcion['texto'] }}
                             </span>
                             <p class="text-[11px] text-gray-400 mt-1">{{ $item->rango_fechas }}</p>
-                            <a href="" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle
+                            <a href="{{ route('convocatorias.show', $item) }}" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle
                                 →</a>
                         </div>
                     </div>
