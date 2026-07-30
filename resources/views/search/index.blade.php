@@ -5,18 +5,24 @@
         <div class="max-w-7xl mx-auto space-y-8">
 
             {{-- Encabezado de Resultados --}}
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm space-y-2">
-                <h1 class="text-2xl sm:text-3xl font-black text-navy">
-                    Resultados de búsqueda
-                </h1>
-                <p class="text-xs sm:text-sm text-gray-500">
-                    @if ($query)
-                        Se encontraron <strong class="text-navy">{{ $resultados->count() }}</strong> coincidencias para "<span
-                            class="text-brandgreen font-bold">{{ $query }}</span>"
-                    @else
-                        Ingresa un término para comenzar a buscar.
-                    @endif
-                </p>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-md relative overflow-hidden">
+                <div class="relative z-10 max-w-2xl">
+                    <h1 class="text-2xl sm:text-3xl font-black text-navy tracking-tight leading-tight">
+                        Resultados de búsqueda
+                    </h1>
+                    <p class="text-xs sm:text-sm text-gray-500">
+                        @if ($query)
+                            Se encontraron <strong class="text-navy">{{ $resultados->count() }}</strong> coincidencias para
+                            "<span class="text-brandgreen font-bold">{{ $query }}</span>"
+                        @else
+                            Ingresa un término para comenzar a buscar.
+                        @endif
+                    </p>
+                </div>
+                <div
+                    class="absolute -right-10 -bottom-10 w-64 h-64 bg-gradient-to-br from-brandorange/10 to-brandgreen/10 rounded-full blur-2xl pointer-events-none">
+                </div>
             </div>
 
 
