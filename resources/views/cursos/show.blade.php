@@ -170,11 +170,7 @@
                             {{-- Hay una convocatoria vigente: mostramos el enlace directo a sus bases/registro --}}
                             <a href="{{ route('convocatorias.show', $convocatoriaActiva) }}"
                                 class="w-full py-3 px-6 bg-brandgreen hover:bg-navy text-white font-bold text-sm rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-brandgreen/20">
-                                <span>Ver Convocatoria e Inscribirme</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M14 5l7 7m0 0l7-7m7-7H3" />
-                                </svg>
+                                <span>Convocatoria abierta</span>
                             </a>
                         @else
                             {{-- No hay convocatorias activas en este momento --}}

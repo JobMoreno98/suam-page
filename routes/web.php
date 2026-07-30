@@ -23,3 +23,5 @@ Route::resource('recursos', MaterialController::class)
     
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/buscar', [SearchController::class, 'index'])->name('buscar');
+
+Route::get('/contacto', [HomeController::class, 'contacto'])->name('contacto');

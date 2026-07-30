@@ -19,7 +19,11 @@ class HomeController extends Controller
 
         $convocatorias = Convocatoria::latest()->get()->take(3);
 
-        return view('home', compact('sedes', 'slides','areas','convocatorias'));
+        return view('home', compact('sedes', 'slides', 'areas', 'convocatorias'));
         return $sedes;
+    }
+    public function contacto()
+    {
+        return view('contacto');
     }
 }

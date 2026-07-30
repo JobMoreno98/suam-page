@@ -133,7 +133,7 @@
                 </a>
 
                 {{-- Link Contacto --}}
-                <a href=""
+                <a href="{{ route('contacto') }}"
                     class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('contacto') ? 'text-white font-semibold' : '' }}">
                     <span>Contacto</span>
                     <span
@@ -171,7 +171,7 @@
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('sedes.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Sedes
             </a>
-            <a href=""
+            <a href="{{ route('contacto') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('contacto') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Contacto
             </a>

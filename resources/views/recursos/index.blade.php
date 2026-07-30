@@ -30,7 +30,7 @@
                             <h2 class="text-2xl font-black text-navy tracking-tight">
                                 {{ $nombreArea }}
                             </h2>
-                            <span class="text-xs font-extrabold text-navy/60 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">
+                            <span class="text-center text-xs font-extrabold text-navy/60 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">
                                 {{ $cursos->count() }} {{ $cursos->count() === 1 ? 'curso' : 'cursos' }}
                             </span>
                         </div>
