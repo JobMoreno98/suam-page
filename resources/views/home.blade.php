@@ -131,7 +131,7 @@
                         {{ $item->nombre }}
                     </div>
 
-                    <a href="#" class="text-[11px] text-brandgreen font-semibold hover:underline">
+                    <a href="{{ route('areas.show', $item) }}" class="text-[11px] text-brandgreen font-semibold hover:underline">
                         Ver cursos →
                     </a>
                 </div>

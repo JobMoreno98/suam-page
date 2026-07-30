@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('area_formacions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('slug');
             $table->text('descripcion');
-            $table->string('icono',20);
-            $table->string('color',20)->default('#1c3a5e');
+            $table->string('icono', 20);
+            $table->string('color', 20)->default('#1c3a5e');
             $table->softDeletes();
             $table->timestamps();
         });
