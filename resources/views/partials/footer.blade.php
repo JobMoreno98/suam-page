@@ -1,4 +1,4 @@
-<footer class="bg-navy text-white mt-10 sm:mt-14" id="footer">
+<footer class="bg-navy  text-white mt-10 sm:mt-14" id="footer">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
         <div>
             <div class="font-semibold mb-2">Síguenos en nuestras redes sociales</div>

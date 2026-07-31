@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="min-h-screen bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto space-y-8">
 
             {{-- Encabezado Principal Hero --}}
@@ -14,7 +14,8 @@
                         Contacto
                     </h1>
                     <p class="text-gray-600 text-base sm:text-lg mt-3">
-                        ¿Tienes dudas sobre nuestras áreas de formación, cursos o materiales? Ponte en contacto con nosotros.
+                        ¿Tienes dudas sobre nuestras áreas de formación, cursos o materiales? Ponte en contacto con
+                        nosotros.
                     </p>
                 </div>
                 <div
@@ -31,7 +32,7 @@
                         Información de contacto
                     </h3>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {{-- Correo Electrónico --}}
                         <div class="flex items-start gap-4">
                             <div class="p-3 bg-emerald-50 text-brandgreen rounded-2xl shrink-0 border border-emerald-100">
@@ -41,10 +42,11 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Atención por Correo</span>
-                                <a href="mailto:soporte@tuinstitucion.com"
+                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Atención por
+                                    Correo</span>
+                                <a href="mailto: suam@csh.udg.mx"
                                     class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">
-                                    soporte@tuinstitucion.com
+                                    suam@csh.udg.mx
                                 </a>
                             </div>
                         </div>
@@ -58,10 +60,11 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Línea Telefónica</span>
+                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Línea
+                                    Telefónica</span>
                                 <a href="tel:+523300000000"
                                     class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">
-                                    +52 (33) 0000-0000
+                                    +52 (33) 39 16 40 38
                                 </a>
                             </div>
                         </div>
@@ -75,25 +78,50 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Horario de Atención</span>
+                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Horario de
+                                    Atención</span>
                                 <p class="text-sm font-bold text-navy">
                                     Lunes a Viernes<br>
                                     <span class="text-xs text-gray-500 font-medium">9:00 AM - 6:00 PM</span>
                                 </p>
                             </div>
                         </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-violet-50 text-violet-600 rounded-2xl shrink-0 border border-violet-100">
+                                <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Dirección</span>
+                                <p class="text-sm font-bold text-navy">
+                                    
+                                    <span class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">9:00 AM - 6:00 PM</span>
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
+
+
                 {{-- Tarjeta Informativa Directa (Ocupa 1 columna en desktop) --}}
-                <div class="lg:col-span-1 bg-navy rounded-3xl p-6 text-white space-y-3 relative overflow-hidden shadow-md h-full flex flex-col justify-between">
+                <div
+                    class="lg:col-span-1 bg-navy rounded-3xl p-6 text-white space-y-3 relative overflow-hidden shadow-md h-full flex flex-col justify-between">
                     <div class="relative z-10">
                         <h4 class="text-lg font-black mt-3">¿Buscas recursos específicos?</h4>
                         <p class="text-xs text-gray-300 leading-relaxed mt-1">
-                            Recuerda que puedes consultar todos los materiales didácticos organizados por áreas de formación directamente.
+                            Recuerda que puedes consultar todos los materiales didácticos organizados por áreas de formación
+                            directamente.
                         </p>
                     </div>
-                    
+
                     <div class="relative z-10 pt-4">
                         <a href="{{ route('recursos.index') }}"
                             class="inline-flex items-center gap-1 text-xs font-bold text-brandgreen hover:underline">

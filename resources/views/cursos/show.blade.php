@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="min-h-screen bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8" x-data="{
+    <div class=" bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8" x-data="{
         copiado: false,
         lightboxOpen: false,
         copiarEnlace() {

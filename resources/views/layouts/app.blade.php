@@ -34,37 +34,24 @@
             }
         }
     </script>
-
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            flex-direction: column;
-                min-height: 100dvh;
-        }
-
-        #footer {
-            margin-top: auto;
-        }
-    </style>
     @livewireStyles
     @stack('styles')
 </head>
 
-<body class="bg-gray-50 text-navy">
+<body class="min-h-screen flex flex-col bg-gray-50 text-navy">
 
     <!-- Header / Navbar Parcial -->
     @include('partials.header')
 
     <!-- Contenido Principal -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-8 sm:space-y-10 w-full">
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
         @yield('content')
     </main>
 
     <!-- Footer Parcial -->
 
+    @include('partials.footer')
 </body>
-@include('partials.footer')
 @livewireScripts
 @stack('scripts')
 

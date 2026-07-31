@@ -14,7 +14,7 @@
             { header: 'bg-sky-100/70 hover:bg-sky-100', iconBg: 'bg-sky-500', border: 'border-sky-200' },
             { header: 'bg-amber-100/70 hover:bg-amber-100', iconBg: 'bg-amber-500', border: 'border-amber-200' }
         ]
-    }" class="min-h-screen bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
+    }" class="bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
 
         <div class="w-full mx-auto space-y-8">
 
