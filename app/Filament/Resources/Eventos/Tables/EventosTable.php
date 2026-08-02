@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Banners\Tables;
+namespace App\Filament\Resources\Eventos\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -12,7 +12,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class BannersTable
+class EventosTable
 {
     public static function configure(Table $table): Table
     {

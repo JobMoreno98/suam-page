@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class=" bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto space-y-8">
 
             {{-- Encabezado de Resultados --}}
@@ -29,8 +29,9 @@
                         <div class="p-4 sm:p-5 hover:bg-gray-50/50 transition-colors flex items-center justify-between gap-4">
                             <div class="space-y-1 min-w-0">
                                 <div class="flex items-center gap-2">
-                                    {{-- Badge para identificar qué tipo de modelo es --}}
-                                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
+                                    {{-- Badge dinámico para identificar el modelo --}}
+                                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full 
+                                        {{ $item->tipo_resultado === 'Evento' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-600' }}">
                                         {{ $item->tipo_resultado }}
                                     </span>
                                 </div>
@@ -39,6 +40,14 @@
                                 <h3 class="font-bold text-navy text-sm sm:text-base truncate">
                                     {{ $item->nombre ?? $item->titulo }}
                                 </h3>
+
+                                {{-- Bloque Opcional para Eventos (Si en tu BD tienes campo fecha o lugar) --}}
+                                @if(isset($item->fecha))
+                                    <p class="text-xs font-semibold text-brandgreen">
+                                        📅 {{ \Carbon\Carbon::parse($item->fecha)->format('d/m/Y') }} 
+                                        @if(isset($item->lugar)) &bull; 📍 {{ $item->lugar }} @endif
+                                    </p>
+                                @endif
 
                                 {{-- Descripción o Contenido --}}
                                 @if ($item->descripcion ?? $item->contenido)

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Banners\Pages;
+namespace App\Filament\Resources\Eventos\Pages;
 
-use App\Filament\Resources\Banners\BannerResource;
+use App\Filament\Resources\Eventos\EventoResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewBanner extends ViewRecord
+class ViewEvento extends ViewRecord
 {
-    protected static string $resource = BannerResource::class;
+    protected static string $resource = EventoResource::class;
 
     protected function getHeaderActions(): array
     {

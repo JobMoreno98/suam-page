@@ -58,6 +58,20 @@
                 [&_a]:transition-all [&_a]:duration-200 [&_a]:no-underline"
                                     x-html="slide.contenido"></div>
                             </template>
+
+                            {{-- BOTÓN VER MÁS --}}
+                            <template x-if="slide.enlace">
+                                <div class="mt-2">
+                                    <a :href="slide.enlace"
+                                        class="inline-flex items-center justify-center gap-2 bg-navy text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl shadow-md shadow-navy/20 hover:bg-brandgreen hover:shadow-brandgreen/20 hover:-translate-y-0.5 transition-all duration-200 w-max">
+                                        <span>Ver más</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </template>
                         </div>
 
                         {{-- Contenedor de la Imagen (Adaptada al 100%) --}}
@@ -67,6 +81,7 @@
                             <img :src="slide.url_imagen || slide.imagen" :alt="slide.titulo_alt || 'Imagen de slide'"
                                 class="w-full h-full object-cover object-center" />
                         </div>
+
 
                     </div>
                 </template>
@@ -131,7 +146,8 @@
                         {{ $item->nombre }}
                     </div>
 
-                    <a href="{{ route('areas.show', $item) }}" class="text-[11px] text-brandgreen font-semibold hover:underline">
+                    <a href="{{ route('areas.show', $item) }}"
+                        class="text-[11px] text-brandgreen font-semibold hover:underline">
                         Ver cursos →
                     </a>
                 </div>
@@ -165,7 +181,8 @@
                                 {{ $item->estado_inscripcion['texto'] }}
                             </span>
                             <p class="text-[11px] text-gray-400 mt-1">{{ $item->rango_fechas }}</p>
-                            <a href="{{ route('convocatorias.show', $item) }}" class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle
+                            <a href="{{ route('convocatorias.show', $item) }}"
+                                class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle
                                 →</a>
                         </div>
                     </div>

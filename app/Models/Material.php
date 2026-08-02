@@ -22,13 +22,11 @@ class Material extends Model
     }
     public function toSearchableArray(): array
     {
-        $this->loadMissing('grupo.curso');
-
         return [
-            'id'           => $this->id,
-            'titulo'       => $this->titulo,
-            'tipo'         => $this->tipo, // 'archivo', 'imagen', 'youtube', etc.
-            'curso_nombre' => $this->grupo?->curso?->nombre,
+            'id'     => $this->id,
+            'titulo' => $this->titulo,
+            'tipo'   => $this->tipo,
+            // Eliminamos curso_nombre para que MySQL no colapse
         ];
     }
 }

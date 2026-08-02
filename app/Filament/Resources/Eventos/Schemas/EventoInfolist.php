@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\Banners\Schemas;
+namespace App\Filament\Resources\Eventos\Schemas;
 
 use Filament\Schemas\Schema;
 
-class BannerInfolist
+class EventoInfolist
 {
     public static function configure(Schema $schema): Schema
     {

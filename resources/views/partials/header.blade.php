@@ -5,25 +5,29 @@
     class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all duration-200">
 
     {{-- BARRA SUPERIOR (LOGO Y BÚSQUEDA) --}}
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5 gap-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5 gap-2 sm:gap-4">
 
         {{-- Logos e Identidad --}}
-        <div class="flex items-center gap-3 min-w-0">
+        {{-- Quitamos min-w-0 y ponemos shrink-0 para que no colapsen --}}
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+            
             {{-- Logo UdeG --}}
-            <a href="https://udg.mx" class="flex items-center gap-2.5 group min-w-0">
-                <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors shrink-0">
-                    <img src="{{ asset('img/udg-logo.jpg') }}" alt="" style="height: 50px;width:auto;">
+            <a href="https://udg.mx" class="flex items-center group shrink-0">
+                <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
+                    {{-- Cambiamos el style fijo por h-8 (móvil) y sm:h-[50px] (PC) --}}
+                    <img src="{{ asset('img/udg-logo.jpg') }}" alt="UdeG" class="h-8 sm:h-[50px] w-auto object-contain">
                 </div>
             </a>
 
             <div class="w-px h-7 bg-gray-200 hidden sm:block shrink-0"></div>
 
             {{-- Logo sUAM --}}
-            <a href="{{ route('home') }}" class="flex items-center gap-2.5 group min-w-0">
-                <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors shrink-0">
-                    <img src="{{ asset('img/logo.png') }}" alt="" style="height: 50px;width:auto;">
+            <a href="{{ route('home') }}" class="flex items-center group shrink-0">
+                <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
+                    <img src="{{ asset('img/logo.png') }}" alt="sUAM" class="h-8 sm:h-[50px] w-auto object-contain">
                 </div>
             </a>
+            
         </div>
 
         {{-- Acciones (Buscador Desktop & Togglers Móvil) --}}
@@ -124,6 +128,13 @@
                         class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('recursos.*') ? 'scale-x-100' : '' }}"></span>
                 </a>
 
+                <a href="{{ route('eventos.index') }}"
+                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('recursos.*') ? 'text-white font-semibold' : '' }}">
+                    <span>Eventos</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('recursos.*') ? 'scale-x-100' : '' }}"></span>
+                </a>
+
                 {{-- Link Sedes --}}
                 <a href="{{ route('sedes.index') }}"
                     class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('sedes.*') ? 'text-white font-semibold' : '' }}">
@@ -163,9 +174,14 @@
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('cursos.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Cursos y Talleres
             </a>
-            <a href=""
+            <a href="{{ route('recursos.index') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('recursos.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Recursos
+            </a>
+
+            <a href="{{ route('eventos.index') }}"
+                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('recursos.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
+                Eventos
             </a>
             <a href="{{ route('sedes.index') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('sedes.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">

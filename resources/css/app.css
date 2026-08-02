@@ -1,8 +1,18 @@
 @import 'tailwindcss';
 
-@source '../views';
+/* Escanea todos los archivos blade dentro de la carpeta views y sus subcarpetas */
+@source '../views/**/*.blade.php';
+
+/* Escanea la paginación de Laravel */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Colores */
+    --color-navy: #1c3a5e;
+    --color-navy-dark: #132a44;
+    --color-brandgreen: #5fa93f;
+    --color-brandorange: #f3a53a;
+
+    /* Tipografía */
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 }

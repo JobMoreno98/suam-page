@@ -13,27 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CDN Config -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            DEFAULT: '#1c3a5e',
-                            dark: '#132a44'
-                        },
-                        brandgreen: '#5fa93f',
-                        brandorange: '#f3a53a',
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'ui-sans-serif', 'system-ui']
-                    }
-                }
-            }
-        }
-    </script>
     @livewireStyles
     @stack('styles')
 </head>
