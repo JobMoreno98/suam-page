@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Convocatoria extends Model
 {
@@ -140,6 +141,6 @@ class Convocatoria extends Model
     }
     public function gruposMateriales(): HasMany
     {
-        return $this->hasMany(MaterialesGrupo::class, 'convocatoria_id');
+        return $this->hasMany(MaterialGrupo::class, 'convocatoria_id');
     }
 }

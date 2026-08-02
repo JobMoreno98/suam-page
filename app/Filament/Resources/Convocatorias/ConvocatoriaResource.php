@@ -22,7 +22,7 @@ class ConvocatoriaResource extends Resource
 {
     protected static ?string $model = Convocatoria::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMegaphone;
 
     protected static ?string $recordTitleAttribute = 'Convocatorias';
 

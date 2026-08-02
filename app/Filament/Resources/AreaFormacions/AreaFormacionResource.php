@@ -22,9 +22,13 @@ class AreaFormacionResource extends Resource
 {
     protected static ?string $model = AreaFormacion::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSquare3Stack3d;
 
     protected static ?string $recordTitleAttribute = 'Área de Formación';
+    protected static ?string $title = 'Área de Formación';
+    protected static ?string $navigationLabel = 'Áreas de Formación';
+    protected static ?string $pluralModelLabel = 'Áreas de Formación';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

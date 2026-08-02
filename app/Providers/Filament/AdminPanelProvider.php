@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\MaterialesPorConvocatoriaChart;
+use App\Filament\Widgets\DesgloseRecursosTable;
+use App\Filament\Widgets\StatsOverview;
 use DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -32,17 +35,18 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Emerald,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            //->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                StatsOverview::class,
+                MaterialesPorConvocatoriaChart::class,
+                DesgloseRecursosTable::class
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -56,9 +60,9 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])->plugins([
                 AuthUIEnhancerPlugin::make()
-                ->mobileFormPanelPosition('bottom')
-                ->formPanelWidth('100%')
-                ->emptyPanelView('layouts.login'),
+                    ->mobileFormPanelPosition('bottom')
+                    ->formPanelWidth('100%')
+                    ->emptyPanelView('layouts.login'),
             ])
             ->authMiddleware([
                 Authenticate::class,

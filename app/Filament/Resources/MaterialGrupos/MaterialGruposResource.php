@@ -23,9 +23,15 @@ class MaterialGruposResource extends Resource
 {
     protected static ?string $model = MaterialGrupo::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArchiveBox;
 
-    protected static ?string $recordTitleAttribute = 'MAteriales Grupos';
+    protected static ?string $recordTitleAttribute = 'Recursos';
+
+
+    protected static ?string $title = 'Recursos';
+    protected static ?string $navigationLabel = 'Recursos';
+    protected static ?string $pluralModelLabel = 'Recursos';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {
