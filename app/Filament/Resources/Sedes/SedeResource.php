@@ -17,6 +17,7 @@ use Filament\Tables\Table;
 use App\Models\Sede;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class SedeResource extends Resource
 {
@@ -25,7 +26,7 @@ class SedeResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
     protected static ?string $recordTitleAttribute = 'Sedes';
-
+    protected static string | UnitEnum | null $navigationGroup = 'Institucional';
     public static function form(Schema $schema): Schema
     {
         return SedeForm::configure($schema);

@@ -35,8 +35,8 @@ return [
         ],
 
         'simple' => [
-            'plugins' => 'autoresize directionality emoticons link wordcount',
-            'toolbar' => 'removeformat | bold italic | rtl ltr | numlist bullist | link emoticons',
+            'plugins' => 'accordion autoresize codesample directionality advlist link image lists preview pagebreak searchreplace wordcount code fullscreen insertdatetime media table emoticons',
+            'toolbar' => 'undo redo removeformat | bold italic underline | rtl ltr | alignjustify alignleft aligncenter alignright | numlist bullist outdent indent | forecolor backcolor | blockquote table toc hr | wordcount fullscreen',
             'upload_directory' => null,
         ],
 
@@ -62,13 +62,15 @@ return [
      *      'ja' => asset('assets/ja.min.js')
      * ]
      */
-    'languages' => [],
+    'languages' => [
+        
+    ],
 
     'extra' => [
         'toolbar' => [
             // 'fontsize' => '10px 12px 13px 14px 16px 18px 20px',
-            // 'fontfamily' => 'Tahoma=tahoma,arial,helvetica,sans-serif;',
-            // 'content_style' => 'body { font-family: "Tahoma", sans-serif; }',
+            'fontfamily' => 'Tahoma=tahoma,arial,helvetica,sans-serif;',
+            'content_style' => 'body { font-family: "Tahoma", sans-serif; }',
         ]
     ]
 ];

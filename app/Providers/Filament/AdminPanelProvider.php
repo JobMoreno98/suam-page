@@ -11,6 +11,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -35,10 +36,20 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->globalSearch(false)
-            ->profile(isSimple:false)
+            ->profile(isSimple: false)
             ->login()
             ->colors([
-                'primary' => Color::Purple,
+                'primary' => Color::Amber,
+            ])->navigationGroups([
+                NavigationGroup::make('Académico')
+                    ->icon('heroicon-o-academic-cap'),
+                NavigationGroup::make('Difusión')
+                    ->icon('heroicon-o-megaphone'),
+                NavigationGroup::make('Institucional')
+                    ->icon('heroicon-o-building-office-2'),
+                NavigationGroup::make('Sistema')
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->collapsed(), // opcional: que inicie colapsado
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

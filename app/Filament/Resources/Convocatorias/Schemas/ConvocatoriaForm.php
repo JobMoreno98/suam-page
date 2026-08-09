@@ -21,9 +21,9 @@ class ConvocatoriaForm
                 Section::make('Fechas')
                     ->description('Fechas necesarias para la convocatoria')
                     ->schema([
-                        DatePicker::make('fecha_inicio')->required(),
-                        DatePicker::make('fecha_fin')->required(),
-                        DatePicker::make('fecha_registro')->required()->date(),
+                        DatePicker::make('fecha_inicio')->required()->label('Fecha de inicio convocatoria'),
+                        DatePicker::make('fecha_fin')->required()->label('Fecha de cierre convocatoria'),
+                        DatePicker::make('fecha_registro')->required()->date()->label('Fecha de inicio de cursos'),
                     ])->columns(3)->columnSpanFull(),
 
                 TinyEditor::make('contenido')->required()->columnSpanFull(),

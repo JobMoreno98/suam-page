@@ -26,6 +26,7 @@ class CursoController extends Controller
             ->where('fecha_fin', '>=', $hoy)
             ->latest()
             ->first();
+            
         return view('cursos.show', compact('curso','convocatoriaActiva'));
     }
 }

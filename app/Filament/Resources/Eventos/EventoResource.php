@@ -17,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class EventoResource extends Resource
 {
@@ -26,6 +27,13 @@ class EventoResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Evetnos';
 
+
+    protected static ?string $title = 'Eventos y Actividades';
+    protected static ?string $navigationLabel = 'Eventos y Actividades';
+    protected static ?string $pluralModelLabel = 'Eventos y Actividades';
+
+    protected static string | UnitEnum | null $navigationGroup = 'Difusión';
+    
     public static function form(Schema $schema): Schema
     {
         return EventoForm::configure($schema);

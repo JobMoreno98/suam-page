@@ -17,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class CursoResource extends Resource
 {
@@ -25,6 +26,8 @@ class CursoResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
 
     protected static ?string $recordTitleAttribute = 'Cursos';
+    protected static string | UnitEnum | null $navigationGroup  = 'Académico';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

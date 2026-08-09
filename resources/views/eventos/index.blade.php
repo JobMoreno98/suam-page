@@ -11,7 +11,7 @@
                         Mantente informado
                     </span>
                     <h1 class="text-3xl sm:text-5xl font-black text-navy tracking-tight leading-tight">
-                        Eventos
+                        Eventos y Actividades
                     </h1>
                     <p class="text-gray-600 text-base sm:text-lg mt-3">
                         Descubre nuestros próximos eventos, talleres y actividades destacadas organizadas especialmente para ti.

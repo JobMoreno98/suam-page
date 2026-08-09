@@ -101,7 +101,7 @@
                                 <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Dirección</span>
                                 <p class="text-sm font-bold text-navy">
                                     
-                                    <span class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">9:00 AM - 6:00 PM</span>
+                                    <span class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">Calle Liceo #210, Zona Centro, Guadalajara, Mexico</span>
                                 </p>
                             </div>
                         </div>

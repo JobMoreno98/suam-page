@@ -3,8 +3,11 @@
 namespace App\Filament\Resources\Cursos\Schemas;
 
 use AmidEsfahani\FilamentTinyEditor\TinyEditor;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TimePicker;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class CursoForm
@@ -13,13 +16,20 @@ class CursoForm
     {
         return $schema
             ->components([
-                TextInput::make('nombre'),
-                Select::make('modalidad')->options([
-                    'virtual' => 'Virtual',
-                    'presencial' => 'Presencial',
-                    'ambas' => 'Virtual / Presencial'
-                ]),
-                Select::make('area_id')->relationship('area', 'nombre')->required(),
+                Section::make('Información')->schema([
+                    TextInput::make('nombre'),
+                    Select::make('modalidad')->options([
+                        'virtual' => 'Virtual',
+                        'presencial' => 'Presencial',
+                        'ambas' => 'Virtual / Presencial'
+                    ]),
+                    Select::make('area_id')->relationship('area', 'nombre')->required(),
+                    TextInput::make('cupo')->numeric()->minValue(1)
+                        ->maxValue(100),
+                    TimePicker::make('horario'),
+                    FileUpload::make('temario')->acceptedFileTypes(['pdf', 'docs']),
+                ])->columnSpanFull()->columns(4),
+
                 TinyEditor::make('descripcion')->label('Descripción')
                     ->fileAttachmentsDisk('public')
                     ->fileAttachmentsVisibility('public')

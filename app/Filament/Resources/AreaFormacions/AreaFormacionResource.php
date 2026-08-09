@@ -17,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class AreaFormacionResource extends Resource
 {
@@ -29,6 +30,8 @@ class AreaFormacionResource extends Resource
     protected static ?string $navigationLabel = 'Áreas de Formación';
     protected static ?string $pluralModelLabel = 'Áreas de Formación';
     protected static ?int $navigationSort = 1;
+
+    protected static string | UnitEnum | null $navigationGroup  = 'Académico';
 
     public static function form(Schema $schema): Schema
     {

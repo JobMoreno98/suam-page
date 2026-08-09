@@ -5,17 +5,18 @@
     class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all duration-200">
 
     {{-- BARRA SUPERIOR (LOGO Y BÚSQUEDA) --}}
-<div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5 gap-2 sm:gap-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5 gap-2 sm:gap-4">
 
         {{-- Logos e Identidad --}}
         {{-- Quitamos min-w-0 y ponemos shrink-0 para que no colapsen --}}
         <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-            
+
             {{-- Logo UdeG --}}
             <a href="https://udg.mx" class="flex items-center group shrink-0">
                 <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
                     {{-- Cambiamos el style fijo por h-8 (móvil) y sm:h-[50px] (PC) --}}
-                    <img src="{{ asset('img/udg-logo.jpg') }}" alt="UdeG" class="h-8 sm:h-[50px] w-auto object-contain">
+                    <img src="{{ asset('img/udg-logo.jpg') }}" alt="UdeG"
+                        class="h-8 sm:h-[50px] w-auto object-contain">
                 </div>
             </a>
 
@@ -27,7 +28,7 @@
                     <img src="{{ asset('img/logo.png') }}" alt="sUAM" class="h-8 sm:h-[50px] w-auto object-contain">
                 </div>
             </a>
-            
+
         </div>
 
         {{-- Acciones (Buscador Desktop & Togglers Móvil) --}}
@@ -104,6 +105,14 @@
                         class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('home') ? 'scale-x-100' : '' }}"></span>
                 </a>
 
+                {{-- Link Acerca de --}}
+                <a href="{{ route('home.acerca') }}"
+                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('home.acerca') ? 'text-white font-semibold' : '' }}">
+                    <span>Acerca de</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('home.acerca') ? 'scale-x-100' : '' }}"></span>
+                </a>
+
                 {{-- Link Convocatorias --}}
                 <a href="{{ route('convocatorias.index') }}"
                     class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('convocatorias.*') ? 'text-white font-semibold' : '' }}">
@@ -128,11 +137,12 @@
                         class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('recursos.*') ? 'scale-x-100' : '' }}"></span>
                 </a>
 
+                {{-- Link Eventos --}}
                 <a href="{{ route('eventos.index') }}"
-                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('recursos.*') ? 'text-white font-semibold' : '' }}">
-                    <span>Eventos</span>
+                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('eventos.*') ? 'text-white font-semibold' : '' }}">
+                    <span>Eventos y Actividades</span>
                     <span
-                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('recursos.*') ? 'scale-x-100' : '' }}"></span>
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('eventos.*') ? 'scale-x-100' : '' }}"></span>
                 </a>
 
                 {{-- Link Sedes --}}
@@ -141,6 +151,14 @@
                     <span>Sedes</span>
                     <span
                         class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('sedes.*') ? 'scale-x-100' : '' }}"></span>
+                </a>
+
+                {{-- Link Testimonios --}}
+                <a href="{{ route('home.testimonios') }}"
+                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('home.testimonios') ? 'text-white font-semibold' : '' }}">
+                    <span>Testimonios</span>
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('home.testimonios') ? 'scale-x-100' : '' }}"></span>
                 </a>
 
                 {{-- Link Contacto --}}
@@ -166,6 +184,10 @@
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('home') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Inicio
             </a>
+            <a href="{{ route('home.acerca') }}"
+                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('home.acerca') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
+                Acerca de
+            </a>
             <a href="{{ route('convocatorias.index') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('convocatorias.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Convocatorias
@@ -178,14 +200,17 @@
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('recursos.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Recursos
             </a>
-
             <a href="{{ route('eventos.index') }}"
-                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('recursos.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
-                Eventos
+                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('eventos.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
+                Eventos y Actividades
             </a>
             <a href="{{ route('sedes.index') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('sedes.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Sedes
+            </a>
+            <a href="{{ route('home.testimonios') }}"
+                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('home.testimonios') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
+                Testimonios
             </a>
             <a href="{{ route('contacto') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('contacto') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">

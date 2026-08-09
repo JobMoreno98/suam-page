@@ -20,8 +20,6 @@ class SedeForm
                         '16:9',
                         '4:3',
                         '1:1',
-                    ])->extraAttributes([
-                        'class' => 'max-w-xs mx-auto', // Mantiene el componente centrado y con un ancho controlado
                     ])
                     ->visibility('public'),
                 TextInput::make('nombre'),

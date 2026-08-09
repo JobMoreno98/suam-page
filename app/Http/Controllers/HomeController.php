@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\AreaFormacion;
 use App\Models\Banner;
+use App\Models\ConfiguracionSitio;
 use App\Models\Convocatoria;
 use App\Models\Evento;
 use App\Models\Sede;
+use App\Models\Testimonio;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,5 +28,16 @@ class HomeController extends Controller
     public function contacto()
     {
         return view('contacto');
+    }
+
+    public function acerca()
+    {
+        $configuracion = ConfiguracionSitio::select('acerca_de','dictamen')->first();
+        return view('acerca', compact('configuracion'));
+    }
+    public function testimonios()
+    {
+        $testimonios = Testimonio::latest()->get();
+        return view('testimonios.index', compact('testimonios'));
     }
 }

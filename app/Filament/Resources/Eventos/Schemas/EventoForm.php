@@ -13,7 +13,7 @@ class EventoForm
     {
         return $schema
             ->components([
-                FileUpload::make('imagen')->disk('public')->image()
+                FileUpload::make('imagen')->disk('public')->image()->columnSpanFull()->label('Portada')->required()
                     ->directory('banner')->alignCenter(),
                 TextInput::make('nombre')->columnSpanFull(),
                 TinyEditor::make('contenido')->profile('default')->columnSpanFull(),
