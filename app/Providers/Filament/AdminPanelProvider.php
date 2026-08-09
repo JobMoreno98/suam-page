@@ -42,13 +42,13 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
             ])->navigationGroups([
                 NavigationGroup::make('Académico')
-                    ->icon('heroicon-o-academic-cap'),
+                   ,
                 NavigationGroup::make('Difusión')
-                    ->icon('heroicon-o-megaphone'),
+                    ,
                 NavigationGroup::make('Institucional')
-                    ->icon('heroicon-o-building-office-2'),
+                    ,
                 NavigationGroup::make('Sistema')
-                    ->icon('heroicon-o-cog-6-tooth')
+                    
                     ->collapsed(), // opcional: que inicie colapsado
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')

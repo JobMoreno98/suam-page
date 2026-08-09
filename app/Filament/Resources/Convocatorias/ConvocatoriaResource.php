@@ -28,6 +28,7 @@ class ConvocatoriaResource extends Resource
     protected static ?string $recordTitleAttribute = 'Convocatorias';
 
     protected static string | UnitEnum | null $navigationGroup = 'Difusión';
+    
     public static function form(Schema $schema): Schema
     {
         return ConvocatoriaForm::configure($schema);
