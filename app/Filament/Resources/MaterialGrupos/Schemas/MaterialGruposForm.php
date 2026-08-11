@@ -26,7 +26,7 @@ class MaterialGruposForm
                 Section::make('Información General')
                     ->schema([
                         TextInput::make('titulo_grupo')
-                            ->label('Título')
+                            ->label('Título')->required()
                             ->placeholder('Ej. Material Didáctico - Unidad 1')
                             ->maxLength(150),
 

@@ -15,8 +15,9 @@ class ConvocatoriaForm
     {
         return $schema
             ->components([
-                FileUpload::make('imagen')->label('Cartel')->disk('public') ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
-                    ->directory('convocatorias'),
+                FileUpload::make('imagen')->label('Cartel')->disk('public')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->directory('convocatorias')->required(),
                 TextInput::make('nombre')->required(),
                 Section::make('Fechas')
                     ->description('Fechas necesarias para la convocatoria')

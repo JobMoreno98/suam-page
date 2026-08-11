@@ -15,8 +15,8 @@ class EventoForm
             ->components([
                 FileUpload::make('imagen')->disk('public')->image()->columnSpanFull()->label('Portada')->required()
                     ->directory('banner')->alignCenter(),
-                TextInput::make('nombre')->columnSpanFull(),
-                TinyEditor::make('contenido')->profile('default')->columnSpanFull(),
+                TextInput::make('nombre')->columnSpanFull()->required(),
+                TinyEditor::make('contenido')->profile('default')->columnSpanFull()->required(),
                 FileUpload::make('galeria')
                     ->label('Galería de Imágenes')
                     ->multiple()->disk('public')

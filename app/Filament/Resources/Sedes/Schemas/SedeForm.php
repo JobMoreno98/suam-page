@@ -22,10 +22,10 @@ class SedeForm
                         '1:1',
                     ])
                     ->visibility('public'),
-                TextInput::make('nombre'),
-                TextInput::make('centro_universitario'),
-                TextInput::make('direccion')->label('Dirección'),
-                TextInput::make('telefono')->label('Teléfono'),
+                TextInput::make('nombre')->required(),
+                TextInput::make('centro_universitario')->required(),
+                TextInput::make('direccion')->label('Dirección')->required(),
+                TextInput::make('telefono')->label('Teléfono')->required(),
                 Repeater::make('correo')->schema([
                     TextInput::make('correo')->email()
                 ])->itemLabel(fn(array $state): ?string => $state['correo'] ?? 'Sin nombre')->collapsible()->collapsed(),
