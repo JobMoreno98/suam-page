@@ -19,7 +19,7 @@ class AreaFormacionsTable
         return $table
             ->columns([
                   TextColumn::make('nombre'),
-            ])
+            ])->defaultSort('orden')
             ->filters([
                 TrashedFilter::make(),
             ])
