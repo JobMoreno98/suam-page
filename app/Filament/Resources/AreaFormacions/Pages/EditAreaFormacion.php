@@ -17,9 +17,9 @@ class EditAreaFormacion extends EditRecord
     {
         return [
             ViewAction::make(),
-            DeleteAction::make(),
-            ForceDeleteAction::make(),
-            RestoreAction::make(),
+            //DeleteAction::make(),
+            //ForceDeleteAction::make(),
+            //RestoreAction::make(),
         ];
     }
 }
