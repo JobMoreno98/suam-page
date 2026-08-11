@@ -16,8 +16,9 @@ class AreaFormacionForm
                 TextInput::make('nombre'),
                 ColorPicker::make('color')
                     ->regex('/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})\b$/'),
+                TextInput::make('orden')->numeric()->required()->minValue(1),
                 TinyEditor::make('descripcion')->columnSpanFull()->profile('minimal')
 
-            ]);
+            ])->columns(3);
     }
 }

@@ -13,7 +13,7 @@ class CursoController extends Controller
     public function index()
     {
         // Carga las categorías/áreas con sus respectivos cursos
-        $categorias = AreaFormacion::with(['cursos'])->get();
+        $categorias = AreaFormacion::with(['cursos'])->orderBy('orden')->get();
 
         return view('cursos.index', compact('categorias'));
     }

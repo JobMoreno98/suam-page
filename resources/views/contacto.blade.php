@@ -44,9 +44,9 @@
                             <div>
                                 <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Atención por
                                     Correo</span>
-                                <a href="mailto: suam@csh.udg.mx"
+                                <a href="mailto: {{ $contacto['email'] }}"
                                     class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">
-                                    suam@csh.udg.mx
+                                    {{ $contacto['email'] }}
                                 </a>
                             </div>
                         </div>
@@ -60,11 +60,11 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Línea
-                                    Telefónica</span>
+                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">
+                                    Teléfono</span>
                                 <a href="tel:+523300000000"
                                     class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">
-                                    +52 (33) 39 16 40 38
+                                    {{ $contacto['telefono'] }}
                                 </a>
                             </div>
                         </div>
@@ -81,8 +81,10 @@
                                 <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Horario de
                                     Atención</span>
                                 <p class="text-sm font-bold text-navy">
-                                    Lunes a Viernes<br>
-                                    <span class="text-xs text-gray-500 font-medium">9:00 AM - 6:00 PM</span>
+                                    {{ $contacto['horario_dias'] ?? 'Lunes a Viernes' }}<br>
+                                    <span class="text-xs text-gray-500 font-medium">
+                                        {{ $contacto['horario_horas'] ?? '9:00 AM - 6:00 PM' }}
+                                    </span>
                                 </p>
                             </div>
                         </div>
@@ -98,10 +100,12 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Dirección</span>
+                                <span
+                                    class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Dirección</span>
                                 <p class="text-sm font-bold text-navy">
-                                    
-                                    <span class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">Calle Liceo #210, Zona Centro, Guadalajara, Mexico</span>
+
+                                    <span
+                                        class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">{{ $contacto['dirección'] }}</span>
                                 </p>
                             </div>
                         </div>

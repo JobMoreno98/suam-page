@@ -11,8 +11,8 @@
         </div>
         <div>
             <div class="font-semibold mb-2">Contacto</div>
-            <p class="text-white/70 text-xs">📞 33 39 16 40 38</p>
-            <p class="text-white/70 text-xs">✉️ suam@csh.udg.mx</p>
+            <p class="text-white/70 text-xs">📞 {{ $contacto['telefono'] }}</p>
+            <p class="text-white/70 text-xs">✉️ {{ $contacto['email'] }}</p>
         </div>
     </div>
 </footer>

@@ -144,6 +144,32 @@
                     <span
                         class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('eventos.*') ? 'scale-x-100' : '' }}"></span>
                 </a>
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                    <button @click="open = !open"
+                        class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('home.testimonios*') ? 'text-white font-semibold' : '' }}">
+                        <span>Estudiantes</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200"
+                            :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                        <span
+                            class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('home.testimonios*') ? 'scale-x-100' : '' }}"></span>
+                    </button>
+
+                    <div x-show="open" x-transition
+                        class="absolute left-0 mt-2 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black/5 py-2 z-50"
+                        style="display: none;">
+                        <a href="{{ route('home.testimonios') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.testimonios') ? 'font-semibold text-brandgreen' : '' }}">
+                            Testimonios
+                        </a>
+                        {{-- Agrega aquí más opciones del dropdown --}}
+                        <a href="{{ route('home.etica') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Código de ética
+                        </a>
+                    </div>
+                </div>
 
                 {{-- Link Sedes --}}
                 <a href="{{ route('sedes.index') }}"
@@ -153,13 +179,7 @@
                         class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('sedes.*') ? 'scale-x-100' : '' }}"></span>
                 </a>
 
-                {{-- Link Testimonios --}}
-                <a href="{{ route('home.testimonios') }}"
-                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('home.testimonios') ? 'text-white font-semibold' : '' }}">
-                    <span>Testimonios</span>
-                    <span
-                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('home.testimonios') ? 'scale-x-100' : '' }}"></span>
-                </a>
+                {{-- Dropdown Testimonios --}}
 
                 {{-- Link Contacto --}}
                 <a href="{{ route('contacto') }}"
@@ -204,14 +224,35 @@
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('eventos.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Eventos y Actividades
             </a>
+            {{-- Dropdown Testimonios (móvil) --}}
+            <div x-data="{ open: {{ request()->routeIs('home.testimonios*') ? 'true' : 'false' }} }">
+                <button @click="open = !open"
+                    class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('home.testimonios*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
+                    <span>Estudiantes</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200"
+                        :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                <div x-show="open" x-collapse class="pl-3 mt-1 space-y-1">
+                    <a href="{{ route('home.testimonios') }}"
+                        class="block py-2 px-3 rounded-lg text-sm transition-colors {{ request()->routeIs('home.testimonios') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
+                        Testimonios
+                    </a>
+                    {{-- Agrega aquí más opciones del dropdown --}}
+                    <a href="{{ route('home.etica') }}"
+                        class="block py-2 px-3 rounded-lg text-sm text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+                        Código de ética
+                    </a>
+                </div>
+            </div>
             <a href="{{ route('sedes.index') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('sedes.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Sedes
             </a>
-            <a href="{{ route('home.testimonios') }}"
-                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('home.testimonios') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
-                Testimonios
-            </a>
+
             <a href="{{ route('contacto') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('contacto') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Contacto

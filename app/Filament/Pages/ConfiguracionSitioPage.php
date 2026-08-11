@@ -14,7 +14,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\KeyValue;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Form as ComponentsForm;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Support\Icons\Heroicon;
 use UnitEnum;
@@ -61,9 +63,6 @@ class ConfiguracionSitioPage extends Page implements HasForms
                     ->required()
                     ->maxLength(255),
 
-
-
-
                 Section::make('Acerca de')
                     ->schema([
 
@@ -72,11 +71,33 @@ class ConfiguracionSitioPage extends Page implements HasForms
 
                         FileUpload::make('dictamen')->acceptedFileTypes(['application/pdf'])->label('Dictamen de creación'),
 
-                        KeyValue::make('contacto')
-                            ->keyLabel('Medio (Ej. Email, Teléfono)')
-                            ->valueLabel('Valor'),
+                        Fieldset::make('Información de Contacto')
+                            ->schema([
+                                TextInput::make('contacto.email')
+                                    ->label('Correo electrónico')
+                                    ->email(),
 
+                                TextInput::make('contacto.telefono')
+                                    ->label('Teléfono')
+                                    ->tel(),
 
+                                TextInput::make('contacto.dirección')
+                                    ->label('Dirección'),
+
+                                Grid::make(2)
+                                    ->schema([
+                                        TextInput::make('contacto.horario_dias')
+                                            ->label('Días de atención')
+                                            ->placeholder('Lunes a Viernes')
+                                            ->required(),
+
+                                        TextInput::make('contacto.horario_horas')
+                                            ->label('Horario de atención')
+                                            ->placeholder('9:00 AM - 6:00 PM')
+                                            ->required(),
+                                    ])
+                            ])
+                            ->columns(2)
 
                     ]),
                 Section::make('Código de Ética')
@@ -89,7 +110,7 @@ class ConfiguracionSitioPage extends Page implements HasForms
                         // Subida del archivo (ej. PDF o Imagen)
                         FileUpload::make('codigo_etica.archivo')
                             ->label('Documento Adjunto (PDF)')
-                            ->acceptedFileTypes(['application/pdf'])
+                            ->acceptedFileTypes(['application/pdf'])->disk('public')
                             ->directory('codigo-etica') // Carpeta en storage donde se guardará
                             ->maxSize(10240) // Límite de 10 MB (opcional)
                             ->downloadable() // Permite descargar el archivo desde el panel

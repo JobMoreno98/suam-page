@@ -32,12 +32,17 @@ class HomeController extends Controller
 
     public function acerca()
     {
-        $configuracion = ConfiguracionSitio::select('acerca_de','dictamen')->first();
+        $configuracion = ConfiguracionSitio::select('acerca_de', 'dictamen')->first();
         return view('acerca', compact('configuracion'));
     }
     public function testimonios()
     {
         $testimonios = Testimonio::latest()->get();
         return view('testimonios.index', compact('testimonios'));
+    }
+    public function etica()
+    {
+        $configuracion = ConfiguracionSitio::first()->value('codigo_etica');
+        return view('etica', compact('configuracion'));
     }
 }

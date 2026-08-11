@@ -64,8 +64,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                         </div>
-                        <p class="text-navy font-bold text-lg">No hay eventos disponibles</p>
-                        <p class="text-gray-400 text-sm">Aún no se han registrado eventos en la plataforma.</p>
+                        <p class="text-navy font-bold text-lg">No hay eventos o actividades disponibles</p>
+                        <p class="text-gray-400 text-sm">Aún no se han registrado en la plataforma.</p>
                     </div>
                 @endforelse
             </div>

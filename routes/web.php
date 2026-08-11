@@ -27,6 +27,7 @@ Route::resource('recursos', MaterialController::class)
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/acerca-de', [HomeController::class, 'acerca'])->name('home.acerca');
+Route::get('/codigo-de-etica', [HomeController::class, 'etica'])->name('home.etica');
 Route::get('/testimonios', [HomeController::class, 'testimonios'])->name('home.testimonios');
 
 Route::get('/buscar', [SearchController::class, 'index'])->name('buscar');
