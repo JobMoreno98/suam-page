@@ -21,7 +21,7 @@ class AreaFormacionsTable
                   TextColumn::make('nombre'),
             ])->defaultSort('orden')
             ->filters([
-                TrashedFilter::make(),
+                //TrashedFilter::make(),
             ])
             ->recordActions([
                 ViewAction::make(),
