@@ -3,16 +3,20 @@
         <div>
             <div class="font-semibold mb-2">Síguenos en nuestras redes sociales</div>
             <div class="flex gap-3">
-                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">f</a>
-                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">ig</a>
-                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">▶</a>
-                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">tw</a>
+                <a href="#"
+                    class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">f</a>
+                <a href="#"
+                    class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">ig</a>
+                <a href="#"
+                    class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">▶</a>
+                <a href="#"
+                    class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">tw</a>
             </div>
         </div>
         <div>
             <div class="font-semibold mb-2">Contacto</div>
-            <p class="text-white/70 text-xs">📞 {{ $contacto['telefono']??'' }}</p>
-            <p class="text-white/70 text-xs">✉️ {{ $contacto['email'] }}??''</p>
+            <p class="text-white/70 text-xs">📞 {{ $contacto['telefono'] ?? '' }}</p>
+            <p class="text-white/70 text-xs">✉️ {{ $contacto['email'] ?? '' }}</p>
         </div>
     </div>
 </footer>
