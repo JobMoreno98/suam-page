@@ -35,6 +35,6 @@ class Sede extends Model
 
     public function getUrlLogoAttribute()
     {
-        return $this->logo ? asset('storage/' . $this->logo) : 'suam.jpg';
+        return $this->logo ? asset('storage/' . $this->logo) : asset('img/logo.png');
     }
 }
