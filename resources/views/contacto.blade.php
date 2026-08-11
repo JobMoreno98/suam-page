@@ -105,7 +105,7 @@
                                 <p class="text-sm font-bold text-navy">
 
                                     <span
-                                        class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">{{ $contacto['dirección'] }}</span>
+                                        class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">{{ $contacto['dirección']?? '' }}</span>
                                 </p>
                             </div>
                         </div>
