@@ -11,8 +11,8 @@
         </div>
         <div>
             <div class="font-semibold mb-2">Contacto</div>
-            <p class="text-white/70 text-xs">📞 {{ $contacto['telefono'] }}</p>
-            <p class="text-white/70 text-xs">✉️ {{ $contacto['email'] }}</p>
+            <p class="text-white/70 text-xs">📞 {{ $contacto['telefono']??'' }}</p>
+            <p class="text-white/70 text-xs">✉️ {{ $contacto['email'] }}??''</p>
         </div>
     </div>
 </footer>
