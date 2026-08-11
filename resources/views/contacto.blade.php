@@ -44,9 +44,9 @@
                             <div>
                                 <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Atención por
                                     Correo</span>
-                                <a href="mailto: {{ $contacto['email'] }}"
+                                <a href="mailto: {{ $contacto['email']?? '' }}"
                                     class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">
-                                    {{ $contacto['email'] }}
+                                    {{ $contacto['email']?? '' }}
                                 </a>
                             </div>
                         </div>
@@ -62,9 +62,9 @@
                             <div>
                                 <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">
                                     Teléfono</span>
-                                <a href="tel:+523300000000"
+                                <a href="tel:{{ $contacto['telefono']?? '' }}"
                                     class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">
-                                    {{ $contacto['telefono'] }}
+                                    {{ $contacto['telefono']?? '' }}
                                 </a>
                             </div>
                         </div>
