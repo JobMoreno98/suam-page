@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Str;
+use Mews\Purifier\Facades\Purifier;
 
 class Publicacion extends Model
 {
@@ -25,17 +27,22 @@ class Publicacion extends Model
             $model->slug = Str::slug($model->nombre);
         });
     }
-
-    public function toSearchableArray(): array
-    {
-        return [
-            'id' => $this->id,
-            'nombre' => $this->nombre,
-            'descripcion' => strip_tags($this->descripcion), // Limpiamos el HTML para el índice
-        ];
-    }
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+    public function toSearchableArray(): array
+    {
+        return [
+            'nombre'    => $this->nombre,
+            'slug'      => $this->slug,
+            'contenido' => strip_tags($this->contenido),
+        ];
+    }
+    protected function contenido(): Attribute
+    {
+        return Attribute::make(
+            set: fn($value) => Purifier::clean($value),
+        );
     }
 }

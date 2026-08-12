@@ -9,15 +9,15 @@ class PublicacionController extends Controller
 {
     public function index()
     {
-        $articulos = Publicacion::query()
+        $publicaciones = Publicacion::query()
             ->latest()
             ->paginate(9);
 
-        return view('publicaciones.index', compact('articulos'));
+        return view('publicaciones.index', compact('publicaciones'));
     }
 
-    public function show(Publicacion $articulo)
+    public function show(Publicacion $publicacion)
     {
-        return view('publicaciones.show', compact('articulo'));
+        return view('publicaciones.show', compact('publicacion'));
     }
 }

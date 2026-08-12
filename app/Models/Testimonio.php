@@ -31,7 +31,7 @@ class Testimonio extends Model
     {
         return Attribute::make(
             get: fn() => $this->galeria_items->firstWhere('tipo', 'imagen')['url']
-                ?? asset('images/placeholder-testimonio.jpg'), // ajusta a tu placeholder real
+                ?? asset('img/logo.png'), // ajusta a tu placeholder real
         );
     }
 }

@@ -20,13 +20,13 @@
 
             {{-- Grid de Tarjetas de Artículos --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse($articulos as $articulo)
+                @forelse($publicaciones as $publicacion)
                     <div class="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col group">
 
                         {{-- Imagen Principal --}}
                         <div class="h-52 w-full bg-gray-100 relative overflow-hidden">
-                            @if($articulo->imagen)
-                                <img src="{{ Storage::url($articulo->imagen) }}" alt="{{ $articulo->titulo }}"
+                            @if($publicacion->foto)
+                                <img src="{{ Storage::url($publicacion->foto) }}" alt="{{ $publicacion->nombre }}"
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             @else
                                 <div class="w-full h-full flex items-center justify-center text-gray-300">
@@ -37,9 +37,9 @@
                             @endif
 
                             {{-- Badge de categoría --}}
-                            @if($articulo->categoria)
+                            @if($publicacion->categoria)
                                 <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-navy text-[10px] font-bold uppercase tracking-wide px-3 py-1 rounded-full shadow-sm">
-                                    {{ $articulo->categoria }}
+                                    {{ $publicacion->categoria }}
                                 </span>
                             @endif
                         </div>
@@ -48,31 +48,31 @@
                         <div class="p-6 flex flex-col flex-grow space-y-3">
                             {{-- Fecha y tiempo de lectura --}}
                             <div class="flex items-center gap-2 text-[11px] text-gray-400 font-medium">
-                                <span>{{ $articulo->created_at->translatedFormat('d \d\e F, Y') }}</span>
+                                <span>{{ $publicacion->created_at->translatedFormat('d \d\e F, Y') }}</span>
                                 <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                <span>{{ ceil(str_word_count(strip_tags($articulo->contenido)) / 200) }} min de lectura</span>
+                                <span>{{ ceil(str_word_count(strip_tags($publicacion->contenido)) / 200) }} min de lectura</span>
                             </div>
 
                             <h3 class="font-black text-navy text-lg leading-tight line-clamp-2">
-                                {{ $articulo->titulo }}
+                                {{ $publicacion->titulo }}
                             </h3>
 
                             {{-- Contenido truncado sin etiquetas HTML --}}
                             <p class="text-sm text-gray-500 line-clamp-3 flex-grow">
-                                {{ Str::limit(strip_tags($articulo->contenido), 120) }}
+                                {{ Str::limit(strip_tags($publicacion->contenido), 120) }}
                             </p>
 
                             {{-- Autor --}}
-                            @if($articulo->autor)
+                            @if($publicacion->autor)
                                 <div class="flex items-center gap-2 text-xs text-gray-500 font-medium pt-1">
                                     <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
-                                    {{ $articulo->autor }}
+                                    {{ $publicacion->autor }}
                                 </div>
                             @endif
 
-                            <a href="{{ route('publicaciones.show', $articulo) }}"
+                            <a href="{{ route('publicaciones.show', $publicacion) }}"
                                class="inline-flex items-center justify-center w-full px-4 py-2.5 bg-gray-50 hover:bg-navy text-navy hover:text-white font-bold text-xs rounded-xl transition-colors border border-gray-100 group-hover:border-navy mt-2">
                                 Leer artículo completo
                             </a>
@@ -92,9 +92,9 @@
             </div>
 
             {{-- Paginación (Se muestra solo si hay más de 1 página) --}}
-            @if($articulos->hasPages())
+            @if($publicaciones->hasPages())
                 <div class="pt-4">
-                    {{ $articulos->links() }}
+                    {{ $publicaciones->links() }}
                 </div>
             @endif
 

@@ -17,7 +17,7 @@ Route::resource('sedes', SedeController::class)->names('sedes')->only(['index', 
 Route::resource('cursos', CursoController::class)->names('cursos')->only(['index', 'show']);
 Route::resource('convocatorias', ConvocatoriaController::class)->names('convocatorias')->only(['index', 'show']);
 Route::resource('area-formacion', AreaFormacionController::class)->names('areas')->only(['index', 'show']);
-Route::resource('publicaciones',PublicacionController::class)->only(['index','show'])->names('publicaciones');
+Route::resource('publicacion',PublicacionController::class)->only(['index','show'])->names('publicaciones');
 Route::resource('eventos', EventoController::class)->only(['index', 'show'])->names('eventos');
 
 
