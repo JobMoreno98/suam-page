@@ -18,7 +18,7 @@ class HomeController extends Controller
         $sedes = Sede::select('id', 'nombre', 'logo', 'direccion', 'slug', 'telefono')->get()->take(3);
         $slides = Evento::latest()->get()->take(3);
 
-        $areas = AreaFormacion::all();
+        $areas = AreaFormacion::orderBy('orden')->get();
 
         $convocatorias = Convocatoria::latest()->get()->take(3);
 

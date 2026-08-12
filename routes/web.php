@@ -6,17 +6,18 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SedeController;
 use Illuminate\Support\Facades\Route;
 
 //Route::view('/', 'home')->name('home');
 
-Route::resource('sedes', SedeController::class)->names('sedes');
-Route::resource('cursos', CursoController::class)->names('cursos');
-Route::resource('convocatorias', ConvocatoriaController::class)->names('convocatorias');
-Route::resource('area-formacion', AreaFormacionController::class)->names('areas');
-
+Route::resource('sedes', SedeController::class)->names('sedes')->only(['index', 'show']);
+Route::resource('cursos', CursoController::class)->names('cursos')->only(['index', 'show']);
+Route::resource('convocatorias', ConvocatoriaController::class)->names('convocatorias')->only(['index', 'show']);
+Route::resource('area-formacion', AreaFormacionController::class)->names('areas')->only(['index', 'show']);
+Route::resource('publicaciones',PublicacionController::class)->only(['index','show'])->names('publicaciones');
 Route::resource('eventos', EventoController::class)->only(['index', 'show'])->names('eventos');
 
 
@@ -29,6 +30,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/acerca-de', [HomeController::class, 'acerca'])->name('home.acerca');
 Route::get('/codigo-de-etica', [HomeController::class, 'etica'])->name('home.etica');
 Route::get('/testimonios', [HomeController::class, 'testimonios'])->name('home.testimonios');
+
+
 
 Route::get('/buscar', [SearchController::class, 'index'])->name('buscar');
 

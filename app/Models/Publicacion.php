@@ -3,21 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Str;
 
-class AreaFormacion extends Model
+class Publicacion extends Model
 {
     use SoftDeletes;
     use Searchable;
     protected $guarded = [];
-
-    public function cursos(): HasMany
-    {
-        return $this->hasMany(Curso::class, 'area_id', 'id');
-    }
+    protected $casts = [
+        'archivos' => 'array'
+    ];
     protected static function booted(): void
     {
         static::creating(function ($model) {
@@ -37,15 +34,8 @@ class AreaFormacion extends Model
             'descripcion' => strip_tags($this->descripcion), // Limpiamos el HTML para el índice
         ];
     }
-
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    public function getColorOscuroAttribute()
-    {
-
-        return $this->color;
     }
 }

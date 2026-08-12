@@ -6,13 +6,6 @@
         {{-- Guarda el ID de la categoría desplegada --}}
         modalOpen: false,
         activeCurso: null,
-    
-        // Define la paleta de colores intercalados como en la imagen
-        bgColors: [
-            { header: 'bg-emerald-100/70 hover:bg-emerald-100', iconBg: 'bg-emerald-500', border: 'border-emerald-200' },
-            { header: 'bg-sky-100/70 hover:bg-sky-100', iconBg: 'bg-sky-500', border: 'border-sky-200' },
-            { header: 'bg-amber-100/70 hover:bg-amber-100', iconBg: 'bg-amber-500', border: 'border-amber-200' }
-        ]
     }" class="bg-gray-50/50 py-8 sm:py-10 px-4 sm:px-6 lg:px-8">
 
         <div class="w-full mx-auto space-y-6 sm:space-y-8">
@@ -40,18 +33,18 @@
                         $colorIndex = $index % 3;
                     @endphp
 
-                    <div class="rounded-2xl border border-gray-200/80 overflow-hidden transition-all duration-300 shadow-sm bg-white"
-                        :class="openCategory === {{ $categoria->id }} ? 'ring-2 ring-navy/10 shadow-md' : ''">
+                    {{-- Contenedor de la tarjeta: header + panel juntos --}}
+                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
 
-                        {{-- CABECERA DEL ÁREA DE FORMACIÓN --}}
+                        {{-- HEADER DEL ACORDEÓN --}}
                         <div @click="openCategory = (openCategory === {{ $categoria->id }} ? null : {{ $categoria->id }})"
-                            :class="bgColors[{{ $colorIndex }}].header"
+                            style="background-color: color-mix(in srgb, {{ $categoria->color }} 15%, white);"
                             class="w-full p-4 sm:p-6 flex items-center justify-between gap-2 transition-colors cursor-pointer select-none">
 
                             <div class="flex items-center gap-3 sm:gap-5 min-w-0 flex-1">
                                 {{-- Icono representativo --}}
                                 <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white shrink-0 shadow-sm"
-                                    :class="bgColors[{{ $colorIndex }}].iconBg">
+                                    style="background-color: {{ $categoria->color }};">
                                     <x-heroicon :name="$categoria->icono" class="w-5 h-5 sm:w-7 sm:h-7" />
                                 </div>
 
@@ -85,40 +78,24 @@
                             </div>
                         </div>
 
-                        {{-- LISTA DE CURSOS DESPLEGABLE --}}
-                        <div x-show="openCategory === {{ $categoria->id }}" x-cloak x-collapse
-                            class="bg-white border-t border-gray-100">
+                        {{-- PANEL DESPLEGABLE --}}
+                        <div x-show="openCategory === {{ $categoria->id }}"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 -translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 -translate-y-2"
+                            class="px-4 sm:px-6 pb-5 sm:pb-6 pt-1">
 
-                            <div class="p-3 sm:p-4 divide-y divide-gray-100">
-                                @forelse($categoria->cursos as $curso)
-                                    <div
-                                        class="p-3.5 sm:p-4 rounded-xl hover:bg-sky-50/50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 group">
-                                        <div class="min-w-0 w-full">
-                                            {{-- Se eliminó 'truncate' de los cursos para permitir el salto de línea --}}
-                                            <h3
-                                                class="text-sm sm:text-base font-semibold text-navy group-hover:text-brandgreen transition-colors leading-tight">
-                                                {{ $curso->nombre }}
-                                            </h3>
-                                            @if ($curso->sede)
-                                                <span class="text-xs text-gray-400 font-medium block mt-1">
-                                                    {{ $curso->sede->nombre }}
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                        {{-- El botón abarca el 100% en móviles (w-full) y su ancho natural en PC (sm:w-auto) --}}
-                                        <a href="{{ route('cursos.show', $curso->slug) }}"
-                                            class="w-full sm:w-auto text-center px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold text-xs rounded-xl transition-colors shrink-0">
-                                            Ver curso
-                                        </a>
-                                    </div>
-                                @empty
-                                    <div class="p-4 text-center text-xs text-gray-400">
-                                        No hay cursos disponibles en esta área por el momento.
-                                    </div>
-                                @endforelse
-                            </div>
-
+                            {{-- TODO: reemplaza esto por el listado real de cursos de la categoría --}}
+                            @forelse($categoria->cursos ?? [] as $curso)
+                                <div class="py-2 border-t border-gray-100 first:border-t-0">
+                                    <p class="text-sm sm:text-base font-semibold text-navy">{{ $curso->nombre }}</p>
+                                </div>
+                            @empty
+                                <p class="text-sm text-gray-400 italic">No hay cursos disponibles en esta área.</p>
+                            @endforelse
                         </div>
 
                     </div>
