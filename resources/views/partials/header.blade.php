@@ -163,12 +163,14 @@
                     class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('eventos.*') ? 'text-white font-semibold' : '' }}">
                     <span>Eventos y Actividades</span>
                     <span
-                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('eventos.*') ? 'scale-x-100' : '' }}"></span>
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ 
+                        request()->routeIs('eventos.*') ? 'scale-x-100' : '' }}"></span>
                 </a>
 
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
                     <button @click="open = !open"
-                        class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('home.testimonios*') ? 'text-white font-semibold' : '' }}">
+                        class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ 
+                        request()->routeIs('home.testimonios*','home.etica') ? 'text-white font-semibold' : '' }}">
                         <span>Estudiantes</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200"
                             :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -176,7 +178,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                         <span
-                            class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('home.testimonios*') ? 'scale-x-100' : '' }}"></span>
+                            class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ 
+                            request()->routeIs('home.testimonios*','home.etica') ? 'scale-x-100' : '' }}"></span>
                     </button>
 
                     <div x-show="open" x-transition
@@ -188,7 +191,7 @@
                         </a>
                         {{-- Agrega aquí más opciones del dropdown --}}
                         <a href="{{ route('home.etica') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.etica') ? 'font-semibold text-brandgreen' : '' }}">
                             Código de ética
                         </a>
                     </div>

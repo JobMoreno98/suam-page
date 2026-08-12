@@ -89,13 +89,33 @@
                             class="px-4 sm:px-6 pb-5 sm:pb-6 pt-1">
 
                             {{-- TODO: reemplaza esto por el listado real de cursos de la categoría --}}
-                            @forelse($categoria->cursos ?? [] as $curso)
-                                <div class="py-2 border-t border-gray-100 first:border-t-0">
-                                    <p class="text-sm sm:text-base font-semibold text-navy">{{ $curso->nombre }}</p>
-                                </div>
-                            @empty
-                                <p class="text-sm text-gray-400 italic">No hay cursos disponibles en esta área.</p>
-                            @endforelse
+                                @forelse($categoria->cursos as $curso)
+                                    <div
+                                        class="p-3.5 sm:p-4 rounded-xl hover:bg-sky-50/50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 group">
+                                        <div class="min-w-0 w-full">
+                                            {{-- Se eliminó 'truncate' de los cursos para permitir el salto de línea --}}
+                                            <h3
+                                                class="text-sm sm:text-base font-semibold text-navy group-hover:text-brandgreen transition-colors leading-tight">
+                                                {{ $curso->nombre }}
+                                            </h3>
+                                            @if ($curso->sede)
+                                                <span class="text-xs text-gray-400 font-medium block mt-1">
+                                                    {{ $curso->sede->nombre }}
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        {{-- El botón abarca el 100% en móviles (w-full) y su ancho natural en PC (sm:w-auto) --}}
+                                        <a href="{{ route('cursos.show', $curso->slug) }}"
+                                            class="w-full sm:w-auto text-center px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold text-xs rounded-xl transition-colors shrink-0">
+                                            Ver curso
+                                        </a>
+                                    </div>
+                                @empty
+                                    <div class="p-4 text-center text-xs text-gray-400">
+                                        No hay cursos disponibles en esta área por el momento.
+                                    </div>
+                                @endforelse
                         </div>
 
                     </div>

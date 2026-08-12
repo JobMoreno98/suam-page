@@ -29,7 +29,6 @@
                         <div class="p-4 sm:p-5 hover:bg-gray-50/50 transition-colors flex items-center justify-between gap-4">
                             <div class="space-y-1 min-w-0">
                                 <div class="flex items-center gap-2">
-                                    {{-- Badge dinámico para identificar el modelo --}}
                                     <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full 
                                         {{ $item->tipo_resultado === 'Evento' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-600' }}">
                                         {{ $item->tipo_resultado }}
