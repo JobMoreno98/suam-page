@@ -79,7 +79,7 @@
         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-2"
         class="sm:hidden px-4 pb-3 border-t border-gray-100 pt-2 bg-gray-50/50">
-        <form action="" method="GET" class="relative">
+        <form action="{{ route('buscar') }}" method="GET" class="relative">
             <input type="text" name="q" placeholder="¿Qué deseas buscar hoy?"
                 class="w-full text-sm bg-white border border-gray-200 rounded-xl pl-4 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-navy/20 shadow-sm" />
             <button type="submit" class="absolute right-3 top-3 text-navy">
