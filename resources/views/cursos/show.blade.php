@@ -53,7 +53,7 @@
                     </div>
 
                     {{-- Rejilla de Información Rápida --}}
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50 py-2 px-2 rounded-2xl border border-gray-100">
 
                         {{-- Duración --}}
                         <div class="flex items-center gap-3">
@@ -67,8 +67,7 @@
                             <div>
                                 <span
                                     class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Duración</span>
-                                <span
-                                    class=" font-bold text-navy">{{ $curso->duracion ?? 'Por definir' }}</span>
+                                <span class=" font-bold text-navy">{{ $curso->duracion ?? 'Por definir' }}</span>
                             </div>
                         </div>
 
@@ -84,13 +83,12 @@
                             <div>
                                 <span
                                     class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Modalidad</span>
-                                <span
-                                    class=" font-bold text-navy uppercase">{{ $curso->modalidad ?? 'Presencial' }}</span>
+                                <span class=" font-bold text-navy uppercase">{{ $curso->modalidad ?? 'Presencial' }}</span>
                             </div>
                         </div>
 
                         {{-- Horarios / Fechas --}}
-                        <div class="flex items-center gap-3 col-span-2 sm:col-span-1">
+                        <div class="flex items-center gap-3 ">
                             <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
                                 <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -101,8 +99,22 @@
                             <div>
                                 <span
                                     class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Horario</span>
+                                <span class=" font-bold text-navy">{{ $curso->horario ?? 'Por definir' }}</span>
+                            </div>
+                        </div>
+                        {{-- Cupo --}}
+                        <div class="flex items-center gap-3 ">
+                            <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
+                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </div>
+                            <div>
                                 <span
-                                    class=" font-bold text-navy">{{ $curso->horario ?? 'Por definir' }}</span>
+                                    class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Cupo</span>
+                                <span class="font-bold text-navy">{{ $curso->cupo ." personas"?? 'Por definir' }}</span>
                             </div>
                         </div>
 
