@@ -45,7 +45,7 @@
                     {{-- Overlay "+N" en la última miniatura visible --}}
                     @if($loop->last && $galeria->count() > 4)
                         <span
-                            class="absolute inset-0 flex items-center justify-center bg-navy/70 text-white text-xs font-bold">
+                            class="absolute inset-0 flex items-center justify-center bg-navy/70 text-white  font-bold">
                             +{{ $galeria->count() - 4 }}
                         </span>
                     @endif
@@ -104,7 +104,7 @@
             </button>
 
             {{-- Contador --}}
-            <span class="absolute bottom-6 text-white/60 text-xs font-bold" x-text="(activeIndex + 1) + ' / ' + items.length"></span>
+            <span class="absolute bottom-6 text-white/60  font-bold" x-text="(activeIndex + 1) + ' / ' + items.length"></span>
         </div>
     </template>
 </div>

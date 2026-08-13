@@ -7,7 +7,7 @@
             {{-- Encabezado Principal Hero --}}
             <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-md relative overflow-hidden">
                 <div class="relative z-10 max-w-2xl">
-                    <span class="text-xs font-extrabold text-brandgreen uppercase tracking-wider block mb-1">
+                    <span class=" font-extrabold text-brandgreen uppercase tracking-wider block mb-1">
                         Conócenos
                     </span>
                     <h1 class="text-3xl sm:text-5xl font-black text-navy tracking-tight leading-tight">
@@ -32,19 +32,21 @@
                         Quiénes somos
                     </h3>
 
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <p class="text-gray-600 leading-relaxed">
                         {!! $configuracion->acerca_de !!}
                     </p>
-                    <div class="text-end">
-                        <a href=""
-                            class="inline-flex items-center gap-2 bg-navy hover:bg-brandgreen text-white text-xs font-bold rounded-xl px-5 py-3 transition-all duration-200 shadow-sm hover:shadow-md">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-                            </svg>
-                            <span>Descargar el dictamen de creación</span>
-                        </a>
-                    </div>
+                    @if (isset($configuracion->dictamen))
+                        <div class="text-end">
+                            <a href="{{ asset('storage/' . $configuracion->dictamen) }}"
+                                class="inline-flex items-center gap-2 bg-navy hover:bg-brandgreen text-white  font-bold rounded-xl px-5 py-3 transition-all duration-200 shadow-sm hover:shadow-md">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                                </svg>
+                                <span>Descargar el dictamen de creación</span>
+                            </a>
+                        </div>
+                    @endif
                 </div>
 
             </div>

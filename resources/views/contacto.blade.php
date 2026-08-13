@@ -7,7 +7,7 @@
             {{-- Encabezado Principal Hero --}}
             <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-md relative overflow-hidden">
                 <div class="relative z-10 max-w-2xl">
-                    <span class="text-xs font-extrabold text-brandgreen uppercase tracking-wider block mb-1">
+                    <span class=" font-extrabold text-brandgreen uppercase tracking-wider block mb-1">
                         Estamos para ayudarte
                     </span>
                     <h1 class="text-3xl sm:text-5xl font-black text-navy tracking-tight leading-tight">
@@ -42,10 +42,10 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Atención por
+                                <span class=" font-bold text-gray-400 block uppercase tracking-wider">Atención por
                                     Correo</span>
                                 <a href="mailto: {{ $contacto['email']?? '' }}"
-                                    class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">
+                                    class=" font-bold text-navy hover:text-brandgreen transition-colors">
                                     {{ $contacto['email']?? '' }}
                                 </a>
                             </div>
@@ -60,10 +60,10 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">
+                                <span class=" font-bold text-gray-400 block uppercase tracking-wider">
                                     Teléfono</span>
                                 <a href="tel:{{ $contacto['telefono']?? '' }}"
-                                    class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">
+                                    class=" font-bold text-navy hover:text-brandgreen transition-colors">
                                     {{ $contacto['telefono']?? '' }}
                                 </a>
                             </div>
@@ -78,11 +78,11 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Horario de
+                                <span class=" font-bold text-gray-400 block uppercase tracking-wider">Horario de
                                     Atención</span>
-                                <p class="text-sm font-bold text-navy">
+                                <p class=" font-bold text-navy">
                                     {{ $contacto['horario_dias'] ?? 'Lunes a Viernes' }}<br>
-                                    <span class="text-xs text-gray-500 font-medium">
+                                    <span class=" text-gray-500 font-medium">
                                         {{ $contacto['horario_horas'] ?? '9:00 AM - 6:00 PM' }}
                                     </span>
                                 </p>
@@ -101,11 +101,11 @@
                             </div>
                             <div>
                                 <span
-                                    class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Dirección</span>
-                                <p class="text-sm font-bold text-navy">
+                                    class=" font-bold text-gray-400 block uppercase tracking-wider">Dirección</span>
+                                <p class=" font-bold text-navy">
 
                                     <span
-                                        class="text-sm font-bold text-navy hover:text-brandgreen transition-colors">{{ $contacto['dirección']?? '' }}</span>
+                                        class=" font-bold text-navy hover:text-brandgreen transition-colors">{{ $contacto['dirección']?? '' }}</span>
                                 </p>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                     class="lg:col-span-1 bg-navy rounded-3xl p-6 text-white space-y-3 relative overflow-hidden shadow-md h-full flex flex-col justify-between">
                     <div class="relative z-10">
                         <h4 class="text-lg font-black mt-3">¿Buscas recursos específicos?</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed mt-1">
+                        <p class=" text-gray-300 leading-relaxed mt-1">
                             Recuerda que puedes consultar todos los materiales didácticos organizados por áreas de formación
                             directamente.
                         </p>
@@ -128,7 +128,7 @@
 
                     <div class="relative z-10 pt-4">
                         <a href="{{ route('recursos.index') }}"
-                            class="inline-flex items-center gap-1 text-xs font-bold text-brandgreen hover:underline">
+                            class="inline-flex items-center gap-1  font-bold text-brandgreen hover:underline">
                             <span>Explorar Catálogo</span>
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

@@ -58,13 +58,13 @@
                             </h3>
 
                             {{-- Contenido truncado sin etiquetas HTML --}}
-                            <p class="text-sm text-gray-500 line-clamp-3 flex-grow">
+                            <p class=" text-gray-500 line-clamp-3 flex-grow">
                                 {{ Str::limit(strip_tags($publicacion->contenido), 120) }}
                             </p>
 
                             {{-- Autor --}}
                             @if($publicacion->autor)
-                                <div class="flex items-center gap-2 text-xs text-gray-500 font-medium pt-1">
+                                <div class="flex items-center gap-2  text-gray-500 font-medium pt-1">
                                     <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
@@ -73,7 +73,7 @@
                             @endif
 
                             <a href="{{ route('publicaciones.show', $publicacion) }}"
-                               class="inline-flex items-center justify-center w-full px-4 py-2.5 bg-gray-50 hover:bg-navy text-navy hover:text-white font-bold text-xs rounded-xl transition-colors border border-gray-100 group-hover:border-navy mt-2">
+                               class="inline-flex items-center justify-center w-full px-4 py-2.5 bg-gray-50 hover:bg-navy text-navy hover:text-white font-bold  rounded-xl transition-colors border border-gray-100 group-hover:border-navy mt-2">
                                 Leer artículo completo
                             </a>
                         </div>
@@ -86,7 +86,7 @@
                             </svg>
                         </div>
                         <p class="text-navy font-bold text-lg">No hay registros aun</p>
-                        <p class="text-gray-400 text-sm">Aún no se han registrado publicaciones en la plataforma.</p>
+                        <p class="text-gray-400 ">Aún no se han registrado publicaciones en la plataforma.</p>
                     </div>
                 @endforelse
             </div>

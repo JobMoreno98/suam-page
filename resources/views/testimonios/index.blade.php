@@ -42,13 +42,13 @@
                                 </svg>
 
                                 {{-- Texto del testimonio (HTML de TinyEditor): se recorta a 4 líneas si es largo, con toggle --}}
-                                <div class="prose prose-sm max-w-none text-sm sm:text-base text-gray-600 leading-relaxed italic transition-all duration-200"
+                                <div class="prose prose-sm max-w-none  sm:text-base text-gray-600 leading-relaxed italic transition-all duration-200"
                                     :class="{ 'line-clamp-4': isLong && !expanded }">
                                     {!! $testimonio->contenido !!}
                                 </div>
 
                                 <button x-show="isLong" @click="expanded = !expanded" type="button"
-                                    class="text-xs font-bold text-brandgreen hover:underline inline-flex items-center gap-1">
+                                    class=" font-bold text-brandgreen hover:underline inline-flex items-center gap-1">
                                     <span x-text="expanded ? 'Ver menos' : 'Ver más'"></span>
                                     <svg class="w-3 h-3 transition-transform" :class="expanded ? 'rotate-180' : ''"
                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,7 +66,7 @@
                                     <h3 class="text-base font-bold text-navy">
                                         {{ $testimonio->nombre }}
                                     </h3>
-                                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                                    <span class=" font-semibold text-gray-400 uppercase tracking-wider">
                                         {{ $testimonio->nombre_alumno ?? 'Alumno(a) SUAM' }}
                                     </span>
                                 </div>

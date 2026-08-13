@@ -21,13 +21,13 @@
 
                 {{-- Tarjeta con Misión, Visión y Valores (Ocupa 2 columnas en desktop) --}}
                 <div class="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm space-y-6 h-full">
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <p class=" text-gray-600 leading-relaxed">
                         {!! $configuracion['descripcion'] !!}
                     </p>
                     @if (isset($configuracion['archivo']))
                         <div class="text-end">
                             <a target="_blank" href="{{ asset('storage/' . $configuracion['archivo']) }}"
-                                class="inline-flex items-center gap-2 bg-navy hover:bg-brandgreen text-white text-xs font-bold rounded-xl px-5 py-3 transition-all duration-200 shadow-sm hover:shadow-md">
+                                class="inline-flex items-center gap-2 bg-navy hover:bg-brandgreen text-white  font-bold rounded-xl px-5 py-3 transition-all duration-200 shadow-sm hover:shadow-md">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />

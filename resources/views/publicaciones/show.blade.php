@@ -5,7 +5,7 @@
         <div class="max-w-4xl mx-auto space-y-8">
 
             {{-- Botón regresar --}}
-            <a href="{{ route('publicaciones.index') }}" class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-500 hover:text-navy transition-colors">
+            <a href="{{ route('publicaciones.index') }}" class="inline-flex items-center gap-1.5  font-semibold text-gray-500 hover:text-navy transition-colors">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -30,7 +30,7 @@
                         {{ $publicacion->nombre }}
                     </h1>
 
-                    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-500 text-xs sm:text-sm font-medium">
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-500  font-medium">
                         <div class="flex items-center gap-1.5">
                             <svg class="w-4 h-4 text-brandorange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -80,10 +80,10 @@
                                     {{ $extension }}
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-sm font-semibold text-navy group-hover:text-white truncate">
+                                    <p class=" font-semibold text-navy group-hover:text-white truncate">
                                         {{ $nombreArchivo }}
                                     </p>
-                                    <p class="text-xs text-gray-400 group-hover:text-white/60">
+                                    <p class=" text-gray-400 group-hover:text-white/60">
                                         Descargar archivo
                                     </p>
                                 </div>
@@ -112,7 +112,7 @@
                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     @endif
                                 </div>
-                                <h4 class="font-bold text-navy text-sm leading-tight line-clamp-2 group-hover:text-brandgreen transition-colors">
+                                <h4 class="font-bold text-navy  leading-tight line-clamp-2 group-hover:text-brandgreen transition-colors">
                                     {{ $relacionado->nombre }}
                                 </h4>
                             </a>

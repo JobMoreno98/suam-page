@@ -30,7 +30,7 @@
                             <h2 class="text-2xl font-black text-navy tracking-tight">
                                 {{ $nombreArea }}
                             </h2>
-                            <span class="text-center text-xs font-extrabold text-navy/60 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">
+                            <span class="text-center  font-extrabold text-navy/60 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">
                                 {{ $cursos->count() }} {{ $cursos->count() === 1 ? 'curso' : 'cursos' }}
                             </span>
                         </div>
@@ -47,7 +47,7 @@
                                         </h3>
 
                                         @if($curso->subtitulo)
-                                            <p class="text-xs text-gray-400 line-clamp-2 font-medium">
+                                            <p class=" text-gray-400 line-clamp-2 font-medium">
                                                 {{ $curso->subtitulo }}
                                             </p>
                                         @endif
@@ -55,7 +55,7 @@
 
                                     {{-- Pie de la Card --}}
                                     <div class="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
-                                        <span class="text-xs text-gray-500 font-bold flex items-center gap-1.5">
+                                        <span class=" text-gray-500 font-bold flex items-center gap-1.5">
                                             <svg class="w-4 h-4 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                                             </svg>
@@ -63,7 +63,7 @@
                                         </span>
 
                                         <a href="{{ route('recursos.show', $curso->slug ?? $curso->id) }}" 
-                                           class="px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold text-xs rounded-xl transition-all duration-200 flex items-center gap-1 shadow-md shadow-navy/10 group-hover:shadow-brandgreen/20">
+                                           class="px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold  rounded-xl transition-all duration-200 flex items-center gap-1 shadow-md shadow-navy/10 group-hover:shadow-brandgreen/20">
                                             <span>Ver recursos</span>
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

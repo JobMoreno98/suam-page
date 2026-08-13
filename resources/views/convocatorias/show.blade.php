@@ -17,7 +17,7 @@
             {{-- Migas de pan (Breadcrumbs) y Botón Volver --}}
             <div class="flex items-center justify-between">
                 <a href="{{ route('convocatorias.index') }}"
-                    class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-navy hover:text-brandgreen transition-colors">
+                    class="inline-flex items-center gap-2  font-bold text-navy hover:text-brandgreen transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -27,7 +27,7 @@
 
                 {{-- Badge de Estado --}}
                 <span
-                    class="inline-block text-xs font-bold border rounded-full px-3.5 py-1 shadow-sm bg-white {{ $convocatoria->estado_inscripcion['badge'] }}">
+                    class="inline-block  font-bold border rounded-full px-3.5 py-1 shadow-sm bg-white {{ $convocatoria->estado_inscripcion['badge'] }}">
                     {{ $convocatoria->estado_inscripcion['texto'] }}
                 </span>
             </div>
@@ -39,7 +39,7 @@
                 <div class="lg:col-span-4 space-y-6 lg:sticky lg:top-8">
 
                     <div class="bg-white rounded-3xl p-4 border border-gray-100 shadow-sm space-y-4">
-                        <span class="text-xs font-bold text-navy uppercase tracking-wider block px-2 pt-2">
+                        <span class=" font-bold text-navy uppercase tracking-wider block px-2 pt-2">
                             Cartel Oficial
                         </span>
 
@@ -51,7 +51,7 @@
 
                             {{-- Hover Overlay --}}
                             <div
-                                class="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xs gap-2 backdrop-blur-xs">
+                                class="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold  gap-2 backdrop-blur-xs">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
@@ -64,7 +64,7 @@
                     {{-- CTA Principal: Inscripciones (solo si la convocatoria está abierta) --}}
                     @if ($convocatoria->estado_inscripcion['estado'] == 'abierta')
                         <a href="https://inscripciones.suam.udg.mx" target="_blank" rel="noopener noreferrer"
-                            class="flex items-center justify-center gap-2 bg-brandgreen hover:bg-navy text-white font-bold text-sm rounded-2xl px-6 py-4 shadow-lg shadow-brandgreen/20 hover:shadow-navy/20 hover:-translate-y-0.5 transition-all duration-200">
+                            class="flex items-center justify-center gap-2 bg-brandgreen hover:bg-navy text-white font-bold  rounded-2xl px-6 py-4 shadow-lg shadow-brandgreen/20 hover:shadow-navy/20 hover:-translate-y-0.5 transition-all duration-200">
                             <span>Ir al Portal de Inscripciones</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -83,7 +83,7 @@
                         <h1 class="text-2xl sm:text-4xl font-black text-navy leading-tight">
                             {{ $convocatoria->nombre }}
                         </h1>
-                        <p class="text-xs text-gray-400">
+                        <p class=" text-gray-400">
                             Publicado el
                             {{ $convocatoria->created_at?->locale('es')->translatedFormat('j \d\e F \d\e Y') ?? 'recientemente' }}
                         </p>
@@ -100,8 +100,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs text-gray-400 font-medium block">Periodo de registro</span>
-                                <span class="text-sm font-bold text-navy">{{ $convocatoria->rango_fechas }}</span>
+                                <span class=" text-gray-400 font-medium block">Periodo de registro</span>
+                                <span class=" font-bold text-navy">{{ $convocatoria->rango_fechas }}</span>
                             </div>
                         </div>
 
@@ -114,9 +114,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="text-xs text-gray-400 font-medium block">Inicio de clases</span>
+                                <span class=" text-gray-400 font-medium block">Inicio de clases</span>
                                 <span
-                                    class="text-sm font-bold text-navy">{{ $convocatoria->fecha_registro_formateada }}</span>
+                                    class=" font-bold text-navy">{{ $convocatoria->fecha_registro_formateada }}</span>
                             </div>
                         </div>
 
@@ -129,9 +129,9 @@
                         </h2>
 
                         <div
-                            class="text-gray-700 text-sm sm:text-base leading-relaxed space-y-4
+                            class="text-gray-700  sm:text-base leading-relaxed space-y-4
                                 [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2
-                                [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]:text-xs [&_a]:uppercase [&_a]:tracking-wider
+                                [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]: [&_a]:uppercase [&_a]:tracking-wider
                                 [&_a]:px-5 [&_a]:py-3 [&_a]:rounded-xl [&_a]:shadow-md [&_a]:shadow-brandgreen/20
                                 hover:[&_a]:bg-navy hover:[&_a]:shadow-navy/20 hover:[&_a]:-translate-y-0.5
                                 [&_a]:transition-all [&_a]:duration-200 [&_a]:no-underline

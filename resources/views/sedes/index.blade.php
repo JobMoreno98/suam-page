@@ -11,7 +11,7 @@
                     Nuestras Sedes
                 </h1>
                 <p class="text-gray-600 text-base sm:text-lg mt-3">
-                    Conoce la ubicación y detalles de todos nuestros puntos de atención.
+                    Conoce la ubicación y detalles de todos nuestras ubicaciones.
                 </p>
             </div>
             <div
@@ -42,7 +42,7 @@
                                 {{ $item->nombre }}
                             </h3>
 
-                            <div class="flex items-start text-sm text-gray-600 space-x-2">
+                            <div class="flex items-start  text-gray-600 space-x-2">
                                 <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -58,7 +58,7 @@
                     {{-- BOTÓN APERTURA MODAL --}}
                     <div class="p-6 pt-0">
                         <button type="button" @click="activeSede = {{ json_encode($item) }}; openModal = true"
-                            class="w-full text-center bg-gray-900 text-white text-sm font-semibold py-2.5 px-4 rounded-xl hover:bg-navy transition-colors duration-200 inline-flex items-center justify-center space-x-2">
+                            class="w-full text-center bg-gray-900 text-white  font-semibold py-2.5 px-4 rounded-xl hover:bg-navy transition-colors duration-200 inline-flex items-center justify-center space-x-2">
                             <span>Ver más detalles</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,8 +127,8 @@
                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                                 <div>
-                                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Dirección</p>
-                                    <p class="text-sm text-gray-800" x-text="activeSede.direccion"></p>
+                                    <p class=" font-semibold text-gray-400 uppercase tracking-wider">Dirección</p>
+                                    <p class=" text-gray-800" x-text="activeSede.direccion"></p>
                                 </div>
                             </div>
 
@@ -141,9 +141,9 @@
                                             d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>
                                     <div>
-                                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Teléfono
+                                        <p class=" font-semibold text-gray-400 uppercase tracking-wider">Teléfono
                                         </p>
-                                        <p class="text-sm text-gray-800" x-text="activeSede.telefono"></p>
+                                        <p class=" text-gray-800" x-text="activeSede.telefono"></p>
                                     </div>
                                 </div>
                             </template>
@@ -157,13 +157,13 @@
                                             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                     <div class="w-full">
-                                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
+                                        <p class=" font-semibold text-gray-400 uppercase tracking-wider mb-1">
                                             Correos de contacto</p>
                                         <div class="space-y-1">
                                             <template x-for="(item, index) in activeSede.correo" :key="index">
                                                 <template x-if="item.correo">
                                                     <a :href="'mailto:' + item.correo" x-text="item.correo"
-                                                        class="block text-sm text-navy hover:underline font-medium break-all"></a>
+                                                        class="block  text-navy hover:underline font-medium break-all"></a>
                                                 </template>
                                             </template>
                                         </div>
@@ -179,14 +179,14 @@
                                             d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                     </svg>
                                     <div class="w-full">
-                                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Redes
+                                        <p class=" font-semibold text-gray-400 uppercase tracking-wider mb-2">Redes
                                             y Sitio Web</p>
                                         <div class="flex flex-wrap gap-2">
                                             <template x-for="(item, index) in activeSede.redes_sociales"
                                                 :key="index">
                                                 <template x-if="item.enlace">
                                                     <a :href="item.enlace" target="_blank" rel="noopener noreferrer"
-                                                        class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium rounded-lg transition-colors">
+                                                        class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700  font-medium rounded-lg transition-colors">
                                                         {{-- Transforma 'facebook' a 'Facebook', 'twitter' a 'Twitter', etc. --}}
                                                         <span class="capitalize"
                                                             x-text="item.red === 'twitter' ? 'Twitter / X' : (item.red === 'web' ? 'Página Web' : item.red)"></span>
@@ -211,7 +211,7 @@
                     {{-- Footer del Modal --}}
                     <div class="bg-gray-50 px-6 py-4 flex justify-end">
                         <button type="button" @click="openModal = false"
-                            class="px-4 py-2 bg-gray-200 text-gray-700 text-sm font-semibold rounded-xl hover:bg-gray-300 transition-colors">
+                            class="px-4 py-2 bg-gray-200 text-gray-700  font-semibold rounded-xl hover:bg-gray-300 transition-colors">
                             Cerrar
                         </button>
                     </div>

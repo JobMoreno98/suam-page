@@ -53,7 +53,7 @@
                                     {{ $convocatoria->nombre }}
                                 </h3>
 
-                                <div class="space-y-1.5 text-xs text-gray-500 pt-2 border-t border-gray-100">
+                                <div class="space-y-1.5  text-gray-500 pt-2 border-t border-gray-100">
                                     {{-- Vigencia --}}
                                     <div class="flex items-center gap-2">
                                         <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor"
@@ -82,7 +82,7 @@
                         {{-- Botón Modal --}}
                         <div class="p-5 pt-0">
                             <a href="{{ route('convocatorias.show', $convocatoria) }}"
-                                class="w-full py-2.5 px-4 bg-gray-50 hover:bg-navy hover:text-white text-navy text-xs font-bold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 border border-gray-100">
+                                class="w-full py-2.5 px-4 bg-gray-50 hover:bg-navy hover:text-white text-navy  font-bold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 border border-gray-100">
                                 <span>Ver bases y detalles</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

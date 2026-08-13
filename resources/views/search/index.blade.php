@@ -10,7 +10,7 @@
                     <h1 class="text-2xl sm:text-3xl font-black text-navy tracking-tight leading-tight">
                         Resultados de búsqueda
                     </h1>
-                    <p class="text-xs sm:text-sm text-gray-500">
+                    <p class=" text-gray-500">
                         @if ($query)
                             Se encontraron <strong class="text-navy">{{ $resultados->total() }}</strong> {{ $resultados->total() === 1 ? 'coincidencia' : 'coincidencias' }} para
                             "<span class="text-brandgreen font-bold">{{ $query }}</span>"
@@ -36,13 +36,13 @@
                                 </div>
 
                                 {{-- Nombre o Título según el modelo --}}
-                                <h3 class="font-bold text-navy text-sm sm:text-base truncate">
+                                <h3 class="font-bold text-navy  sm:text-base truncate">
                                     {{ $item->nombre ?? $item->titulo }}
                                 </h3>
 
                                 {{-- Bloque Opcional para Eventos (Si en tu BD tienes campo fecha o lugar) --}}
                                 @if(isset($item->fecha))
-                                    <p class="text-xs font-semibold text-brandgreen">
+                                    <p class=" font-semibold text-brandgreen">
                                         📅 {{ \Carbon\Carbon::parse($item->fecha)->format('d/m/Y') }} 
                                         @if(isset($item->lugar)) &bull; 📍 {{ $item->lugar }} @endif
                                     </p>
@@ -50,19 +50,19 @@
 
                                 {{-- Descripción o Contenido --}}
                                 @if ($item->descripcion ?? $item->contenido)
-                                    <p class="text-xs text-gray-400 line-clamp-1">
+                                    <p class=" text-gray-400 line-clamp-1">
                                         {{ Str::limit(strip_tags($item->descripcion ?? $item->contenido), 140) }}
                                     </p>
                                 @endif
                             </div>
 
                             <a href="{{ $item->url_resultado }}"
-                                class="px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold text-xs rounded-xl transition-colors shrink-0">
+                                class="px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold  rounded-xl transition-colors shrink-0">
                                 Ver detalle
                             </a>
                         </div>
                     @empty
-                        <div class="p-8 text-center text-gray-400 text-xs">
+                        <div class="p-8 text-center text-gray-400 ">
                             No se encontraron coincidencias.
                         </div>
                     @endforelse

@@ -69,7 +69,7 @@ class ConfiguracionSitioPage extends Page implements HasForms
                         TinyEditor::make('acerca_de')
                             ->required()->profile('simple'),
 
-                        FileUpload::make('dictamen')->acceptedFileTypes(['application/pdf'])->label('Dictamen de creación'),
+                        FileUpload::make('dictamen')->acceptedFileTypes(['application/pdf'])->label('Dictamen de creación')->disk('public'),
 
                         Fieldset::make('Información de Contacto')
                             ->schema([

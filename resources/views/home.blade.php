@@ -52,7 +52,7 @@
                             <template x-if="slide.contenido">
                                 <div class="text-gray-600 text-base max-w-sm space-y-3
                 [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2
-                [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]:text-xs [&_a]:uppercase [&_a]:tracking-wider
+                [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]: [&_a]:uppercase [&_a]:tracking-wider
                 [&_a]:px-5 [&_a]:py-2.5 [&_a]:rounded-xl [&_a]:shadow-md [&_a]:shadow-brandgreen/20
                 hover:[&_a]:bg-navy hover:[&_a]:shadow-navy/20 hover:[&_a]:-translate-y-0.5
                 [&_a]:transition-all [&_a]:duration-200 [&_a]:no-underline"
@@ -63,7 +63,7 @@
                             <template x-if="slide.enlace">
                                 <div class="mt-2">
                                     <a :href="slide.enlace"
-                                        class="inline-flex items-center justify-center gap-2 bg-navy text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl shadow-md shadow-navy/20 hover:bg-brandgreen hover:shadow-brandgreen/20 hover:-translate-y-0.5 transition-all duration-200 w-max">
+                                        class="inline-flex items-center justify-center gap-2 bg-navy text-white font-bold  uppercase tracking-wider px-6 py-3 rounded-xl shadow-md shadow-navy/20 hover:bg-brandgreen hover:shadow-brandgreen/20 hover:-translate-y-0.5 transition-all duration-200 w-max">
                                         <span>Ver más</span>
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -126,7 +126,7 @@
 
     <!-- ÁREAS DE FORMACIÓN -->
     <section>
-        <h2 class="text-lg font-bold text-navy mb-4">Áreas de formación</h2>
+        <h2 class="text-xl font-bold text-navy mb-4">Áreas de formación</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
 
             @forelse ($areas as $item)
@@ -142,7 +142,7 @@
 
                     </div>
 
-                    <div class="text-xs font-semibold text-navy leading-tight mt-1">
+                    <div class=" font-semibold text-navy leading-tight mt-1">
                         {{ $item->nombre }}
                     </div>
 
@@ -152,7 +152,7 @@
                     </a>
                 </div>
             @empty
-                <p class="text-xs text-gray-500 col-span-full text-center">No hay áreas disponibles por el momento.</p>
+                <p class=" text-gray-500 col-span-full text-center">No hay áreas disponibles por el momento.</p>
             @endforelse
 
 
@@ -175,7 +175,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="text-sm font-semibold text-navy">{{ $item->nombre }}</div>
+                            <div class=" font-semibold text-navy">{{ $item->nombre }}</div>
                             <span
                                 class="inline-block text-[10px] font-semibold border rounded-full px-2.5 py-0.5 mt-1 {{ $item->estado_inscripcion['badge'] }}">
                                 {{ $item->estado_inscripcion['texto'] }}
@@ -187,7 +187,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-xs text-gray-500 col-span-full text-center">No hay convocatorias disponibles por el
+                    <p class=" text-gray-500 col-span-full text-center">No hay convocatorias disponibles por el
                         momento.</p>
                 @endforelse
             </div>
@@ -197,7 +197,7 @@
     <!-- SEDES -->
     <section>
         <h2 class="text-lg font-bold text-navy">Nuestras sedes</h2>
-        <p class="text-xs text-gray-400 mb-4">Conéctate con sedes en diferentes municipios de Jalisco.</p>
+        <p class=" text-gray-400 mb-4">Conéctate con sedes en diferentes municipios de Jalisco.</p>
         <div class="space-y-6">
             {{-- Grid de Tarjetas (1 columna en móvil, 2 en tablet, 3 en pantallas grandes) --}}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -216,7 +216,7 @@
                             <h3 class="font-bold text-gray-800 text-lg mb-2 leading-snug">
                                 {{ $item->nombre }}
                             </h3>
-                            <div class="flex items-start text-sm text-gray-600 space-x-2">
+                            <div class="flex items-start  text-gray-600 space-x-2">
                                 <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -229,7 +229,7 @@
 
                             {{-- Teléfono (si existe en tu modelo) --}}
                             @if (!empty($item->telefono))
-                                <div class="flex items-center text-sm text-gray-600 space-x-2">
+                                <div class="flex items-center  text-gray-600 space-x-2">
                                     <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -252,7 +252,7 @@
             @if ($sedes->isNotEmpty())
                 <div class="text-center pt-2">
                     <a href="{{ route('sedes.index') }}"
-                        class="bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors inline-block">
+                        class="bg-navy text-white  font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors inline-block">
                         Ver todas las sedes
                     </a>
                 </div>

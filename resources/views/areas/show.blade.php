@@ -8,7 +8,7 @@
             {{-- Migas de pan (Breadcrumbs) --}}
             <div>
                 <a href="{{ route('home') }}"
-                    class="inline-flex items-center gap-2 text-xs font-bold text-navy hover:text-brandgreen transition-colors">
+                    class="inline-flex items-center gap-2  font-bold text-navy hover:text-brandgreen transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -29,12 +29,12 @@
 
                 </div> {{-- Información del Área --}}
                 <div class="space-y-2">
-                    <span class="text-xs font-bold text-brandgreen uppercase tracking-wider block">Área de Formación</span>
+                    <span class=" font-bold text-brandgreen uppercase tracking-wider block">Área de Formación</span>
                     <h1 class="text-2xl sm:text-4xl font-black text-navy leading-tight">
                         {{ $area_formacion->nombre }}
                     </h1>
                     @if ($area_formacion->descripcion)
-                        <p class="text-gray-500 text-sm max-w-2xl">
+                        <p class="text-gray-500  max-w-2xl">
                             {!! $area_formacion->descripcion !!}
                         </p>
                     @endif
@@ -61,7 +61,7 @@
                                     <h3 class="font-bold text-navy text-lg line-clamp-2">
                                         {{ $curso->nombre }}
                                     </h3>
-                                    <p class="text-gray-500 text-xs line-clamp-3">
+                                    <p class="text-gray-500  line-clamp-3">
                                         {{ Str::limit(strip_tags($curso->descripcion), 150, '...') ?? 'Sin descripción disponible.' }}
                                     </p>
                                 </div>
@@ -73,7 +73,7 @@
                                     </span>
 
                                     <a href="{{ route('cursos.show', $curso->slug) }}"
-                                        class="px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold text-xs rounded-xl transition-colors">
+                                        class="px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold  rounded-xl transition-colors">
                                         Ver curso
                                     </a>
                                 </div>
@@ -90,7 +90,7 @@
                     {{-- Estado Vacío --}}
                     <div class="bg-white rounded-3xl p-12 text-center border border-gray-100 space-y-3">
                         <p class="text-navy font-bold text-lg">Próximamente habrá cursos disponibles</p>
-                        <p class="text-gray-400 text-xs">Estamos preparando nuevos programas para esta área de formación.
+                        <p class="text-gray-400 ">Estamos preparando nuevos programas para esta área de formación.
                         </p>
                     </div>
                 @endif

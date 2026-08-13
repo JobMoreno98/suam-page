@@ -5,12 +5,12 @@
     class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all duration-200">
 
     {{-- BARRA SUPERIOR (LOGO Y BÚSQUEDA) --}}
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-6 py-3 sm:py-3.5 gap-2 sm:gap-4">
+    <div class="max-w-7xl mx-auto flex justify-between md:flex-col items-center px-3 sm:px-6  text-md">
 
         {{-- Logos e Identidad --}}
-        <div class="flex items-center gap-1.5 sm:gap-3 shrink-0 min-w-0">
+        <div class="flex  items-center shrink-0 min-w-0 md:mx-auto">
 
-            {{-- Logo UdeG --}}
+            {{-- Logo UdeG 
             <a href="https://udg.mx" class="flex items-center group shrink-0">
                 <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
                     <img src="{{ asset('img/udg-logo.jpg') }}" alt="UdeG"
@@ -19,24 +19,24 @@
             </a>
 
             <div class="w-px h-6 sm:h-7 bg-gray-200 hidden sm:block shrink-0"></div>
-
+--}}
             {{-- Logo sUAM --}}
-            <a href="{{ route('home') }}" class="flex items-center group shrink-0">
+            <a href="{{ route('home') }}" class="flex items-center group shrink-0 ">
                 <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
                     <img src="{{ asset('img/logo.png') }}" alt="sUAM"
-                        class="h-11 sm:h-[65px] w-auto object-contain">
+                        class="h-16 sm:h-[65px] w-auto object-contain" style="height: 90px;">
                 </div>
             </a>
 
         </div>
 
         {{-- Acciones (Buscador Desktop & Togglers Móvil) --}}
-        <div class="flex items-center gap-1 sm:gap-2 shrink-0">
+        <div class="flex items-center gap-1 sm:gap-2 shrink-0 mb-2" style="font-size: 12px;">
 
             {{-- Buscador Desktop estilizado --}}
             <form action="{{ route('buscar') }}" method="GET" class="relative hidden sm:block">
                 <input type="text" name="q" placeholder="Buscar cursos, sedes..."
-                    class="text-xs bg-gray-50 border border-gray-200/80 rounded-full pl-4 pr-10 py-2 w-44 md:w-64 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all duration-200 shadow-inner" />
+                    class=" bg-gray-50 border border-gray-200/80 rounded-full pl-4 pr-10 py-2 w-44 md:w-64 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all duration-200 shadow-inner" />
                 <button type="submit"
                     class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-navy transition-colors">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -81,7 +81,7 @@
         class="sm:hidden px-4 pb-3 border-t border-gray-100 pt-2 bg-gray-50/50">
         <form action="{{ route('buscar') }}" method="GET" class="relative">
             <input type="text" name="q" placeholder="¿Qué deseas buscar hoy?"
-                class="w-full text-sm bg-white border border-gray-200 rounded-xl pl-4 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-navy/20 shadow-sm" />
+                class="w-full text-md bg-white border border-gray-200 rounded-xl pl-4 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-navy/20 shadow-sm" />
             <button type="submit" class="absolute right-3 top-3 text-navy">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -93,8 +93,8 @@
 
     {{-- BARRA DE NAVEGACIÓN PRINCIPAL (DESKTOP) --}}
     <nav class="bg-navy shadow-lg shadow-navy/10 hidden md:block">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex items-center gap-1 lg:gap-2 text-sm text-white/80 font-medium">
+        <div class="max-w-full mx-auto px-4 sm:px-6 flex justify-center">
+            <div class="flex items-center gap-1 lg:gap-2 text-md text-white/80 font-medium">
 
                 {{-- Link Inicio --}}
                 <a href="{{ route('home') }}"
@@ -122,12 +122,12 @@
                         class="absolute left-0 mt-2 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black/5 py-2 z-50"
                         style="display: none;">
                         <a href="{{ route('home.acerca') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.acerca') ? 'font-semibold text-brandgreen' : '' }}">
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.acerca') ? 'font-semibold text-brandgreen' : '' }}">
                             Presentación
                         </a>
                         {{-- Agrega aquí más opciones del dropdown --}}
                         <a href="{{ route('sedes.index') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ request()->routeIs('sedes.*') ? 'font-semibold text-brandgreen' : '' }}">
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 {{ request()->routeIs('sedes.*') ? 'font-semibold text-brandgreen' : '' }}">
                             Sedes
                         </a>
                     </div>
@@ -186,21 +186,21 @@
                         class="absolute left-0 mt-2 w-56 rounded-lg bg-white shadow-lg ring-1 ring-black/5 py-2 z-50"
                         style="display: none;">
                         <a href="{{ route('home.testimonios') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.testimonios') ? 'font-semibold text-brandgreen' : '' }}">
+                            class="block px-4 py-2  text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.testimonios') ? 'font-semibold text-brandgreen' : '' }}">
                             Testimonios
                         </a>
                         {{-- Agrega aquí más opciones del dropdown --}}
                         <a href="{{ route('home.etica') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.etica') ? 'font-semibold text-brandgreen' : '' }}">
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.etica') ? 'font-semibold text-brandgreen' : '' }}">
                             Código de ética
                         </a>
                     </div>
                 </div>
                 <a href="{{ route('publicaciones.index') }}"
-                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('publicaciones.index') ? 'text-white font-semibold' : '' }}">
+                    class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('publicaciones.*') ? 'text-white font-semibold' : '' }}">
                     <span>Publicaciones</span>
                     <span
-                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('publicaciones.index') ? 'scale-x-100' : '' }}"></span>
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('publicaciones.*') ? 'scale-x-100' : '' }}"></span>
                 </a>
                 {{-- Link Contacto --}}
                 <a href="{{ route('contacto') }}"
@@ -240,12 +240,12 @@
 
                 <div x-show="open" x-collapse class="pl-3 mt-1 space-y-1">
                     <a href="{{ route('home.acerca') }}"
-                        class="block py-2 px-3 rounded-lg text-sm transition-colors {{ request()->routeIs('home.acerca') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
+                        class="block py-2 px-3 rounded-lg  transition-colors {{ request()->routeIs('home.acerca') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
                         Presentación
                     </a>
                     {{-- Agrega aquí más opciones del dropdown --}}
                     <a href="{{ route('sedes.index') }}"
-                        class="block py-2 px-3 rounded-lg text-sm transition-colors {{ request()->routeIs('sedes.index') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
+                        class="block py-2 px-3 rounded-lg  transition-colors {{ request()->routeIs('sedes.index') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
                         Sedes
                     </a>
                 </div>
@@ -281,16 +281,21 @@
 
                 <div x-show="open" x-collapse class="pl-3 mt-1 space-y-1">
                     <a href="{{ route('home.testimonios') }}"
-                        class="block py-2 px-3 rounded-lg text-sm transition-colors {{ request()->routeIs('home.testimonios') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
+                        class="block py-2 px-3 rounded-lg  transition-colors {{ request()->routeIs('home.testimonios') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
                         Testimonios
                     </a>
                     {{-- Agrega aquí más opciones del dropdown --}}
                     <a href="{{ route('home.etica') }}"
-                        class="block py-2 px-3 rounded-lg text-sm text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+                        class="block py-2 px-3 rounded-lg  text-white/70 hover:bg-white/5 hover:text-white transition-colors">
                         Código de ética
                     </a>
                 </div>
             </div>
+
+            <a href="{{ route('publicaciones.index') }}"
+                class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('publicaciones.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
+                Publicaciones
+            </a>
 
             <a href="{{ route('contacto') }}"
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('contacto') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">

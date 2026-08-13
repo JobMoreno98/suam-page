@@ -7,7 +7,7 @@
             {{-- Encabezado Principal Hero --}}
             <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-md relative overflow-hidden">
                 <div class="relative z-10 max-w-2xl">
-                    <span class="text-xs font-extrabold text-brandgreen uppercase tracking-wider block mb-1">
+                    <span class=" font-extrabold text-brandgreen uppercase tracking-wider block mb-1">
                         Mantente informado
                     </span>
                     <h1 class="text-3xl sm:text-5xl font-black text-navy tracking-tight leading-tight">
@@ -47,12 +47,12 @@
                             </h3>
                             
                             {{-- Contenido truncado sin etiquetas HTML --}}
-                            <p class="text-sm text-gray-500 line-clamp-3 flex-grow">
+                            <p class=" text-gray-500 line-clamp-3 flex-grow">
                                 {{ Str::limit(strip_tags($evento->contenido), 120) }}
                             </p>
 
                             <a href="{{ route('eventos.show', $evento) }}" 
-                               class="inline-flex items-center justify-center w-full px-4 py-2.5 bg-gray-50 hover:bg-navy text-navy hover:text-white font-bold text-xs rounded-xl transition-colors border border-gray-100 group-hover:border-navy">
+                               class="inline-flex items-center justify-center w-full px-4 py-2.5 bg-gray-50 hover:bg-navy text-navy hover:text-white font-bold  rounded-xl transition-colors border border-gray-100 group-hover:border-navy">
                                 Ver detalles del evento
                             </a>
                         </div>
@@ -65,7 +65,7 @@
                             </svg>
                         </div>
                         <p class="text-navy font-bold text-lg">No hay eventos o actividades disponibles</p>
-                        <p class="text-gray-400 text-sm">Aún no se han registrado en la plataforma.</p>
+                        <p class="text-gray-400 ">Aún no se han registrado en la plataforma.</p>
                     </div>
                 @endforelse
             </div>

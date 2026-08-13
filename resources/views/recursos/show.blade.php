@@ -21,7 +21,7 @@
             {{-- Botón Volver y Badge del Área --}}
             <div class="flex items-center justify-between">
                 <a href="{{ route('recursos.index') }}"
-                    class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-navy hover:text-brandgreen transition-colors">
+                    class="inline-flex items-center gap-2  font-bold text-navy hover:text-brandgreen transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
@@ -29,7 +29,7 @@
                 </a>
 
                 @if($curso->areaFormacion)
-                    <span class="inline-block text-xs font-bold border rounded-full px-3.5 py-1 bg-white text-brandgreen border-brandgreen/30 shadow-sm">
+                    <span class="inline-block  font-bold border rounded-full px-3.5 py-1 bg-white text-brandgreen border-brandgreen/30 shadow-sm">
                         {{ $curso->areaFormacion->nombre }}
                     </span>
                 @endif
@@ -38,12 +38,12 @@
             {{-- Encabezado del Curso --}}
             <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-md relative overflow-hidden">
                 <div class="relative z-10 max-w-3xl">
-                    <span class="text-xs font-extrabold text-brandgreen uppercase tracking-wider block mb-1">Recursos del Curso</span>
+                    <span class=" font-extrabold text-brandgreen uppercase tracking-wider block mb-1">Recursos del Curso</span>
                     <h1 class="text-2xl sm:text-4xl font-black text-navy leading-tight">
                         {{ $curso->nombre }}
                     </h1>
                     @if($curso->subtitulo)
-                        <p class="text-gray-500 text-sm sm:text-base mt-2 font-medium">
+                        <p class="text-gray-500  sm:text-base mt-2 font-medium">
                             {{ $curso->subtitulo }}
                         </p>
                     @endif
@@ -81,7 +81,7 @@
                                     <h2 class="text-lg sm:text-xl font-extrabold text-navy truncate">
                                         {{ $convocatoria->nombre ?? ($convocatoria ? 'Convocatoria ' . $convocatoria->periodo : 'General / Sin Convocatoria') }}
                                     </h2>
-                                    <p class="text-xs text-gray-500 font-medium">
+                                    <p class=" text-gray-500 font-medium">
                                         {{ $grupos->count() }} {{ $grupos->count() === 1 ? 'módulo de recursos' : 'módulos de recursos' }}
                                     </p>
                                 </div>
@@ -115,10 +115,10 @@
                                             @forelse($grupo->items as $item)
                                                 <div class="py-4 first:pt-0 last:pb-0">
                                                     
-                                                    <h4 class="text-sm sm:text-base font-bold text-navy mb-1">{{ $item->titulo }}</h4>
+                                                    <h4 class=" sm:text-base font-bold text-navy mb-1">{{ $item->titulo }}</h4>
                                                     
                                                     @if($item->descripcion)
-                                                        <p class="text-xs text-gray-500 mb-3">{{ $item->descripcion }}</p>
+                                                        <p class=" text-gray-500 mb-3">{{ $item->descripcion }}</p>
                                                     @endif
 
                                                     {{-- RENDERIZADO POR TIPO DE ELEMENTO --}}
@@ -135,7 +135,7 @@
                                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                                                             </svg>
                                                                         </div>
-                                                                        <span class="font-semibold text-xs truncate group-hover:text-brandgreen transition-colors">
+                                                                        <span class="font-semibold  truncate group-hover:text-brandgreen transition-colors">
                                                                             {{ basename($ruta) }}
                                                                         </span>
                                                                     </a>
@@ -163,7 +163,7 @@
                                                         @elseif($item->tipo === 'youtube')
                                                             @php $urlYoutube = is_array($item->valor) ? ($item->valor[0] ?? '') : $item->valor; @endphp
                                                             <a href="{{ $urlYoutube }}" target="_blank" 
-                                                               class="inline-flex items-center px-4 py-2 bg-red-50 hover:bg-red-500 text-red-600 hover:text-white rounded-xl font-bold text-xs transition-colors border border-red-100 shadow-xs">
+                                                               class="inline-flex items-center px-4 py-2 bg-red-50 hover:bg-red-500 text-red-600 hover:text-white rounded-xl font-bold  transition-colors border border-red-100 shadow-xs">
                                                                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                                                     <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
                                                                 </svg>
@@ -174,7 +174,7 @@
                                                         @elseif($item->tipo === 'enlace')
                                                             @php $urlEnlace = is_array($item->valor) ? ($item->valor[0] ?? '') : $item->valor; @endphp
                                                             <a href="{{ $urlEnlace }}" target="_blank" 
-                                                               class="inline-flex items-center px-4 py-2 bg-white hover:bg-navy text-navy hover:text-white border border-gray-200 rounded-xl font-bold text-xs transition-all shadow-xs">
+                                                               class="inline-flex items-center px-4 py-2 bg-white hover:bg-navy text-navy hover:text-white border border-gray-200 rounded-xl font-bold  transition-all shadow-xs">
                                                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                                                                 </svg>
@@ -184,7 +184,7 @@
                                                         {{-- 5. TEXTO ENRIQUECIDO --}}
                                                         @elseif($item->tipo === 'texto')
                                                             @php $contenido = is_array($item->valor) ? ($item->valor[0] ?? '') : $item->valor; @endphp
-                                                            <div class="text-gray-700 text-xs sm:text-sm leading-relaxed p-4 bg-white rounded-xl border border-gray-200/80 shadow-inner
+                                                            <div class="text-gray-700  leading-relaxed p-4 bg-white rounded-xl border border-gray-200/80 shadow-inner
                                                                 [&_strong]:font-bold [&_strong]:text-navy
                                                                 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5">
                                                                 {!! $contenido !!}
@@ -194,7 +194,7 @@
                                                     </div>
                                                 </div>
                                             @empty
-                                                <p class="text-gray-400 text-xs text-center py-2">No hay recursos individuales asignados a este módulo.</p>
+                                                <p class="text-gray-400  text-center py-2">No hay recursos individuales asignados a este módulo.</p>
                                             @endforelse
                                         </div>
 

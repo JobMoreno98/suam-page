@@ -59,7 +59,7 @@
 
                                 {{-- NUEVO BOTÓN: Ir a la página del Área responsivo --}}
                                 <a href="{{ route('areas.show', $categoria) }}" @click.stop
-                                    class="px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 bg-white hover:bg-navy hover:text-white text-navy font-bold text-[10px] sm:text-xs rounded-lg sm:rounded-xl shadow-xs border border-gray-200 transition-all duration-200 flex items-center gap-1">
+                                    class="px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 bg-white hover:bg-navy hover:text-white text-navy font-bold text-[10px] sm: rounded-lg sm:rounded-xl shadow-xs border border-gray-200 transition-all duration-200 flex items-center gap-1">
                                     {{-- Texto corto en móviles, texto completo en pantallas medianas o más grandes --}}
                                     <span class="hidden sm:inline">Ver información</span>
                                     <span class="sm:hidden">Ver área</span>
@@ -95,11 +95,11 @@
                                         <div class="min-w-0 w-full">
                                             {{-- Se eliminó 'truncate' de los cursos para permitir el salto de línea --}}
                                             <h3
-                                                class="text-sm sm:text-base font-semibold text-navy group-hover:text-brandgreen transition-colors leading-tight">
+                                                class=" sm:text-base font-semibold text-navy group-hover:text-brandgreen transition-colors leading-tight">
                                                 {{ $curso->nombre }}
                                             </h3>
                                             @if ($curso->sede)
-                                                <span class="text-xs text-gray-400 font-medium block mt-1">
+                                                <span class=" text-gray-400 font-medium block mt-1">
                                                     {{ $curso->sede->nombre }}
                                                 </span>
                                             @endif
@@ -107,12 +107,12 @@
 
                                         {{-- El botón abarca el 100% en móviles (w-full) y su ancho natural en PC (sm:w-auto) --}}
                                         <a href="{{ route('cursos.show', $curso->slug) }}"
-                                            class="w-full sm:w-auto text-center px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold text-xs rounded-xl transition-colors shrink-0">
+                                            class="w-full sm:w-auto text-center px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold  rounded-xl transition-colors shrink-0">
                                             Ver curso
                                         </a>
                                     </div>
                                 @empty
-                                    <div class="p-4 text-center text-xs text-gray-400">
+                                    <div class="p-4 text-center  text-gray-400">
                                         No hay cursos disponibles en esta área por el momento.
                                     </div>
                                 @endforelse
