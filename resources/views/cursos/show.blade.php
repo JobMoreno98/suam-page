@@ -102,7 +102,7 @@
                                 <span
                                     class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Horario</span>
                                 <span
-                                    class=" font-bold text-navy">{{ $curso->horario ?? 'Consultar' }}</span>
+                                    class=" font-bold text-navy">{{ $curso->horario ?? 'Por definir' }}</span>
                             </div>
                         </div>
 
