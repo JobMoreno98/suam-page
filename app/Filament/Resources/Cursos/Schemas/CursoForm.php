@@ -17,16 +17,18 @@ class CursoForm
         return $schema
             ->components([
                 Section::make('Información')->schema([
-                    TextInput::make('nombre'),
+                    TextInput::make('nombre')->required(),
                     Select::make('modalidad')->options([
                         'virtual' => 'Virtual',
                         'presencial' => 'Presencial',
                         'ambas' => 'Virtual / Presencial'
-                    ]),
+                    ])->required(),
                     Select::make('area_id')->relationship('area', 'nombre')->required(),
                     TextInput::make('cupo')->numeric()->minValue(1)
                         ->maxValue(100),
+
                     TimePicker::make('horario'),
+                    TextInput::make('duracion'),
                     FileUpload::make('temario')->acceptedFileTypes(['pdf', 'docs']),
                 ])->columnSpanFull()->columns(4),
 

@@ -129,13 +129,13 @@
                         </h2>
 
                         <div
-                            class="text-gray-700  sm:text-base leading-relaxed space-y-4
+                            class="  sm:text-base leading-relaxed space-y-4
                                 [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2
                                 [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]: [&_a]:uppercase [&_a]:tracking-wider
                                 [&_a]:px-5 [&_a]:py-3 [&_a]:rounded-xl [&_a]:shadow-md [&_a]:shadow-brandgreen/20
                                 hover:[&_a]:bg-navy hover:[&_a]:shadow-navy/20 hover:[&_a]:-translate-y-0.5
                                 [&_a]:transition-all [&_a]:duration-200 [&_a]:no-underline
-                                [&_strong]:font-bold [&_strong]:text-navy
+                                [&_strong]:font-bold
                                 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5">
                             {!! $convocatoria->contenido !!}
                         </div>

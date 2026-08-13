@@ -3,7 +3,7 @@
         
         {{-- Columna 1: Imagen / Logo 1 --}}
         <div class="flex items-center justify-center md:justify-start pb-6 sm:pb-0 md:pr-6">
-            <img src="{{ asset('img/udg_pie_logo.png') }}" alt="Logo UdeG" class="w-full max-w-[300px] h-auto object-contain">
+            <img src="{{ asset('img/logo-udg.svg') }}" alt="Logo UdeG" class="w-full max-w-[0px] h-auto object-contain">
         </div>
 
         {{-- Columna 2: Imagen / Logo 2 --}}
