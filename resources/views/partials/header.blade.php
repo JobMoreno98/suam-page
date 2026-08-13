@@ -5,38 +5,28 @@
     class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all duration-200">
 
     {{-- BARRA SUPERIOR (LOGO Y BÚSQUEDA) --}}
-    <div class="max-w-7xl mx-auto flex justify-between md:flex-col items-center px-3 sm:px-6  text-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-6 text-md">
 
-        {{-- Logos e Identidad --}}
-        <div class="flex  items-center shrink-0 min-w-0 md:mx-auto">
+        {{-- Espaciador fantasma a la izquierda para balancear el centro en pantallas grandes --}}
+        <div class="flex-1 hidden sm:block"></div>
 
-            {{-- Logo UdeG 
-            <a href="https://udg.mx" class="flex items-center group shrink-0">
+        {{-- Logo centrado --}}
+        <div class="flex items-center justify-center flex-1 sm:flex-initial">
+            <a href="{{ route('home') }}" class="flex items-center group shrink-0">
                 <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
-                    <img src="{{ asset('img/udg-logo.jpg') }}" alt="UdeG"
-                        class="h-9 sm:h-[60px] w-auto object-contain">
+                    <img src="{{ asset('img/logo.png') }}" alt="sUAM" class="h-16 sm:h-[65px] w-auto object-contain"
+                        style="height: 90px;">
                 </div>
             </a>
-
-            <div class="w-px h-6 sm:h-7 bg-gray-200 hidden sm:block shrink-0"></div>
---}}
-            {{-- Logo sUAM --}}
-            <a href="{{ route('home') }}" class="flex items-center group shrink-0 ">
-                <div class="p-1 rounded-lg group-hover:bg-gray-50 transition-colors">
-                    <img src="{{ asset('img/logo.png') }}" alt="sUAM"
-                        class="h-16 sm:h-[65px] w-auto object-contain" style="height: 90px;">
-                </div>
-            </a>
-
         </div>
 
-        {{-- Acciones (Buscador Desktop & Togglers Móvil) --}}
-        <div class="flex items-center gap-1 sm:gap-2 shrink-0 mb-2" style="font-size: 12px;">
+        {{-- Acciones (Buscador Desktop & Togglers Móvil) cargadas a la derecha --}}
+        <div class="flex items-center justify-end gap-1 sm:gap-2 flex-1 shrink-0 mb-2" style="font-size: 12px;">
 
             {{-- Buscador Desktop estilizado --}}
             <form action="{{ route('buscar') }}" method="GET" class="relative hidden sm:block">
                 <input type="text" name="q" placeholder="Buscar cursos, sedes..."
-                    class=" bg-gray-50 border border-gray-200/80 rounded-full pl-4 pr-10 py-2 w-44 md:w-64 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all duration-200 shadow-inner" />
+                    class="bg-gray-50 border border-gray-200/80 rounded-full pl-4 pr-10 py-2 w-44 md:w-64 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all duration-200 shadow-inner" />
                 <button type="submit"
                     class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-navy transition-colors">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -163,14 +153,12 @@
                     class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('eventos.*') ? 'text-white font-semibold' : '' }}">
                     <span>Eventos y Actividades</span>
                     <span
-                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ 
-                        request()->routeIs('eventos.*') ? 'scale-x-100' : '' }}"></span>
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('eventos.*') ? 'scale-x-100' : '' }}"></span>
                 </a>
 
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
                     <button @click="open = !open"
-                        class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ 
-                        request()->routeIs('home.testimonios*','home.etica') ? 'text-white font-semibold' : '' }}">
+                        class="relative py-3.5 px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('home.testimonios*', 'home.etica') ? 'text-white font-semibold' : '' }}">
                         <span>Estudiantes</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200"
                             :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -178,8 +166,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                         <span
-                            class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ 
-                            request()->routeIs('home.testimonios*','home.etica') ? 'scale-x-100' : '' }}"></span>
+                            class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 {{ request()->routeIs('home.testimonios*', 'home.etica') ? 'scale-x-100' : '' }}"></span>
                     </button>
 
                     <div x-show="open" x-transition

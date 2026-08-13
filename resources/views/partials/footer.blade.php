@@ -1,37 +1,20 @@
-<footer class="bg-navy  text-white mt-10 sm:mt-14" id="footer">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 sm:grid-cols-2 gap-6 text-md">
-        <div>
-            <div class="mb-3">
-                <img  src="{{ asset('img/udg-logo-blanco.svg') }}" alt="" style="max-width:350px ">
-            </div>
-            <div class="font-semibold mb-2">Síguenos en nuestras redes sociales</div>
-            <div class="flex gap-3">
-
-                <a href="https://www.facebook.com/SUAMUdeG/"
-                    class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
-                    <img src="{{ asset('social/facebook.svg') }}" alt="Facebook" class="w-5 h-5">
-                </a>
-
-                <a href="https://www.instagram.com/suam_udg"
-                    class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
-                    <img src="{{ asset('social/instagram.svg') }}" alt="Instagram" class="w-5 h-5">
-                </a>
-
-                <a href="https://www.youtube.com/@suam_udg"
-                    class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
-                    <img src="{{ asset('social/youtube.svg') }}" alt="YouTube" class="w-5 h-5">
-                </a>
-
-                <a href="https://x.com/suam_udg"
-                    class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20">
-                    <img src="{{ asset('social/x-twitter.svg') }}" alt="X" class="w-5 h-5">
-                </a>
-
-            </div>
+<footer class="bg-navy text-white mt-10 sm:mt-14" id="footer">
+    <div class="max-w-full mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:divide-x md:divide-white/20 text-md items-center">
+        
+        {{-- Columna 1: Imagen / Logo 1 --}}
+        <div class="flex items-center justify-center md:justify-start pb-6 sm:pb-0 md:pr-6">
+            <img src="{{ asset('img/udg_pie_logo.png') }}" alt="Logo UdeG" class="w-full max-w-[300px] h-auto object-contain">
         </div>
-        <div>
+
+        {{-- Columna 2: Imagen / Logo 2 --}}
+        <div class="flex items-center justify-center md:justify-start pb-6 sm:pb-0 md:px-6">
+            <img src="{{ asset('img/cucshBlanco.png') }}" alt="Logo sUAM" class="mx-auto w-full max-w-[200px] h-auto object-contain">
+        </div>
+
+        {{-- Columna 3: Contacto --}}
+        <div class="pb-6 sm:pb-0 md:px-6">
             <h3 class="font-semibold text-white mb-3">Contacto</h3>
-            <ul class="space-y-2.5  text-white/70">
+            <ul class="space-y-2.5 text-white/70">
                 @if (!empty($contacto['telefono']))
                     <li>
                         <a href="tel:{{ $contacto['telefono'] }}"
@@ -72,5 +55,37 @@
                 @endif
             </ul>
         </div>
+
+        {{-- Columna 4: Redes Sociales --}}
+        <div class="md:pl-6">
+            <h3 class="font-semibold text-white mb-3">Síguenos</h3>
+            <p class="text-xs text-white/70 mb-3">Visita nuestras redes sociales para mantenerte informado:</p>
+            <div class="flex flex-wrap gap-3">
+                <a href="https://www.facebook.com/SUAMUdeG/" target="_blank" rel="noopener noreferrer"
+                    class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                    aria-label="Facebook">
+                    <img src="{{ asset('social/facebook.svg') }}" alt="Facebook" class="w-5 h-5">
+                </a>
+
+                <a href="https://www.instagram.com/suam_udg" target="_blank" rel="noopener noreferrer"
+                    class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                    aria-label="Instagram">
+                    <img src="{{ asset('social/instagram.svg') }}" alt="Instagram" class="w-5 h-5">
+                </a>
+
+                <a href="https://www.youtube.com/@suam_udg" target="_blank" rel="noopener noreferrer"
+                    class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                    aria-label="YouTube">
+                    <img src="{{ asset('social/youtube.svg') }}" alt="YouTube" class="w-5 h-5">
+                </a>
+
+                <a href="https://x.com/suam_udg" target="_blank" rel="noopener noreferrer"
+                    class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                    aria-label="X">
+                    <img src="{{ asset('social/x-twitter.svg') }}" alt="X" class="w-5 h-5">
+                </a>
+            </div>
+        </div>
+
     </div>
 </footer>
