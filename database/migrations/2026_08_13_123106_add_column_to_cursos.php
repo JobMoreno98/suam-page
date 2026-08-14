@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('cursos', function (Blueprint $table) {
             $table->string('duracion')->nullable();
+            $table->time('hora_fin')->nullable();
         });
     }
 

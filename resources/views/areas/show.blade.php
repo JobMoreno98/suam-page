@@ -62,14 +62,14 @@
                                         {{ $curso->nombre }}
                                     </h3>
                                     <p class="text-gray-500  line-clamp-3">
-                                        {{ Str::limit(strip_tags($curso->descripcion), 150, '...') ?? 'Sin descripción disponible.' }}
+                                        {{ Str::limit(strip_tags(html_entity_decode($curso->descripcion ?? '')), 150, '...') ?: 'Sin descripción disponible.' }}
                                     </p>
                                 </div>
 
                                 {{-- Footer / Botón Acción --}}
                                 <div class="p-6 pt-0 border-t border-gray-50 mt-auto flex items-center justify-between">
-                                    <span >
-                                        
+                                    <span>
+
                                     </span>
 
                                     <a href="{{ route('cursos.show', $curso->slug) }}"

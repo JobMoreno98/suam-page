@@ -53,7 +53,8 @@
                     </div>
 
                     {{-- Rejilla de Información Rápida --}}
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50 py-2 px-2 rounded-2xl border border-gray-100">
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50 py-2 px-2 rounded-2xl border border-gray-100">
 
                         {{-- Duración --}}
                         <div class="flex items-center gap-3">
@@ -86,22 +87,31 @@
                                 <span class=" font-bold text-navy uppercase">{{ $curso->modalidad ?? 'Presencial' }}</span>
                             </div>
                         </div>
-
-                        {{-- Horarios / Fechas --}}
-                        <div class="flex items-center gap-3 ">
+                        {{-- Horarios --}}
+                        <div class="flex items-center gap-3">
                             <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
                                 <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
+
                             <div>
-                                <span
-                                    class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Horario</span>
-                                <span class=" font-bold text-navy">{{ $curso->horario ?? 'Por definir' }}</span>
+                                <span class="text-[10px] text-gray-400 font-medium block uppercase tracking-wider">
+                                    Horario
+                                </span>
+
+                                <span class="font-bold text-navy">
+                                    {{ $curso->hora_inicio && $curso->hora_fin
+                                        ? \Carbon\Carbon::parse($curso->hora_inicio)->format('H:i') .
+                                            ' - ' .
+                                            \Carbon\Carbon::parse($curso->hora_fin)->format('H:i')
+                                        : 'Por definir' }}
+                                </span>
                             </div>
                         </div>
+
                         {{-- Cupo --}}
                         <div class="flex items-center gap-3 ">
                             <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
@@ -114,7 +124,7 @@
                             <div>
                                 <span
                                     class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Cupo</span>
-                                <span class="font-bold text-navy">{{ $curso->cupo ." personas"?? 'Por definir' }}</span>
+                                <span class="font-bold text-navy">{{ $curso->cupo . ' personas' ?? 'Por definir' }}</span>
                             </div>
                         </div>
 

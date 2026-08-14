@@ -27,7 +27,14 @@ class CursoForm
                     TextInput::make('cupo')->numeric()->minValue(1)
                         ->maxValue(100),
 
-                    TimePicker::make('horario'),
+                    TimePicker::make('hora_inicio')
+                        ->label('Hora de inicio')
+                        ->required(),
+
+                    TimePicker::make('hora_fin')
+                        ->label('Hora de fin')
+                        ->required()
+                        ->after('hora_inicio'),
                     TextInput::make('duracion'),
                     FileUpload::make('temario')->acceptedFileTypes(['pdf', 'docs']),
                 ])->columnSpanFull()->columns(4),
