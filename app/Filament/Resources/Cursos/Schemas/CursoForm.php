@@ -35,8 +35,14 @@ class CursoForm
                         ->label('Hora de fin')
                         ->required()
                         ->after('hora_inicio'),
+
                     TextInput::make('duracion'),
-                    FileUpload::make('temario')->acceptedFileTypes(['pdf', 'docs']),
+                    FileUpload::make('temario')
+                        ->acceptedFileTypes([
+                            'application/pdf',
+                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+                            'application/msword' // .doc
+                        ]),
                 ])->columnSpanFull()->columns(4),
 
                 TinyEditor::make('descripcion')->label('Descripción')
