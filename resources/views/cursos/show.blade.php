@@ -2,15 +2,14 @@
 
 @section('content')
     <div class=" bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8" x-data="{
-        copiado: false,
-        lightboxOpen: false,
-        copiarEnlace() {
-            navigator.clipboard.writeText(window.location.href);
-            this.copiado = true;
-            setTimeout(() => this.copiado = false, 2500);
-        }
-    }"
-        @keydown.escape.window="lightboxOpen = false">
+            copiado: false,
+            lightboxOpen: false,
+            copiarEnlace() {
+                navigator.clipboard.writeText(window.location.href);
+                this.copiado = true;
+                setTimeout(() => this.copiado = false, 2500);
+            }
+        }" @keydown.escape.window="lightboxOpen = false">
 
         <div class="max-w-7xl mx-auto space-y-6">
 
@@ -59,8 +58,7 @@
                         {{-- Duración --}}
                         <div class="flex items-center gap-3">
                             <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
-                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -75,8 +73,7 @@
                         {{-- Modalidad --}}
                         <div class="flex items-center gap-3">
                             <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
-                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
                                 </svg>
@@ -90,8 +87,7 @@
                         {{-- Horarios --}}
                         <div class="flex items-center gap-3">
                             <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
-                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -104,10 +100,10 @@
 
                                 <span class="font-bold text-navy">
                                     {{ $curso->hora_inicio && $curso->hora_fin
-                                        ? \Carbon\Carbon::parse($curso->hora_inicio)->format('H:i') .
-                                            ' - ' .
-                                            \Carbon\Carbon::parse($curso->hora_fin)->format('H:i')
-                                        : 'Por definir' }}
+        ? \Carbon\Carbon::parse($curso->hora_inicio)->format('H:i') .
+        ' - ' .
+        \Carbon\Carbon::parse($curso->hora_fin)->format('H:i')
+        : 'Por definir' }}
                                 </span>
                             </div>
                         </div>
@@ -115,8 +111,7 @@
                         {{-- Cupo --}}
                         <div class="flex items-center gap-3 ">
                             <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
-                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
@@ -136,17 +131,28 @@
                             Descripción General y Temario
                         </h2>
 
-                        <div
-                            class="text-gray-700  sm:text-base leading-relaxed space-y-4
-                                [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2
-                                [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]: [&_a]:uppercase [&_a]:tracking-wider
-                                [&_a]:px-5 [&_a]:py-3 [&_a]:rounded-xl [&_a]:shadow-md [&_a]:shadow-brandgreen/20
-                                hover:[&_a]:bg-navy hover:[&_a]:shadow-navy/20 hover:[&_a]:-translate-y-0.5
-                                [&_a]:transition-all [&_a]:duration-200 [&_a]:no-underline
-                                [&_strong]:font-bold 
-                                [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5">
+                        <div class="text-gray-700  sm:text-base leading-relaxed space-y-4
+                                    [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2
+                                    [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]: [&_a]:uppercase [&_a]:tracking-wider
+                                    [&_a]:px-5 [&_a]:py-3 [&_a]:rounded-xl [&_a]:shadow-md [&_a]:shadow-brandgreen/20
+                                    hover:[&_a]:bg-navy hover:[&_a]:shadow-navy/20 hover:[&_a]:-translate-y-0.5
+                                    [&_a]:transition-all [&_a]:duration-200 [&_a]:no-underline
+                                    [&_strong]:font-bold 
+                                    [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5">
                             {!! $curso->descripcion !!}
                         </div>
+                        @if (isset($curso->temario))
+                            <div class="text-end">
+                                <a href="{{ asset('storage/' . $curso->temario) }}"
+                                    class="inline-flex items-center gap-2 bg-navy hover:bg-brandgreen text-white  font-bold rounded-xl px-5 py-3 transition-all duration-200 shadow-sm hover:shadow-md">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                                    </svg>
+                                    <span>Descargar el temario</span>
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -179,8 +185,7 @@
                             <span class=" text-gray-400 font-bold uppercase tracking-wider block">Costo</span>
                             <div class="text-3xl font-black text-navy mt-1">
                                 @if ($curso->precio && $curso->precio > 0)
-                                    ${{ number_format($curso->precio, 2) }} <span
-                                        class=" font-normal text-gray-400">MXN</span>
+                                    ${{ number_format($curso->precio, 2) }} <span class=" font-normal text-gray-400">MXN</span>
                                 @else
                                     <span class="text-brandgreen">Gratuito</span>
                                 @endif
@@ -233,18 +238,16 @@
         {{-- LIGHTBOX / MODAL PARA MOSTRAR IMAGEN COMPLETA --}}
         @if ($curso->url_imagen)
             <template x-teleport="body">
-                <div x-show="lightboxOpen" x-transition:enter="ease-out duration-300"
-                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                    x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
-                    x-transition:leave-end="opacity-0"
+                <div x-show="lightboxOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                     class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-md"
                     style="display: none;">
 
                     <button type="button" @click="lightboxOpen = false"
                         class="absolute top-5 right-5 z-10 text-white/70 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
 
