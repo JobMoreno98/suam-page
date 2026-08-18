@@ -119,7 +119,7 @@
                             <div>
                                 <span
                                     class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Cupo</span>
-                                <span class="font-bold text-navy">{{ $curso->cupo . ' personas' ?? 'Por definir' }}</span>
+                                <span class="font-bold text-navy">{{ $curso->cupo  ?? 'Por definir' }}</span>
                             </div>
                         </div>
 
