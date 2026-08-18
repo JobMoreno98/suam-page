@@ -18,7 +18,7 @@ class ConvocatoriasTable
     {
         return $table
             ->columns([
-                TextColumn::make('nombre'),
+                TextColumn::make('nombre')->searchable(),
                 TextColumn::make('fecha_inicio')->date()
             ])
             ->filters([

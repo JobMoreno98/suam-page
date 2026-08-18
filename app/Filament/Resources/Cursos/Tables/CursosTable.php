@@ -18,9 +18,9 @@ class CursosTable
     {
         return $table
             ->columns([
-                TextColumn::make('nombre'),
-                TextColumn::make('area.nombre')->label('Área de Formación'),
-                TextColumn::make('modalidad')
+                TextColumn::make('nombre')->searchable(),
+                TextColumn::make('area.nombre')->label('Área de Formación')->searchable(),
+                TextColumn::make('modalidad')->searchable()
             ])
             ->filters([
                 TrashedFilter::make(),

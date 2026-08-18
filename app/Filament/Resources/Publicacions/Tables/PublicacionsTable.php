@@ -18,7 +18,7 @@ class PublicacionsTable
     {
         return $table
             ->columns([
-                TextColumn::make('nombre')->label('Título'),
+                TextColumn::make('nombre')->label('Título')->searchable(),
                 TextColumn::make('contenido')->limit('150')->html()
             ])
             ->filters([
