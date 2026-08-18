@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Str;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Curso extends Model
 {
@@ -75,4 +75,15 @@ class Curso extends Model
     {
         return $this->hasMany(MaterialGrupo::class, 'curso_id');
     }
+    protected function modalidadFormateada(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $mod = strtolower($this->modalidad ?? 'presencial');
+
+                return $mod === 'ambas' ? 'Presencial / Virtual' : ucfirst($mod);
+            }
+        );
+    }
+
 }

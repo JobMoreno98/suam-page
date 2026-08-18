@@ -81,7 +81,7 @@
                             <div>
                                 <span
                                     class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Modalidad</span>
-                                <span class=" font-bold text-navy uppercase">{{ $curso->modalidad ?? 'Presencial' }}</span>
+                                <span class=" font-bold text-navy">{{ $curso->modalidad_formateada }}</span>
                             </div>
                         </div>
                         {{-- Horarios --}}
