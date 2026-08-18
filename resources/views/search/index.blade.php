@@ -43,7 +43,7 @@
                                 {{-- Bloque Opcional para Eventos (Si en tu BD tienes campo fecha o lugar) --}}
                                 @if(isset($item->fecha))
                                     <p class=" font-semibold text-brandgreen">
-                                        📅 {{ \Carbon\Carbon::parse($item->fecha)->format('d/m/Y') }} 
+                                        {{ \Carbon\Carbon::parse($item->fecha)->format('d/m/Y') }} 
                                         @if(isset($item->lugar)) &bull; 📍 {{ $item->lugar }} @endif
                                     </p>
                                 @endif
@@ -51,8 +51,9 @@
                                 {{-- Descripción o Contenido --}}
                                 @if ($item->descripcion ?? $item->contenido)
                                     <p class=" text-gray-400 line-clamp-1">
-                                        {{ Str::limit(strip_tags($item->descripcion ?? $item->contenido), 140) }}
+                                          {{ Str::limit(strip_tags(html_entity_decode($item->contenido ?? '')), 150, '...') ?: 'Sin descripción disponible.' }}
                                     </p>
+                                        
                                 @endif
                             </div>
 

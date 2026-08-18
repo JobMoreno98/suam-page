@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\AreaFormacion;
 use App\Models\Convocatoria;
 use App\Models\Curso;
-use App\Models\Evento; // <-- 1. Importamos el modelo Evento
+use App\Models\Evento;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Str;
 
 class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $query = trim($request->input('q'));
+        // 1. Obtenemos el valor crudo
+        $rawQuery = trim($request->input('q'));
+
+        // 2. Limpieza suave y compatible con español (Unicode):
+        // Mantiene letras (incluyendo á, é, ñ), números y espacios. 
+        // Solo elimina símbolos raros de puntuación o caracteres especiales.
+        $query = preg_replace('/[^\p{L}\p{N}\s]/u', '', $rawQuery);
+
         $page = $request->input('page', 1);
         $perPage = 10;
 
