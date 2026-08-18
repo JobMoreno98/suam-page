@@ -59,7 +59,7 @@
 
                                 {{-- NUEVO BOTÓN: Ir a la página del Área responsivo --}}
                                 <a href="{{ route('areas.show', $categoria) }}" @click.stop
-                                    class="px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 bg-white hover:bg-navy hover:text-white text-navy font-bold text-[10px] sm: rounded-lg sm:rounded-xl shadow-xs border border-gray-200 transition-all duration-200 flex items-center gap-1">
+                                    class="px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 bg-white hover:bg-navy hover:text-white text-navy font-bold text-[12px] sm: rounded-lg sm:rounded-xl shadow-xs border border-gray-200 transition-all duration-200 flex items-center gap-1">
                                     {{-- Texto corto en móviles, texto completo en pantallas medianas o más grandes --}}
                                     <span class="hidden sm:inline">Ver información</span>
                                     <span class="sm:hidden">Ver área</span>

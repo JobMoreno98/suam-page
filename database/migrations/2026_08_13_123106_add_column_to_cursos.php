@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('cursos', function (Blueprint $table) {
-            $table->string('duracion')->nullable();
             $table->time('hora_fin')->nullable();
         });
     }
@@ -23,7 +22,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('cursos', function (Blueprint $table) {
-            $table->string('duracion')->nullable();
+            $table->dropColumn('duracion');
+            $table->dropColumn('hora_fin');
         });
     }
 };

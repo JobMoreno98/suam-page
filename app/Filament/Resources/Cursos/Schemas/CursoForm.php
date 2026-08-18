@@ -40,9 +40,8 @@ class CursoForm
                     FileUpload::make('temario')
                         ->acceptedFileTypes([
                             'application/pdf',
-                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
-                            'application/msword' // .doc
-                        ]),
+                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                        ])->disk('public')->openable(),
                 ])->columnSpanFull()->columns(4),
 
                 TinyEditor::make('descripcion')->label('Descripción')
