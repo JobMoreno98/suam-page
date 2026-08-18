@@ -53,7 +53,7 @@
 
                     {{-- Rejilla de Información Rápida --}}
                     <div
-                        class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50 py-2 px-2 rounded-2xl border border-gray-100">
+                        class="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50 py-2 px-2 rounded-2xl border border-gray-100">
 
                         {{-- Duración --}}
                         <div class="flex items-center gap-3">
@@ -119,7 +119,9 @@
                             <div>
                                 <span
                                     class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Cupo</span>
-                                <span class="font-bold text-navy">{{ $curso->cupo  ?? 'Por definir' }}</span>
+                                <span class="font-bold text-navy">
+                                    {{ $curso->cupo ? $curso->cupo . ' personas' : 'Por definir' }}
+                                </span>
                             </div>
                         </div>
 
