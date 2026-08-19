@@ -20,7 +20,16 @@ class CursosTable
             ->columns([
                 TextColumn::make('nombre')->searchable(),
                 TextColumn::make('area.nombre')->label('Área de Formación')->searchable(),
-                TextColumn::make('modalidad')->searchable()
+                TextColumn::make('modalidad')
+                    ->label('Modalidad')
+                    ->badge() // Opcional: muestra las modalidades como etiquetas estilizadas
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'virtual' => 'Virtual',
+                        'presencial' => 'Presencial',
+                        'ambas' => 'Virtual / Presencial',
+                        default => $state,
+                    })
+                    ->searchable()
             ])
             ->filters([
                 TrashedFilter::make(),
