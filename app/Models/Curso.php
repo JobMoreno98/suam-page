@@ -15,6 +15,12 @@ class Curso extends Model
     use SoftDeletes;
     use Searchable;
     protected $guarded = [];
+
+    protected $casts = [
+        'horarios' => 'array', 
+    ];
+
+
     public function area(): BelongsTo
     {
         return $this->belongsTo(AreaFormacion::class, 'area_id');
@@ -85,5 +91,4 @@ class Curso extends Model
             }
         );
     }
-
 }

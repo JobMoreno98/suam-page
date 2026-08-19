@@ -52,80 +52,81 @@
                     </div>
 
                     {{-- Rejilla de Información Rápida --}}
-                    <div
-                        class="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50 py-2 px-2 rounded-2xl border border-gray-100">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-gray-50 py-2 px-2 rounded-2xl border border-gray-100">
 
                         {{-- Duración --}}
-                        <div class="flex items-center gap-3">
-                            <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
+                        <x-info-item label="Duración" :value="$curso->duracion ?? 'Por definir'">
+                            <x-slot:icon>
                                 <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                            </div>
-                            <div>
-                                <span
-                                    class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Duración</span>
-                                <span class=" font-bold text-navy">{{ $curso->duracion ?? 'Por definir' }}</span>
-                            </div>
-                        </div>
+                            </x-slot:icon>
+                        </x-info-item>
 
                         {{-- Modalidad --}}
-                        <div class="flex items-center gap-3">
-                            <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
+                        <x-info-item label="Modalidad" :value="$curso->modalidad_formateada">
+                            <x-slot:icon>
                                 <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
                                 </svg>
-                            </div>
-                            <div>
-                                <span
-                                    class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Modalidad</span>
-                                <span class=" font-bold text-navy">{{ $curso->modalidad_formateada }}</span>
-                            </div>
-                        </div>
-                        {{-- Horarios --}}
-                        <div class="flex items-center gap-3">
-                            <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
-                                <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-
-                            <div>
-                                <span class="text-[10px] text-gray-400 font-medium block uppercase tracking-wider">
-                                    Horario
-                                </span>
-
-                                <span class="font-bold text-navy">
-                                    {{ $curso->hora_inicio && $curso->hora_fin
-        ? \Carbon\Carbon::parse($curso->hora_inicio)->format('H:i') .
-        ' - ' .
-        \Carbon\Carbon::parse($curso->hora_fin)->format('H:i')
-        : 'Por definir' }}
-                                </span>
-                            </div>
-                        </div>
+                            </x-slot:icon>
+                        </x-info-item>
 
                         {{-- Cupo --}}
-                        <div class="flex items-center gap-3 ">
-                            <div class="p-2.5 bg-white text-navy rounded-xl shadow-sm border border-gray-100">
+                        <x-info-item label="Cupo" :value="$curso->cupo ? $curso->cupo . ' personas' : 'Por definir'">
+                            <x-slot:icon>
                                 <svg class="w-5 h-5 text-brandgreen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
-                            </div>
-                            <div>
-                                <span
-                                    class="text-[10px] sm: text-gray-400 font-medium block uppercase tracking-wider">Cupo</span>
-                                <span class="font-bold text-navy">
-                                    {{ $curso->cupo ? $curso->cupo . ' personas' : 'Por definir' }}
-                                </span>
-                            </div>
-                        </div>
+                            </x-slot:icon>
+                        </x-info-item>
 
                     </div>
+
+                    {{-- Horarios (uno o varios, definidos en el Repeater del formulario) --}}
+                    @if (!empty($curso->horarios))
+                        <div class="space-y-4">
+                            <h2 class="text-lg font-extrabold text-navy uppercase tracking-wider">
+                                Horarios
+                            </h2>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                @foreach ($curso->horarios as $horario)
+                                    <div
+                                        class="flex items-center justify-between gap-3 bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
+                                        <div class="flex items-center gap-3">
+                                            <div class="p-2 bg-white text-navy rounded-lg shadow-sm border border-gray-100">
+                                                <svg class="w-4 h-4 text-brandgreen" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-navy capitalize">
+                                                    {{ $horario['dia_semana'] }}
+                                                </span>
+                                                <span class="text-gray-500 block">
+                                                    {{ \Carbon\Carbon::parse($horario['hora_inicio'])->format('H:i') }}
+                                                    -
+                                                    {{ \Carbon\Carbon::parse($horario['hora_fin'])->format('H:i') }}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <span
+                                            class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shrink-0
+                                                {{ $horario['modalidad'] === 'virtual' ? 'bg-navy/10 text-navy' : 'bg-brandgreen/10 text-brandgreen' }}">
+                                            {{ $horario['modalidad'] }}
+                                        </span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
 
                     {{-- Contenido TinyMCE procesado --}}
                     <div class="space-y-4">
@@ -236,8 +237,6 @@
             </div>
 
         </div>
-
-        {{-- LIGHTBOX / MODAL PARA MOSTRAR IMAGEN COMPLETA --}}
         @if ($curso->url_imagen)
             <template x-teleport="body">
                 <div x-show="lightboxOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
