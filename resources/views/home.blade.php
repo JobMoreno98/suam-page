@@ -6,31 +6,31 @@
 
     <!-- HERO MEJORADO -->
     <section x-data="{
-        activeSlide: 0,
-        slides: @js($slides),
-        {{-- Laravel convierte tu variable de BD a JSON automáticamente --}}
-        interval: null,
-        init() {
-            if (this.slides.length > 1) {
+            activeSlide: 0,
+            slides: @js($slides),
+            {{-- Laravel convierte tu variable de BD a JSON automáticamente --}}
+            interval: null,
+            init() {
+                if (this.slides.length > 1) {
+                    this.startAutoplay();
+                }
+            },
+            startAutoplay() {
+                this.interval = setInterval(() => {
+                    this.next();
+                }, 5000);
+            },
+            resetAutoplay() {
+                clearInterval(this.interval);
                 this.startAutoplay();
+            },
+            next() {
+                this.activeSlide = (this.activeSlide + 1) % this.slides.length;
+            },
+            prev() {
+                this.activeSlide = this.activeSlide === 0 ? this.slides.length - 1 : this.activeSlide - 1;
             }
-        },
-        startAutoplay() {
-            this.interval = setInterval(() => {
-                this.next();
-            }, 5000);
-        },
-        resetAutoplay() {
-            clearInterval(this.interval);
-            this.startAutoplay();
-        },
-        next() {
-            this.activeSlide = (this.activeSlide + 1) % this.slides.length;
-        },
-        prev() {
-            this.activeSlide = this.activeSlide === 0 ? this.slides.length - 1 : this.activeSlide - 1;
-        }
-    }" class="relative rounded-2xl overflow-hidden bg-gray-100 shadow-sm">
+        }" class="relative rounded-2xl overflow-hidden bg-gray-100 shadow-sm">
 
         @if (!empty($slides) && $slides->count() > 0)
             {{-- SLIDES --}}
@@ -41,11 +41,12 @@
                         x-transition:enter-end="opacity-100 transform translate-x-0"
                         x-transition:leave="transition ease-in duration-300"
                         x-transition:leave-start="opacity-100 transform translate-x-0"
-                        x-transition:leave-end="opacity-0 transform -translate-x-4" class="absolute inset-0 h-full w-full">
+                        x-transition:leave-end="opacity-0 transform -translate-x-4"
+                        class="absolute inset-0 h-full w-full flex items-center justify-center">
 
-                        {{-- Contenedor de la Imagen (Ocupa el 100% del Slide) --}}
-                        <div class="w-full h-full overflow-hidden relative">
-                            <img :src="slide.url_imagen || slide.url_imagen" :alt="slide.titulo_alt || 'Imagen de slide'"
+                        {{-- Contenedor de la Imagen --}}
+                        <div class="w-full h-full flex items-center justify-center overflow-hidden relative">
+                            <img :src="slide.url_imagen || slide.imagen" :alt="slide.titulo_alt || 'Imagen de slide'"
                                 class="w-full h-full object-cover object-center" />
                         </div>
 
@@ -53,7 +54,7 @@
                 </template>
             </div>
 
-            {{-- BOTONES NAVEGACIÓN (Solo se muestran si hay más de 1 slide) --}}
+            {{-- BOTONES NAVEGACIÓN --}}
             <template x-if="slides.length > 1">
                 <div>
                     <button @click="prev(); resetAutoplay()"
@@ -71,7 +72,7 @@
                 </div>
             </template>
 
-            {{-- INDICADORES (Solo se muestran si hay más de 1 slide) --}}
+            {{-- INDICADORES --}}
             <template x-if="slides.length > 1">
                 <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
                     <template x-for="(slide, index) in slides" :key="index">
@@ -134,8 +135,7 @@
                 @forelse ($convocatorias as $item)
                     <div class="bg-white border border-gray-100 rounded-xl p-4 flex gap-3 shadow-sm">
                         <div class="w-10 h-10 rounded-md bg-navy/10 flex items-center justify-center text-navy shrink-0">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="1.5">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                             </svg>

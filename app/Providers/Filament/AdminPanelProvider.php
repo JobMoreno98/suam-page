@@ -41,16 +41,13 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])->navigationGroups([
-                NavigationGroup::make('Académico')
-                   ,
-                NavigationGroup::make('Difusión')
-                    ,
-                NavigationGroup::make('Institucional')
-                    ,
-                NavigationGroup::make('Sistema')
-                    
-                    ->collapsed(), // opcional: que inicie colapsado
-            ])
+                    NavigationGroup::make('Académico')->collapsed(),
+                    NavigationGroup::make('Difusión')->collapsed(),
+                    NavigationGroup::make('Institucional')->collapsed(),
+                    NavigationGroup::make('Sistema')->collapsed(),
+                    NavigationGroup::make('Filament Shield')
+                        ->collapsed()
+                ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -73,27 +70,27 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])->plugins([
-                AuthUIEnhancerPlugin::make()
-                    ->mobileFormPanelPosition('bottom')
-                    ->formPanelWidth('100%')
-                    ->emptyPanelView('layouts.login'),
-                FilamentShieldPlugin::make()
-                    ->gridColumns([
-                        'default' => 1,
-                        'sm' => 2,
-                        'lg' => 3
-                    ])
-                    ->sectionColumnSpan(1)
-                    ->checkboxListColumns([
-                        'default' => 1,
-                        'sm' => 2,
-                        'lg' => 4,
-                    ])
-                    ->resourceCheckboxListColumns([
-                        'default' => 1,
-                        'sm' => 2,
-                    ]),
-            ])
+                    AuthUIEnhancerPlugin::make()
+                        ->mobileFormPanelPosition('bottom')
+                        ->formPanelWidth('100%')
+                        ->emptyPanelView('layouts.login'),
+                    FilamentShieldPlugin::make()
+                        ->gridColumns([
+                            'default' => 1,
+                            'sm' => 2,
+                            'lg' => 3
+                        ])
+                        ->sectionColumnSpan(1)
+                        ->checkboxListColumns([
+                            'default' => 1,
+                            'sm' => 2,
+                            'lg' => 4,
+                        ])
+                        ->resourceCheckboxListColumns([
+                            'default' => 1,
+                            'sm' => 2,
+                        ]),
+                ])
             ->authMiddleware([
                 Authenticate::class,
             ])->maxContentWidth(Width::Full);

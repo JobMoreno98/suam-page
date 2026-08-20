@@ -27,7 +27,7 @@ class ConfiguracionSitioPage extends Page implements HasForms
 
     // Icono y título en el menú lateral
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMegaphone;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
 
     protected static ?string $navigationLabel = 'Configuración del Sitio';

@@ -15,12 +15,18 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class BannersResource extends Resource
 {
     protected static ?string $model = Banner::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
+    protected static ?string $title = 'Banners';
+    protected static ?string $navigationLabel = 'Banners';
+    protected static ?string $pluralModelLabel = 'Banners';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Difusión';
 
     protected static ?string $recordTitleAttribute = 'Banners';
 
