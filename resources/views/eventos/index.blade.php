@@ -48,7 +48,7 @@
                             
                             {{-- Contenido truncado sin etiquetas HTML --}}
                             <p class=" text-gray-500 line-clamp-3 flex-grow">
-                                {{ Str::limit(strip_tags($evento->contenido), 120) }}
+                               {{ Str::limit(strip_tags(html_entity_decode($evento->contenido ?? '')), 150, '...') ?: 'Sin descripción disponible.' }}
                             </p>
 
                             <a href="{{ route('eventos.show', $evento) }}" 
