@@ -20,7 +20,7 @@ class CursoForm
         return $schema
             ->components([
                 Section::make('Información general')
-                    ->description('Datos básicos del curso o taller')
+                    ->description('Datos básicos del curso')
                     ->schema([
                         TextInput::make('nombre')
                             ->required()

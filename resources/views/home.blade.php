@@ -41,47 +41,13 @@
                         x-transition:enter-end="opacity-100 transform translate-x-0"
                         x-transition:leave="transition ease-in duration-300"
                         x-transition:leave-start="opacity-100 transform translate-x-0"
-                        x-transition:leave-end="opacity-0 transform -translate-x-4"
-                        class="absolute inset-0 grid grid-cols-1 md:grid-cols-2 gap-0 h-full w-full">
+                        x-transition:leave-end="opacity-0 transform -translate-x-4" class="absolute inset-0 h-full w-full">
 
-                        {{-- Contenido (Texto y Botones) --}}
-                        <div class="p-6 sm:p-10 flex flex-col justify-center gap-5 order-2 md:order-1 bg-gray-100">
-                            <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight text-navy" x-html="slide.nombre">
-                            </h1>
-
-                            <template x-if="slide.contenido">
-                                <div class="text-gray-600 text-base max-w-sm space-y-3
-                [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:gap-2
-                [&_a]:bg-brandgreen [&_a]:text-white [&_a]:font-bold [&_a]: [&_a]:uppercase [&_a]:tracking-wider
-                [&_a]:px-5 [&_a]:py-2.5 [&_a]:rounded-xl [&_a]:shadow-md [&_a]:shadow-brandgreen/20
-                hover:[&_a]:bg-navy hover:[&_a]:shadow-navy/20 hover:[&_a]:-translate-y-0.5
-                [&_a]:transition-all [&_a]:duration-200 [&_a]:no-underline"
-                                    x-html="slide.contenido"></div>
-                            </template>
-
-                            {{-- BOTÓN VER MÁS --}}
-                            <template x-if="slide.enlace">
-                                <div class="mt-2">
-                                    <a :href="slide.enlace"
-                                        class="inline-flex items-center justify-center gap-2 bg-navy text-white font-bold  uppercase tracking-wider px-6 py-3 rounded-xl shadow-md shadow-navy/20 hover:bg-brandgreen hover:shadow-brandgreen/20 hover:-translate-y-0.5 transition-all duration-200 w-max">
-                                        <span>Ver más</span>
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </template>
-                        </div>
-
-                        {{-- Contenedor de la Imagen (Adaptada al 100%) --}}
-                        <div
-                            class="h-64 md:h-full bg-gradient-to-br from-navy/10 to-navy/30 overflow-hidden order-1 md:order-2 relative">
-                            {{-- Soporta tanto 'url_imagen' (calculado) como 'imagen' directa --}}
-                            <img :src="slide.url_imagen || slide.imagen" :alt="slide.titulo_alt || 'Imagen de slide'"
+                        {{-- Contenedor de la Imagen (Ocupa el 100% del Slide) --}}
+                        <div class="w-full h-full overflow-hidden relative">
+                            <img :src="slide.url_imagen || slide.url_imagen" :alt="slide.titulo_alt || 'Imagen de slide'"
                                 class="w-full h-full object-cover object-center" />
                         </div>
-
 
                     </div>
                 </template>
@@ -116,7 +82,7 @@
                 </div>
             </template>
         @else
-            {{-- ESTADO VACÍO (Si la variable está vacía desde el controlador) --}}
+            {{-- ESTADO VACÍO --}}
             <div class="p-12 text-center text-gray-500">
                 No hay diapositivas disponibles por el momento.
             </div>

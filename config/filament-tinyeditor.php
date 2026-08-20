@@ -21,7 +21,7 @@ return [
     /** cutsom */
     'skins' => [
         // oxide, oxide-dark, tinymce-5, tinymce-5-dark
-        'ui' => 'oxide',
+        'ui' => 'oxide-dark',
 
         // dark, default, document, tinymce-5, tinymce-5-dark, writer
         'content' => 'default'

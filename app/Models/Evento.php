@@ -65,6 +65,7 @@ class Evento extends Model
     {
         return $this->imagen ? asset('storage/' . $this->imagen) : 'suam.jpg';
     }
+    
     public function toSearchableArray(): array
     {
         return [

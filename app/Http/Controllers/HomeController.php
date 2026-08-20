@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $sedes = Sede::select('id', 'nombre', 'logo', 'direccion', 'slug', 'telefono')->get()->take(3);
-        $slides = Evento::latest()->get()->take(3);
+        $slides = Banner::where('is_active', true)->get()->take(3);
 
         $areas = AreaFormacion::orderBy('orden')->get();
 

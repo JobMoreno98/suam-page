@@ -12,6 +12,7 @@ class Sede extends Model
     use SoftDeletes;
     use Searchable;
     protected $guarded = [];
+    
     protected $casts = [
         'redes_sociales' => 'array',
         'correo' => 'array'
