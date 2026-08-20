@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'sUAM — Cursos y talleres')
+
 @section('content')
     <div x-data="{
         openCategory: null,

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+
+@section('title', 'sUAM — Eventos y Actividades')
+
 @push('styles')
     {{-- CSS de lightGallery y sus plugins (Zoom y Miniaturas) --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css">

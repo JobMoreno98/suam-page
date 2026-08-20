@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'sUAM — Convocatorias')
+
 @section('content')
     <div x-data="{
         modalOpen: false,

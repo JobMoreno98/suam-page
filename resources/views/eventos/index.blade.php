@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'sUAM — Eventos y Actividades')
+
 @section('content')
     <div class="bg-gray-50/50 py-10 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto space-y-8">

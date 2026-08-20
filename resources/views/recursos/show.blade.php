@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'sUAM — Recursos')
+
 @section('content')
     <div x-data="{
         openConvocatoria: null,

@@ -14,7 +14,7 @@
     <meta name="author" content="Universidad de Guadalajara">
     <meta name="robots" content="index, follow">
 
-    <title>@yield('title', 'SUAM — Sistema Universitario de Aprendizaje para Adultos Mayores')</title>
+    <title>@yield('title', 'sUAM — Sistema Universitario del Adulto Mayor')</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
