@@ -7,6 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
+    <meta name="description"
+        content="El SUAM es un espacio de educación de la Universidad de Guadalajara para adultos mayores. Descubre nuestros cursos, talleres e inscripciones.">
+    <meta name="keywords"
+        content="SUAM, Universidad de Guadalajara, adultos mayores, cursos gratis, educación continuada, talleres UdeG, aprendizaje adultos">
+    <meta name="author" content="Universidad de Guadalajara">
+    <meta name="robots" content="index, follow">
+
     <title>@yield('title', 'SUAM — Sistema Universitario de Aprendizaje para Adultos Mayores')</title>
 
     <!-- Fonts -->
@@ -20,7 +27,7 @@
     @livewireStyles
     @stack('styles')
     <style>
-        body{
+        body {
             font-size: 16px !important;
         }
     </style>
