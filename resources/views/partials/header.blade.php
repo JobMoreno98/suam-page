@@ -1,8 +1,7 @@
 <header x-data="{
     mobileMenuOpen: false,
     mobileSearchOpen: false
-}"
-    class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all duration-200">
+}" class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all duration-200">
 
     {{-- BARRA SUPERIOR (LOGO Y BÚSQUEDA) --}}
     <div class="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-6 text-base">
@@ -86,7 +85,8 @@
     <nav class="bg-navy shadow-lg shadow-navy/10 hidden lg:block">
         <div class="max-w-full mx-auto px-2 xl:px-6 flex justify-center">
             {{-- Añadido text-sm xl:text-base para ahorrar espacio en pantallas LG --}}
-            <div class="flex items-center gap-0.5 xl:gap-2 text-sm xl:text-base text-white/80 font-medium whitespace-nowrap">
+            <div
+                class="flex items-center gap-0.5 xl:gap-2 text-sm xl:text-base text-white/80 font-medium whitespace-nowrap">
 
                 {{-- Link Inicio --}}
                 <a href="{{ route('home') }}"
@@ -106,8 +106,7 @@
                             stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
-                        <span
-                            class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-brandgreen transition-transform duration-200 transform scale-x-0 group-hover:scale-x-100 
                             {{ request()->routeIs('home.acerca', 'sedes.*') ? 'scale-x-100' : '' }}"></span>
                     </button>
 
@@ -160,7 +159,7 @@
                 {{-- Dropdown Estudiantes --}}
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
                     <button @click="open = !open"
-                        class="relative py-3.5 px-2 xl:px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('home.testimonios*', 'home.etica') ? 'text-white font-semibold' : '' }}">
+                        class="relative py-3.5 px-2 xl:px-3.5 transition-colors duration-200 hover:text-white flex items-center gap-1.5 group {{ request()->routeIs('home.testimonios*', 'home.etica', 'galerias.*') ? 'text-white font-semibold' : '' }}">
                         <span>Estudiantes</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200"
                             :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -181,6 +180,10 @@
                         <a href="{{ route('home.etica') }}"
                             class="block px-4 py-2 text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.etica') ? 'font-semibold text-brandgreen' : '' }}">
                             Código de ética
+                        </a>
+                        <a href="{{ route('galerias.index') }}"
+                            class="block px-4 py-2 text-gray-700 hover:bg-gray-100 {{ request()->routeIs('home.etica') ? 'font-semibold text-brandgreen' : '' }}">
+                            Galerías
                         </a>
                     </div>
                 </div>
@@ -210,8 +213,7 @@
     <div x-show="mobileMenuOpen" x-cloak x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 -translate-y-4"
-        class="lg:hidden bg-navy border-t border-white/10 text-white">
+        x-transition:leave-end="opacity-0 -translate-y-4" class="lg:hidden bg-navy border-t border-white/10 text-white">
 
         <div class="px-4 pt-3 pb-6 space-y-1">
             {{-- TODO EL CONTENIDO DEL MENÚ MÓVIL SE MANTIENE INTACTO --}}
@@ -259,10 +261,10 @@
                 class="block py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('eventos.*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                 Eventos y Actividades
             </a>
-            
+
             <div x-data="{ open: {{ request()->routeIs('home.testimonios*') ? 'true' : 'false' }} }">
                 <button @click="open = !open"
-                    class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('home.testimonios*') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
+                    class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg text-base font-medium transition-colors {{ request()->routeIs('home.testimonios*', 'galeria.*', 'home.etica') ? 'bg-white/10 text-white font-semibold' : 'text-white/80 hover:bg-white/5 hover:text-white' }}">
                     <span>Estudiantes</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200"
                         :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -273,12 +275,16 @@
 
                 <div x-show="open" x-collapse class="pl-3 mt-1 space-y-1">
                     <a href="{{ route('home.testimonios') }}"
-                        class="block py-2 px-3 rounded-lg  transition-colors {{ request()->routeIs('home.testimonios') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
+                        class="block py-2 px-3 rounded-lg  transition-colors {{ request()->routeIs('home.testimonios*', 'galerias.*', 'home.etica') ? 'bg-white/10 text-white font-semibold' : 'text-white/70 hover:bg-white/5 hover:text-white' }}">
                         Testimonios
                     </a>
                     <a href="{{ route('home.etica') }}"
                         class="block py-2 px-3 rounded-lg  text-white/70 hover:bg-white/5 hover:text-white transition-colors">
                         Código de ética
+                    </a>
+                    <a href="{{ route('galerias.index') }}"
+                        class="block py-2 px-3 rounded-lg  text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+                        Galerías
                     </a>
                 </div>
             </div>

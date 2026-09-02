@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\ConfiguracionSitio;
 use App\Models\Convocatoria;
 use App\Models\Evento;
+use App\Models\Galeria;
 use App\Models\Sede;
 use App\Models\Testimonio;
 use Illuminate\Http\Request;
@@ -44,5 +45,10 @@ class HomeController extends Controller
     {
         $configuracion = ConfiguracionSitio::first()->value('codigo_etica');
         return view('etica', compact('configuracion'));
+    }
+
+    public function galerias(){
+        $galerias = Galeria::all();
+        
     }
 }

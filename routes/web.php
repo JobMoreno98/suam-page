@@ -3,6 +3,7 @@
 use App\Http\Controllers\AreaFormacionController;
 use App\Http\Controllers\ConvocatoriaController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\GaleriaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\EventoController;
@@ -30,7 +31,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/acerca-de', [HomeController::class, 'acerca'])->name('home.acerca');
 Route::get('/codigo-de-etica', [HomeController::class, 'etica'])->name('home.etica');
 Route::get('/testimonios', [HomeController::class, 'testimonios'])->name('home.testimonios');
-
+Route::resource('galerias',GaleriaController::class)->names('galerias')->only(['index','show']);
+// routes/web.php
+#kVolt::route('/galerias/{galeria:slug}', 'galerias.show')->name('galerias.show');
 
 
 Route::get('/buscar', [SearchController::class, 'index'])->name('buscar');
