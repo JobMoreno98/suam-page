@@ -18,6 +18,7 @@ class AreaFormacion extends Model
     {
         return $this->hasMany(Curso::class, 'area_id', 'id');
     }
+    
     protected static function booted(): void
     {
         static::creating(function ($model) {

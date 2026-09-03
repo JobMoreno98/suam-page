@@ -19,9 +19,9 @@
             </a>
 
             {{-- Imagen Destacada --}}
-            @if($galeria->imagenes->isNotEmpty())
+            @if(!empty($galeria->imagenes))
                 <div class="w-full h-64 sm:h-96 relative rounded-3xl overflow-hidden shadow-sm bg-gray-900">
-                    <img src="{{ $galeria->imagenes->first()->url }}" alt="{{ $galeria->titulo }}"
+                    <img src="{{ $galeria->imagenes[0]->url }}" alt="{{ $galeria->titulo }}"
                         class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-navy/60 via-navy/10 to-transparent"></div>
 
@@ -33,7 +33,7 @@
                             <svg class="w-4 h-4 text-brandorange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
-                            {{ $galeria->imagenes->count() }} {{ Str::plural('foto', $galeria->imagenes->count()) }}
+                            {{ count($galeria->imagenes) }} {{ Str::plural('foto', count($galeria->imagenes)) }}
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
             @endif
 
             {{-- Grid de imágenes (GLightbox) --}}
-            @if($galeria->imagenes->isEmpty())
+            @if(empty($galeria->imagenes))
                 <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-10 text-center">
                     <div class="p-4 bg-gray-50 rounded-full text-gray-400 mb-3 inline-flex">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,18 +67,16 @@
                 </div>
             @else
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                    @foreach($galeria->imagenes as $imagen)
-                    <a
-                        
-                            href="{{ $imagen->url }}"
+                    @foreach($galeria->imagenes as $ruta)
+                        <a
+                            href="{{ $ruta->url }}"
                             class="glightbox aspect-square w-full rounded-2xl overflow-hidden relative group block shadow-sm"
                             data-gallery="galeria-{{ $galeria->id }}"
-                            data-title="{{ $imagen->titulo }}"
-                            data-description="{{ $imagen->titulo }}"
+                            data-title="{{ $galeria->titulo }}"
                         >
                             <img
-                                src="{{ $imagen->url }}"
-                                alt="{{ $imagen->alt_text ?? $imagen->titulo ?? $galeria->titulo }}"
+                                src="{{ $ruta->url }}"
+                                alt="{{ $galeria->titulo }}"
                                 loading="lazy"
                                 class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
                             >
@@ -92,12 +90,6 @@
                                     </svg>
                                 </div>
                             </div>
-
-                            @if($imagen->titulo)
-                                <span class="absolute bottom-2 left-2 right-2 text-white text-xs font-semibold truncate opacity-0 group-hover:opacity-100 transition duration-300 drop-shadow-sm">
-                                    {{ $imagen->titulo }}
-                                </span>
-                            @endif
                         </a>
                     @endforeach
                 </div>
@@ -114,8 +106,8 @@
                         @foreach($relacionadas as $relacionada)
                             <a href="{{ route('galerias.show', $relacionada) }}" class="group block">
                                 <div class="h-32 w-full bg-gray-100 rounded-2xl overflow-hidden mb-3">
-                                    @if($relacionada->imagenes->isNotEmpty())
-                                        <img src="{{ $relacionada->imagenes->first()->url }}" alt="{{ $relacionada->titulo }}"
+                                    @if(!empty($relacionada->imagenes))
+                                        <img src="{{ Storage::disk('public')->url($relacionada->imagenes[0]) }}" alt="{{ $relacionada->titulo }}"
                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     @endif
                                 </div>

@@ -9,9 +9,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
-use Storage;
 
 class GaleriaForm
 {
@@ -34,51 +34,33 @@ class GaleriaForm
                             ->default(true),
                     ])->columns(1),
 
-                Section::make('Imágenes')
-                    ->schema([
-                        Repeater::make('imagenes')
-                            ->relationship()
-                            ->schema([
-                                FileUpload::make('ruta')
-                                    ->image()
-                                    ->directory('galerias')->disk('public')->directory('galerias')
-                                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                        $filename = Str::random(40) . '.webp';
-                                        $path = 'galerias/' . $filename;
+                FileUpload::make('imagenes_temp')
+                    ->label('Imágenes')
+                    ->image()
+                    ->multiple()
+                    ->disk('public')
+                    ->directory('galerias')
+                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                        $filename = Str::random(40) . '.webp';
+                        $path = 'galerias/' . $filename;
 
-                                        // Carga la imagen usando GD
-                                        $sourceImage = imagecreatefromstring($file->get());
+                        $sourceImage = imagecreatefromstring($file->get());
+                        imagepalettetotruecolor($sourceImage);
+                        imagealphablending($sourceImage, true);
+                        imagesavealpha($sourceImage, true);
 
-                                        // Convierte el espacio de color para evitar fondos negros en PNG transparentes
-                                        imagepalettetotruecolor($sourceImage);
-                                        imagealphablending($sourceImage, true);
-                                        imagesavealpha($sourceImage, true);
+                        ob_start();
+                        imagewebp($sourceImage, null, 80);
+                        $webpData = ob_get_clean();
+                        imagedestroy($sourceImage);
 
-                                        // Captura la imagen en buffer de memoria codificada como WebP al 80% de calidad
-                                        ob_start();
-                                        imagewebp($sourceImage, null, 80);
-                                        $webpData = ob_get_clean();
-                                        imagedestroy($sourceImage);
+                        Storage::disk('public')->put($path, $webpData);
 
-                                        // Guarda el archivo en el Storage
-                                        Storage::disk('public')->put($path, $webpData);
-
-                                        return $path;
-                                    })
-                                    ->imageEditor()
-                                    ->required(),
-                                TextInput::make('titulo'),
-                                TextInput::make('alt_text')
-                                    ->label('Texto alternativo'),
-                            ])
-                            ->columns(3)
-                            ->reorderable('orden')
-                            ->orderColumn('orden')
-                            ->collapsible()
-                            ->itemLabel(fn(array $state): ?string => $state['titulo'] ?? 'Imagen')
-                            ->defaultItems(0)
-                            ->addActionLabel('Agregar imagen'),
-                    ]),
+                        return $path;
+                    })->panelLayout('grid')
+                    ->imageEditor()
+                    ->dehydrated(false) // no lo intentes guardar directo en el modelo
+                    ->required(),
             ])->columns(1);
     }
 }

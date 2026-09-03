@@ -16,4 +16,25 @@ class EditGaleria extends EditRecord
             DeleteAction::make(),
         ];
     }
+    protected function afterSave(): void
+    {
+        $rutas = $this->data['imagenes_temp'] ?? [];
+
+        foreach ($rutas as $orden => $ruta) {
+            $this->record->imagenes()->create([
+                'ruta' => $ruta,
+                'orden' => $orden,
+            ]);
+        }
+    }
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $data['imagenes_temp'] = $this->record
+            ->imagenes()
+            ->orderBy('orden')
+            ->pluck('ruta')
+            ->toArray();
+
+        return $data;
+    }
 }
