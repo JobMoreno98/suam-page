@@ -6,31 +6,31 @@
 
     <!-- HERO MEJORADO -->
     <section x-data="{
-            activeSlide: 0,
-            slides: @js($slides),
-            {{-- Laravel convierte tu variable de BD a JSON automáticamente --}}
-            interval: null,
-            init() {
-                if (this.slides.length > 1) {
-                    this.startAutoplay();
-                }
-            },
-            startAutoplay() {
-                this.interval = setInterval(() => {
-                    this.next();
-                }, 5000);
-            },
-            resetAutoplay() {
-                clearInterval(this.interval);
-                this.startAutoplay();
-            },
-            next() {
-                this.activeSlide = (this.activeSlide + 1) % this.slides.length;
-            },
-            prev() {
-                this.activeSlide = this.activeSlide === 0 ? this.slides.length - 1 : this.activeSlide - 1;
-            }
-        }" class="relative rounded-2xl overflow-hidden bg-gray-100 shadow-sm">
+                                    activeSlide: 0,
+                                    slides: @js($slides),
+                                    {{-- Laravel convierte tu variable de BD a JSON automáticamente --}}
+                                    interval: null,
+                                    init() {
+                                        if (this.slides.length > 1) {
+                                            this.startAutoplay();
+                                        }
+                                    },
+                                    startAutoplay() {
+                                        this.interval = setInterval(() => {
+                                            this.next();
+                                        }, 5000);
+                                    },
+                                    resetAutoplay() {
+                                        clearInterval(this.interval);
+                                        this.startAutoplay();
+                                    },
+                                    next() {
+                                        this.activeSlide = (this.activeSlide + 1) % this.slides.length;
+                                    },
+                                    prev() {
+                                        this.activeSlide = this.activeSlide === 0 ? this.slides.length - 1 : this.activeSlide - 1;
+                                    }
+                                }" class="relative rounded-2xl overflow-hidden bg-gray-100 shadow-sm">
 
         @if (!empty($slides) && $slides->count() > 0)
             {{-- SLIDES --}}
@@ -127,103 +127,145 @@
         </div>
     </section>
 
-    <div class="grid grid-cols-1  gap-8">
-        <!-- CONVOCATORIAS -->
-        <section class="md:col-span-2">
-            <h2 class="text-lg font-bold text-navy mb-4">Convocatorias</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                @forelse ($convocatorias as $item)
-                    <div class="bg-white border border-gray-100 rounded-xl p-4 flex gap-3 shadow-sm">
-                        <div class="w-10 h-10 rounded-md bg-navy/10 flex items-center justify-center text-navy shrink-0">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                            </svg>
-                        </div>
-                        <div>
-                            <div class=" font-semibold text-navy">{{ $item->nombre }}</div>
-                            <span
-                                class="inline-block text-[10px] font-semibold border rounded-full px-2.5 py-0.5 mt-1 {{ $item->estado_inscripcion['badge'] }}">
-                                {{ $item->estado_inscripcion['texto'] }}
-                            </span>
-                            <p class="text-[11px] text-gray-400 mt-1">{{ $item->rango_fechas }}</p>
-                            <a href="{{ route('convocatorias.show', $item) }}"
-                                class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle
-                                →</a>
-                        </div>
-                    </div>
-                @empty
-                    <p class=" text-gray-500 col-span-full text-center">No hay convocatorias disponibles por el
-                        momento.</p>
-                @endforelse
-            </div>
-        </section>
-    </div>
+    <!-- CONVOCATORIAS + SEDES (izquierda) Y FACEBOOK (derecha) -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
-    <!-- SEDES -->
-    <section>
-        <h2 class="text-lg font-bold text-navy">Nuestras sedes</h2>
-        <p class=" text-gray-400 mb-4">Conéctate con sedes en diferentes municipios de Jalisco.</p>
-        <div class="space-y-6">
-            {{-- Grid de Tarjetas (1 columna en móvil, 2 en tablet, 3 en pantallas grandes) --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse ($sedes as $item)
-                    <div
-                        class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between">
+        {{-- COLUMNA IZQUIERDA: Convocatorias + Sedes --}}
+        <div class="lg:col-span-2 space-y-8">
 
-                        {{-- Contenedor de la Imagen / Logo --}}
-                        <div class="relative h-48 bg-gray-50 flex items-center justify-center p-4 border-b border-gray-100">
-                            <img src="{{ $item->url_logo }}" class="max-h-full max-w-full object-contain"
-                                alt="Logo-{{ $item->slug }}" />
-                        </div>
-
-                        {{-- Detalles de la Sede --}}
-                        <div class="p-5 flex-grow">
-                            <h3 class="font-bold text-gray-800 text-lg mb-2 leading-snug">
-                                {{ $item->nombre }}
-                            </h3>
-                            <div class="flex items-start  text-gray-600 space-x-2">
-                                <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            {{-- CONVOCATORIAS --}}
+            <div>
+                <h2 class="text-lg font-bold text-navy mb-4">Convocatorias</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    @forelse ($convocatorias as $item)
+                        <div class="bg-white border border-gray-100 rounded-xl p-4 flex gap-3 shadow-sm">
+                            <div class="w-10 h-10 rounded-md bg-navy/10 flex items-center justify-center text-navy shrink-0">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                                 </svg>
-                                <span>{{ $item->direccion }}</span>
                             </div>
-
-                            {{-- Teléfono (si existe en tu modelo) --}}
-                            @if (!empty($item->telefono))
-                                <div class="flex items-center  text-gray-600 space-x-2">
-                                    <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                    <span>{{ $item->telefono }}</span>
-                                </div>
-                            @endif
+                            <div>
+                                <div class="font-semibold text-navy">{{ $item->nombre }}</div>
+                                <span
+                                    class="inline-block text-[10px] font-semibold border rounded-full px-2.5 py-0.5 mt-1 {{ $item->estado_inscripcion['badge'] }}">
+                                    {{ $item->estado_inscripcion['texto'] }}
+                                </span>
+                                <p class="text-[11px] text-gray-400 mt-1">{{ $item->rango_fechas }}</p>
+                                <a href="{{ route('convocatorias.show', $item) }}"
+                                    class="text-[11px] text-brandgreen font-semibold hover:underline">Ver detalle →</a>
+                            </div>
                         </div>
+                    @empty
+                        <p class="text-gray-500 col-span-full text-center">No hay convocatorias disponibles por el momento.</p>
+                    @endforelse
+                </div>
+            </div>
 
+            {{-- SEDES --}}
+            <div>
+                <h2 class="text-lg font-bold text-navy">Nuestras sedes</h2>
+                @if ($sedes->isNotEmpty())
+                    {{-- Móvil: carrusel horizontal con scroll-snap | Desktop: grid --}}
+                    <div
+                        class="flex md:grid-cols-3 sm:grid sm:grid-cols-2 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none pb-3 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                        @foreach ($sedes as $item)
+                            <div
+                                class="shrink-0 w-[78%] xs:w-[70%] sm:w-auto snap-start bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between">
+
+                                <div class="relative h-40 bg-gray-50 flex items-center justify-center p-4 border-b border-gray-100">
+                                    <img src="{{ $item->url_logo }}" class="max-h-full max-w-full object-contain"
+                                        alt="Logo-{{ $item->slug }}" />
+                                </div>
+
+                                <div class="p-5 flex-grow">
+                                    <h3 class="font-bold text-gray-800 text-lg mb-2 leading-snug">
+                                        {{ $item->nombre }}
+                                    </h3>
+                                    <div class="flex items-start text-gray-600 space-x-2">
+                                        <svg class="w-5 h-5 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                        <span>{{ $item->direccion }}</span>
+                                    </div>
+
+                                    @if (!empty($item->telefono))
+                                        <div class="flex items-center text-gray-600 space-x-2 mt-1">
+                                            <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                            </svg>
+                                            <span>{{ $item->telefono }}</span>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                @empty
-                    <div class="col-span-full bg-white p-8 text-center rounded-xl border border-gray-100">
+
+                    {{-- Indicador de deslizar, solo visible en móvil --}}
+                    <p class="sm:hidden text-center text-[11px] text-gray-400 mt-2 flex items-center justify-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-4 3 4 3m8-6l4 3-4 3" />
+                        </svg>
+                        Desliza para ver más sedes
+                    </p>
+
+                    <div class="text-center pt-4">
+                        <a href="{{ route('sedes.index') }}"
+                            class="bg-navy text-white font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors inline-block">
+                            Ver todas las sedes
+                        </a>
+                    </div>
+                @else
+                    <div class="bg-white p-8 text-center rounded-xl border border-gray-100">
                         <h3 class="text-gray-500 font-medium text-base">Aún no hay sedes registradas.</h3>
                     </div>
-                @endforelse
+                @endif
             </div>
-
-            {{-- Botón para ver todas --}}
-            @if ($sedes->isNotEmpty())
-                <div class="text-center pt-2">
-                    <a href="{{ route('sedes.index') }}"
-                        class="bg-navy text-white  font-semibold px-5 py-2.5 rounded-md hover:bg-navy-dark transition-colors inline-block">
-                        Ver todas las sedes
-                    </a>
-                </div>
-            @endif
         </div>
+
+        {{-- COLUMNA DERECHA: Facebook (sticky) --}}
+        <div class="my-3 lg:sticky lg:top-8">
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
+                <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-6">
+                    <div class="p-2.5 bg-navy/10 text-navy rounded-xl">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.128 22 16.991 22 12z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-navy tracking-tight">
+                        Síguenos en Facebook
+                    </h3>
+                </div>
+
+                <div id="fb-page-container" class="w-full flex justify-center overflow-hidden" x-data="{ width: 340 }"
+                    x-init="width = $el.offsetWidth; window.addEventListener('resize', () => width = $el.offsetWidth)">
+                    <div class="fb-page" data-href="https://www.facebook.com/SUAMUdeG" data-tabs="timeline"
+                        :data-width="width" data-height="600" data-small-header="false" data-adapt-container-width="true"
+                        data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="https://www.facebook.com/SUAMUdeG" class="fb-xfbml-parse-ignore">
+                            <a href="https://www.facebook.com/SUAMUdeG" target="_blank" rel="noopener">
+                                SUAM - Sistema Universitario del Adulto Mayor
+                            </a>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
+    <div id="fb-root"></div>
 @endsection
+
+@push('scripts')
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v21.0">
+    </script>
+@endpush

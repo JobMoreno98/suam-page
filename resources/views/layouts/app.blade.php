@@ -34,6 +34,10 @@
 </head>
 
 <body class="min-h-screen flex flex-col bg-gray-50 text-navy">
+    <!-- Cargar el SDK de Facebook en Español -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://facebook.net">
+    </script>
 
     <!-- Header / Navbar Parcial -->
     @include('partials.header')
