@@ -231,7 +231,7 @@
         </div>
 
         {{-- COLUMNA DERECHA: Facebook (sticky) --}}
-        <div class="my-3 lg:sticky lg:top-8">
+       <div class="my-3 lg:sticky lg:top-8">
             <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
                 <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-6">
                     <div class="p-2.5 bg-navy/10 text-navy rounded-xl">
@@ -245,11 +245,10 @@
                     </h3>
                 </div>
 
-                <div id="fb-page-container" class="w-full flex justify-center overflow-hidden" x-data="{ width: 340 }"
-                    x-init="width = $el.offsetWidth; window.addEventListener('resize', () => width = $el.offsetWidth)">
-                    <div class="fb-page" data-href="https://www.facebook.com/SUAMUdeG" data-tabs="timeline"
-                        :data-width="width" data-height="600" data-small-header="false" data-adapt-container-width="true"
-                        data-hide-cover="false" data-show-facepile="true">
+                <div id="fb-page-container" class="w-full flex justify-center overflow-hidden">
+                    <div id="fb-page-widget" class="fb-page" data-href="https://www.facebook.com/SUAMUdeG"
+                        data-tabs="timeline" data-width="340" data-height="600" data-small-header="false"
+                        data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                         <blockquote cite="https://www.facebook.com/SUAMUdeG" class="fb-xfbml-parse-ignore">
                             <a href="https://www.facebook.com/SUAMUdeG" target="_blank" rel="noopener">
                                 SUAM - Sistema Universitario del Adulto Mayor
@@ -266,6 +265,44 @@
 @endsection
 
 @push('scripts')
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v21.0">
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v21.0'
+            });
+        };
+
+        (function () {
+            const container = document.getElementById('fb-page-container');
+            const widget = document.getElementById('fb-page-widget');
+            let resizeTimeout = null;
+
+            function updateWidth() {
+                if (!container || !widget) return;
+
+                const newWidth = Math.max(180, Math.min(500, container.offsetWidth));
+                const currentWidth = parseInt(widget.getAttribute('data-width'), 10);
+
+                if (newWidth === currentWidth) return;
+
+                widget.setAttribute('data-width', newWidth);
+
+                // Reparsea el plugin solo si el SDK ya cargó,
+                // para evitar el error "Could not find element"
+                if (window.FB && window.FB.XFBML) {
+                    window.FB.XFBML.parse(container);
+                }
+            }
+
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(updateWidth, 300);
+            });
+
+            document.addEventListener('DOMContentLoaded', updateWidth);
+        })();
     </script>
+
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v21.0"></script>
 @endpush
