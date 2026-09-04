@@ -18,21 +18,42 @@ class EditGaleria extends EditRecord
     }
     protected function afterSave(): void
     {
-        $rutas = $this->data['imagenes_temp'] ?? [];
+        $rutas = array_values($this->data['imagenes_temp'] ?? []);
+
+        // Borra las que ya no están en el array (y su archivo físico)
+        $this->record->imagenes()
+            ->whereNotIn('ruta', $rutas)
+            ->get()
+            ->each(function ($imagen) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($imagen->ruta);
+                $imagen->delete();
+            });
+
+        $existentes = $this->record->imagenes()->pluck('ruta')->toArray();
 
         foreach ($rutas as $orden => $ruta) {
-            $this->record->imagenes()->create([
-                'ruta' => $ruta,
-                'orden' => $orden,
-            ]);
+            if (in_array($ruta, $existentes)) {
+                $this->record->imagenes()->where('ruta', $ruta)->update(['orden' => $orden]);
+            } else {
+                $this->record->imagenes()->create([
+                    'ruta' => $ruta,
+                    'orden' => $orden,
+                ]);
+            }
         }
     }
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $data['imagenes_temp'] = $this->record
+        $rutas = $this->record
             ->imagenes()
             ->orderBy('orden')
             ->pluck('ruta')
+            ->toArray();
+
+        // FileUpload necesita claves únicas (no índices 0,1,2...) para
+        // poder renderizar correctamente archivos ya existentes.
+        $data['imagenes_temp'] = collect($rutas)
+            ->mapWithKeys(fn($ruta) => [(string) \Illuminate\Support\Str::uuid() => $ruta])
             ->toArray();
 
         return $data;
