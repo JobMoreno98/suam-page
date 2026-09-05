@@ -38,7 +38,7 @@
                                 Todos
                             </a>
                         </li>
-                        @foreach($anios as $anio)
+                        @foreach ($anios as $anio)
                             <li>
                                 <a href="{{ route('publicaciones.index', ['year' => $anio]) }}"
                                     class="block px-5 py-2.5 rounded-full text-sm font-medium transition-colors border shadow-sm
@@ -50,16 +50,17 @@
                     </ul>
 
                     {{-- ========================================== --}}
-                    {{-- 2. MENÚ DESKTOP (Puro CSS, siempre visible)--}}
+                    {{-- 2. MENÚ DESKTOP (Puro CSS, siempre visible) --}}
                     {{-- ========================================== --}}
                     <ul class="hidden lg:block space-y-2">
                         <li>
-                            <a href="{{ route('publicaciones.index') }}" class="block px-4 py-2 rounded-xl text-sm font-medium transition-colors 
+                            <a href="{{ route('publicaciones.index') }}"
+                                class="block px-4 py-2 rounded-xl text-sm font-medium transition-colors 
                         {{ !request('year') ? 'bg-navy text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50' }}">
                                 Todos
                             </a>
                         </li>
-                        @foreach($anios as $anio)
+                        @foreach ($anios as $anio)
                             <li>
                                 <a href="{{ route('publicaciones.index', ['year' => $anio]) }}"
                                     class="block px-4 py-2 rounded-xl text-sm font-medium transition-colors 
@@ -99,7 +100,7 @@
 
                             {{-- Imagen Principal --}}
                             <div class="h-52 w-full bg-gray-100 relative overflow-hidden">
-                                @if($publicacion->foto)
+                                @if ($publicacion->foto)
                                     <img src="{{ Storage::url($publicacion->foto) }}" alt="{{ $publicacion->nombre }}"
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                 @else
@@ -112,7 +113,7 @@
                                 @endif
 
                                 {{-- Badge de categoría --}}
-                                @if($publicacion->categoria)
+                                @if ($publicacion->categoria)
                                     <span
                                         class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-navy text-[10px] font-bold uppercase tracking-wide px-3 py-1 rounded-full shadow-sm">
                                         {{ $publicacion->categoria }}
@@ -136,11 +137,11 @@
 
                                 {{-- Contenido truncado sin etiquetas HTML --}}
                                 <p class="text-gray-500 line-clamp-3 flex-grow">
-                                    {{ Str::limit(strip_tags($publicacion->contenido), 120) }}
+                                    {{ Str::limit(strip_tags(html_entity_decode($publicacion->contenido ?? '')), 150, '...') ?: 'Sin descripción disponible.' }}
                                 </p>
 
                                 {{-- Autor --}}
-                                @if($publicacion->autor)
+                                @if ($publicacion->autor)
                                     <div class="flex items-center gap-2 text-gray-500 font-medium pt-1">
                                         <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
@@ -175,7 +176,7 @@
                 </div>
 
                 {{-- Paginación --}}
-                @if($publicaciones->hasPages())
+                @if ($publicaciones->hasPages())
                     <div class="pt-4">
                         {{ $publicaciones->links() }}
                     </div>

@@ -107,7 +107,7 @@
                             <a href="{{ route('galerias.show', $relacionada) }}" class="group block">
                                 <div class="h-32 w-full bg-gray-100 rounded-2xl overflow-hidden mb-3">
                                     @if(!empty($relacionada->imagenes))
-                                        <img src="{{ Storage::disk('public')->url($relacionada->imagenes[0]) }}" alt="{{ $relacionada->titulo }}"
+                                        <img src="{{ $relacionada->imagenes[0]->url }}" alt="{{ $relacionada->titulo }}"
                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     @endif
                                 </div>

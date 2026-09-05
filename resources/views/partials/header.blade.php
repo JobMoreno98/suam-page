@@ -19,10 +19,7 @@
             </a>
         </div>
 
-        {{-- Acciones (Buscador Desktop & Togglers Móvil) cargadas a la derecha --}}
         <div class="flex items-center justify-end gap-1 sm:gap-2 flex-1 shrink-0 mb-2" style="font-size: 12px;">
-
-            {{-- Buscador Desktop estilizado (Visible solo en LG+) --}}
             <form action="{{ route('buscar') }}" method="GET" class="relative hidden lg:block">
                 <input type="text" name="q" placeholder="Buscar cursos, sedes..."
                     class="bg-gray-50 border border-gray-200/80 rounded-full pl-4 pr-10 py-2 w-44 md:w-64 focus:outline-none focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/5 transition-all duration-200 shadow-inner" />
@@ -35,7 +32,6 @@
                 </button>
             </form>
 
-            {{-- Botón Buscar Móvil (Visible hasta LG) --}}
             <button @click="mobileSearchOpen = !mobileSearchOpen; mobileMenuOpen = false"
                 class="lg:hidden w-9 h-9 flex items-center justify-center text-gray-600 hover:text-navy rounded-full hover:bg-gray-100 transition-colors"
                 aria-label="Buscar">
@@ -44,8 +40,6 @@
                         d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
             </button>
-
-            {{-- Botón Menú Hamburguesa Móvil (Visible hasta LG) --}}
             <button @click="mobileMenuOpen = !mobileMenuOpen; mobileSearchOpen = false"
                 class="lg:hidden w-9 h-9 flex items-center justify-center text-navy rounded-xl hover:bg-gray-100 transition-colors"
                 aria-label="Abrir menú">
