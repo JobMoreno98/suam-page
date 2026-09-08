@@ -22,13 +22,15 @@ class MaterialController extends Controller
     public function show(Curso $curso)
     {
         $curso->load([
-            'area',
-            'gruposMateriales.convocatoria',
+            'area', // Asumo que cambiaste 'areaFormacion' a 'area' en tu relación
+            // 'gruposMateriales.convocatoria', <-- Puedes quitar esto si ya no usas datos de la convocatoria
             'gruposMateriales.items' => fn($q) => $q->orderBy('orden')
         ]);
 
-        $gruposPorConvocatoria = $curso->gruposMateriales->groupBy('convocatoria_id');
+        // 1. Agrupamos por ciclo
+        // 2. Cambiamos el nombre de la variable a $gruposPorCiclo
+        $gruposPorCiclo = $curso->gruposMateriales->groupBy('ciclo');
 
-        return view('recursos.show', compact('curso', 'gruposPorConvocatoria'));
+        return view('recursos.show', compact('curso', 'gruposPorCiclo'));
     }
 }

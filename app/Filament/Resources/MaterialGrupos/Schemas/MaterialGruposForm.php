@@ -37,14 +37,23 @@ class MaterialGruposForm
                             ->preload()
                             ->required()
                             ->exists('cursos', 'id'), // Valida que el curso exista en la BD
+                        Select::make('ciclo') // Cambia 'ciclo' por el nombre real de tu columna
+                            ->label('Año y Ciclo')
+                            ->options(function () {
+                                $opciones = [];
+                                $anioActual = date('Y');
 
-                        Select::make('convocatoria_id')
-                            ->label('Convocatoria')
-                            ->options(Convocatoria::pluck('nombre', 'id'))
+                                // Genera años desde 2 años atrás hasta 2 años en el futuro
+                                for ($anio = $anioActual - 5; $anio <= $anioActual + 5; $anio++) {
+                                    $opciones["{$anio} A"] = "{$anio} A";
+                                    $opciones["{$anio} B"] = "{$anio} B";
+                                }
+
+                                return $opciones;
+                            })
                             ->searchable()
                             ->preload()
-                            ->required()
-                            ->exists('convocatorias', 'id'), // Valida que la convocatoria exista en la BD
+                            ->required(),
                     ])->columns(3)->columnSpanFull(),
 
                 Section::make('Recursos y Contenidos')
@@ -68,10 +77,10 @@ class MaterialGruposForm
                                             ->label('Tipo de Recurso')
                                             ->options([
                                                 'archivo' => 'Documento',
-                                                'imagen'  => 'Imagen',
+                                                'imagen' => 'Imagen',
                                                 'youtube' => 'Video de YouTube',
-                                                'enlace'  => 'Enlace Web',
-                                                'texto'   => 'Texto / Indicaciones',
+                                                'enlace' => 'Enlace Web',
+                                                'texto' => 'Texto / Indicaciones',
                                             ])
                                             ->required()
                                             ->live()
