@@ -5,6 +5,7 @@ namespace App\Filament\Resources\MaterialGrupos\Schemas;
 use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Models\Convocatoria;
 use App\Models\Curso;
+use App\Models\MaterialGrupo;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Repeater;
@@ -37,6 +38,27 @@ class MaterialGruposForm
                             ->preload()
                             ->required()
                             ->exists('cursos', 'id'), // Valida que el curso exista en la BD
+
+                        Select::make('nombre_curso')
+                            ->label('Nombre del curso')
+                            ->searchable()
+                            ->options(
+                                fn() => MaterialGrupo::query()
+                                    ->whereNotNull('nombre_curso')
+                                    ->distinct()
+                                    ->pluck('nombre_curso', 'nombre_curso')
+                                    ->toArray()
+                            )
+                            ->createOptionForm([
+                                TextInput::make('nuevo_curso')
+                                    ->label('Nuevo curso')
+                                    ->required(),
+                            ])
+                            ->createOptionUsing(function (array $data): string {
+                                return $data['nuevo_curso'];
+                            }),
+
+
                         Select::make('ciclo') // Cambia 'ciclo' por el nombre real de tu columna
                             ->label('Año y Ciclo')
                             ->options(function () {
