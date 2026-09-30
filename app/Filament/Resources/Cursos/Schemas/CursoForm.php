@@ -12,6 +12,7 @@ use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Toggle;
 
 class CursoForm
 {
@@ -44,7 +45,10 @@ class CursoForm
                             ->minValue(1)
                             ->maxValue(100),
 
-                        TextInput::make('duracion'),
+                        TextInput::make('duracion')->label('Duración'),
+                        Toggle::make('ofertado')
+                            ->onColor('success')
+                            ->offColor('danger')->inline(false)
                     ])
                     ->columns(4),
 

@@ -39,25 +39,6 @@ class MaterialGruposForm
                             ->required()
                             ->exists('cursos', 'id'), // Valida que el curso exista en la BD
 
-                        Select::make('nombre_curso')
-                            ->label('Nombre del curso')
-                            ->searchable()
-                            ->options(
-                                fn() => MaterialGrupo::query()
-                                    ->whereNotNull('nombre_curso')
-                                    ->distinct()
-                                    ->pluck('nombre_curso', 'nombre_curso')
-                                    ->toArray()
-                            )
-                            ->createOptionForm([
-                                TextInput::make('nuevo_curso')
-                                    ->label('Nuevo curso')
-                                    ->required(),
-                            ])
-                            ->createOptionUsing(function (array $data): string {
-                                return $data['nuevo_curso'];
-                            }),
-
 
                         Select::make('ciclo') // Cambia 'ciclo' por el nombre real de tu columna
                             ->label('Año y Ciclo')

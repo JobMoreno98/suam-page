@@ -13,8 +13,11 @@ class CursoController extends Controller
     public function index()
     {
         // Carga las categorías/áreas con sus respectivos cursos
-        $categorias = AreaFormacion::with(['cursos'])->orderBy('orden')->get();
-
+        $categorias = AreaFormacion::with(['cursos' => function ($query) {
+            $query->where('ofertado', true);
+        }])
+            ->orderBy('orden')
+            ->get();
         return view('cursos.index', compact('categorias'));
     }
     public function show(Curso $curso)
@@ -26,7 +29,7 @@ class CursoController extends Controller
             ->where('fecha_fin', '>=', $hoy)
             ->latest()
             ->first();
-            
-        return view('cursos.show', compact('curso','convocatoriaActiva'));
+
+        return view('cursos.show', compact('curso', 'convocatoriaActiva'));
     }
 }

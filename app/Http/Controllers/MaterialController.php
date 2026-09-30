@@ -10,13 +10,21 @@ class MaterialController extends Controller
 {
     public function index()
     {
-        $cursosPorArea = Curso::has('gruposMateriales')
-            ->with(['area'])
+        $cursosOfertados = Curso::has('gruposMateriales')
+            ->where('ofertado', true)
+            ->with('area')
             ->withCount('gruposMateriales')
-            ->get()
-            ->groupBy(fn($curso) => $curso->area?->nombre ?? 'Otras Áreas / General');
+            ->orderBy('nombre')
+            ->paginate(12, ['*'], 'ofertados_page');
 
-        return view('recursos.index', compact('cursosPorArea'));
+        $cursosNoOfertados = Curso::has('gruposMateriales')
+            ->where('ofertado', false)
+            ->with('area')
+            ->withCount('gruposMateriales')
+            ->orderBy('nombre')
+            ->paginate(12, ['*'], 'no_ofertados_page');
+
+        return view('recursos.index', compact('cursosOfertados', 'cursosNoOfertados'));
     }
 
     public function show(Curso $curso)

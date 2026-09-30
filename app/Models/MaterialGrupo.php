@@ -11,6 +11,7 @@ class MaterialGrupo extends Model
     use SoftDeletes;
     protected $guarded = [];
     protected $table = 'material_grupos';
+    
     public function curso()
     {
         return $this->belongsTo(Curso::class);
