@@ -16,7 +16,7 @@ class CursoController extends Controller
         $categorias = AreaFormacion::with(['cursos' => function ($query) {
             $query->where('ofertado', true);
         }])
-            ->orderBy('orden')
+            ->orderBy('orden')->where('activo', true)
             ->get();
         return view('cursos.index', compact('categorias'));
     }

@@ -19,7 +19,7 @@ class HomeController extends Controller
         $sedes = Sede::select('id', 'nombre', 'logo', 'direccion', 'slug', 'telefono')->get()->take(3);
         $slides = Banner::where('is_active', true)->get()->take(3);
 
-        $areas = AreaFormacion::orderBy('orden')->get();
+        $areas = AreaFormacion::orderBy('orden')->where('activo', true)->get();
 
         $convocatorias = Convocatoria::latest()->get()->take(3);
 
@@ -47,8 +47,8 @@ class HomeController extends Controller
         return view('etica', compact('configuracion'));
     }
 
-    public function galerias(){
+    public function galerias()
+    {
         $galerias = Galeria::all();
-        
     }
 }
