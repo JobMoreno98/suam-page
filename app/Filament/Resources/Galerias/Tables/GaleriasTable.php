@@ -14,7 +14,8 @@ class GaleriasTable
 {
     public static function configure(Table $table): Table
     {
-        return $table
+        return $table->reorderable('orden')
+            ->defaultSort('orden', 'asc')
             ->columns([
                 ImageColumn::make('imagenes.ruta')
                     ->limit(1)
