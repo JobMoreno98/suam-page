@@ -21,6 +21,9 @@ class Galeria extends Model
     {
         static::creating(function ($model) {
             $model->slug = static::generateUniqueSlug($model->titulo);
+            if (is_null($model->orden)) {
+                $model->orden = static::max('orden') + 1;
+            }
         });
 
         static::updating(function ($model) {

@@ -17,7 +17,7 @@ class GaleriaController extends Controller
             )
             ->withCount('imagenes')
             ->with(['imagenes' => fn ($q) => $q->orderBy('orden')->limit(1)])
-            ->orderBy('orden')
+            ->orderBy('orden','desc')
             ->orderByDesc('created_at')
             ->paginate(9)
             ->withQueryString();

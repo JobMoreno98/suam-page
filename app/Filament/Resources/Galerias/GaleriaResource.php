@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class GaleriaResource extends Resource
 {
@@ -21,7 +22,8 @@ class GaleriaResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'Galerias';
-
+    protected static string|UnitEnum|null $navigationGroup = 'Difusión';
+    
     public static function form(Schema $schema): Schema
     {
         return GaleriaForm::configure($schema);
