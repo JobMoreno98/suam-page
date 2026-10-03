@@ -12,7 +12,6 @@ class CursoController extends Controller
 {
     public function index()
     {
-        // Carga las categorías/áreas con sus respectivos cursos
         $categorias = AreaFormacion::with(['cursos' => function ($query) {
             $query->where('ofertado', true);
         }])

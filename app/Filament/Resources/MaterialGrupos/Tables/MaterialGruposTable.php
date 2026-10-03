@@ -18,9 +18,9 @@ class MaterialGruposTable
     {
         return $table
             ->columns([
-                TextColumn::make('titulo_grupo'),
-                TextColumn::make('curso.nombre'),
-                TextColumn::make('convocatoria.nombre')
+                TextColumn::make('titulo_grupo')->searchable()->sortable(),
+                TextColumn::make('curso.nombre')->searchable()->sortable(),
+                TextColumn::make('ciclo')->searchable()->sortable()
             ])
             ->filters([
                 TrashedFilter::make(),

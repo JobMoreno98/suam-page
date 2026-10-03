@@ -15,14 +15,14 @@ class MaterialController extends Controller
             ->with('area')
             ->withCount('gruposMateriales')
             ->orderBy('nombre')
-            ->paginate(12, ['*'], 'ofertados_page');
+            ->paginate(6, ['*'], 'ofertados_page');
 
         $cursosNoOfertados = Curso::has('gruposMateriales')
             ->where('ofertado', false)
             ->with('area')
             ->withCount('gruposMateriales')
             ->orderBy('nombre')
-            ->paginate(12, ['*'], 'no_ofertados_page');
+            ->paginate(6, ['*'], 'no_ofertados_page');
 
         return view('recursos.index', compact('cursosOfertados', 'cursosNoOfertados'));
     }

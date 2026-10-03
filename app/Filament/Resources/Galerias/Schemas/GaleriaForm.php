@@ -28,11 +28,13 @@ class GaleriaForm
                                 fn(string $state, callable $set) =>
                                 $set('slug', Str::slug($state))
                             ),
+
+                        TextInput::make('orden')->numeric()->required()->minValue(1),
+                        Toggle::make('activa')
+                            ->inline(false),
                         Textarea::make('descripcion')
                             ->columnSpanFull(),
-                        Toggle::make('activa')
-                            ->default(true),
-                    ])->columns(1),
+                    ])->columns(3),
 
                 FileUpload::make('imagenes_temp')
                     ->label('Imágenes')
