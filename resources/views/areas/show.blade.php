@@ -46,15 +46,16 @@
 
             {{-- Listado de Cursos del Área --}}
             <div class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <h2 class="text-xl font-extrabold text-navy">
-                        Cursos disponibles <span class="text-gray-400 font-normal">({{ $cursos->total() }})</span>
-                    </h2>
-                </div>
 
-                @if ($cursos->count() > 0)
+
+                @if ($cursosOfertados->count() > 0)
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-extrabold text-navy">
+                            Cursos Vigentes <span class="text-gray-400 font-normal">({{ $cursosOfertados->total() }})</span>
+                        </h2>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach ($cursos as $curso)
+                        @foreach ($cursosOfertados as $curso)
                             <div
                                 class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col justify-between">
 
@@ -86,7 +87,57 @@
 
                     {{-- Paginación --}}
                     <div class="pt-6">
-                        {{ $cursos->links() }}
+                        {{ $cursosOfertados->links() }}
+                    </div>
+                @else
+                    {{-- Estado Vacío --}}
+                    <div class="bg-white rounded-3xl p-12 text-center border border-gray-100 space-y-3">
+                        <p class="text-navy font-bold text-lg">Próximamente habrá cursos disponibles</p>
+                        <p class="text-gray-400 ">Estamos preparando nuevos programas para esta área de formación.
+                        </p>
+                    </div>
+                @endif
+
+                @if ($cursosNoOfertados->count() > 0)
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-extrabold text-navy">
+                            Cursos No Vigentes <span
+                                class="text-gray-400 font-normal">({{ $cursosNoOfertados->total() }})</span>
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach ($cursosNoOfertados as $curso)
+                            <div
+                                class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col justify-between">
+
+                                {{-- Contenido de la Card del Curso --}}
+                                <div class="p-6 space-y-4">
+                                    <h3 class="font-bold text-navy text-lg line-clamp-2">
+                                        {{ $curso->nombre }}
+                                    </h3>
+                                    <p class="text-gray-500  line-clamp-3">
+                                        {{ Str::limit(strip_tags(html_entity_decode($curso->descripcion ?? '')), 150, '...') ?: 'Sin descripción disponible.' }}
+                                    </p>
+                                </div>
+
+                                {{-- Footer / Botón Acción --}}
+                                <div class="p-6 pt-0 border-t border-gray-50 mt-auto flex items-center justify-between">
+                                    <span>
+
+                                    </span>
+
+                                    <a href="{{ route('cursos.show', $curso->slug) }}"
+                                        class="px-4 py-2 bg-navy hover:bg-brandgreen text-white font-bold  rounded-xl transition-colors">
+                                        Ver curso
+                                    </a>
+                                </div>
+
+                            </div>
+                        @endforeach
+                    </div>
+                    {{-- Paginación --}}
+                    <div class="pt-6">
+                        {{ $cursosNoOfertados->links() }}
                     </div>
                 @else
                     {{-- Estado Vacío --}}

@@ -11,8 +11,16 @@ class AreaFormacionController extends Controller
 
     public function show(AreaFormacion $area_formacion)
     {
-        $cursos = $area_formacion->cursos()->paginate(9);
+        $cursosOfertados = $area_formacion->cursos()
+            ->where('ofertado', true)
+            ->orderBy('nombre')
+            ->paginate(6, ['*'], 'ofertados_page');
 
-        return view('areas.show', compact('area_formacion', 'cursos'));
+        $cursosNoOfertados =  $area_formacion->cursos()
+            ->where('ofertado', false)
+            ->orderBy('nombre')
+            ->paginate(6, ['*'], 'no_ofertados_page');
+
+        return view('areas.show', compact('area_formacion', 'cursosOfertados', 'cursosNoOfertados'));
     }
 }

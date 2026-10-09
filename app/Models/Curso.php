@@ -18,6 +18,7 @@ class Curso extends Model
 
     protected $casts = [
         'horarios' => 'array', 
+        'ofertado' => 'boolean'
     ];
 
 
